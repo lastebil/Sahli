@@ -1,0 +1,101 @@
+{
+    "slides": {
+        "background": "screen.png",
+        "template": "template.html",
+        "css": "template.css"
+    },
+    "filedata": [
+        {
+            "file": "spaceflight.asc",
+            "name": "Spaceflight",
+            "amiga": true,
+            "width": "80",
+            "author": "Urs",
+            "font": "Propaz",
+            "color": [
+                200,
+                200,
+                200,
+                255
+            ],
+            "bg": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "line1": "Revision 2013",
+            "line2": "Mercury",
+            "text": "No tools, just a text editor"
+        },
+        {
+            "file": "az0!-revi510n.txt",
+            "name": "Revi510n",
+            "amiga": true,
+            "width": "80",
+            "color": [
+                200,
+                200,
+                200,
+                255
+            ],
+            "bg": [
+                0,
+                0,
+                0,
+                0
+            ],
+            "author": "Azzaro",
+            "font": "Propaz",
+            "line1": "Revision 2013",
+            "line2": "Madwizards+Floppy",
+            "text": "Wow I'm back to ascii scene after 12 years break. Have fun people! Amiiiiiiga :)"
+        },
+        {
+            "file": "ted_-_spaceship_enterprise.ans",
+            "name": "SPACEshiP ENterprISe",
+            "amiga": false,
+            "width": "80",
+            "color": [
+                0,
+                30,
+                30,
+                255
+            ],
+            "bg": [
+                240,
+                240,
+                250,
+                255
+            ],
+            "author": "Ted",
+            "font": "ansifont",
+            "line1": "Revision 2013",
+            "line2": "Pöo-crüe^3ln",
+            "text": "Special greets to m0d - you're AWESOME! -\nThis displays more nicely in 80x50 mode\nTruck said it was OK to do that mode outside the rules\nProper resolution in Partymeister"
+        },
+        {
+            "file": "h7-supergroupies.ans",
+            "name": "Super Groupies",
+            "amiga": false,
+            "width": "80",
+            "color": [
+                0,
+                30,
+                30,
+                255
+            ],
+            "bg": [
+                240,
+                240,
+                250,
+                255
+            ],
+            "author": "H7",
+            "font": "ansifont",
+            "line1": "Revision 2013",
+            "line2": "Blocktronics & Accession",
+            "text": "Pablodraw osX"
+        }
+    ]
+}

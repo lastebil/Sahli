@@ -1,0 +1,163 @@
+body {
+    background-color: black;
+    margin: 0px;
+    padding: 0px;
+}
+
+h1#top {
+    border: 1px solid green;
+    color: green;
+    font-family: TopazPlus a600a1200a4000,monospace;
+    position: absolute;
+    top: .25ex;
+    left: .25ex;
+}
+
+div#drawbox {
+    border: 1px inset grey;
+    color: green;
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hidden {
+    display: none;
+}
+
+h6 {
+    position: fixed;
+    top: 1ex;
+    left: 1ex;
+    border: 1px green ridge;
+    padding: .125em 1em;
+    color: black;
+    background-color: green;
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8;
+    display: none;
+}
+
+.help {
+    position: fixed;
+    top: 1em;
+    left: 50em;
+    background-color: lightgrey;
+    border: outset darkgray;
+    -webkit-border-radius: 8;
+    -moz-border-radius: 8;
+    border-radius: 8;
+    font-family: "TopazPlus a600a1200a4000",mOsOul, Consolas, monospace;
+    opacity: .85;
+}
+
+.keylist {
+    border: inset lightgrey;
+    background-color: white;
+    padding: 1em;
+    margin: 0 1ex 1ex 1ex;
+    list-style: square;
+    -webkit-border-radius: 4;
+    -moz-border-radius: 4;
+    border-radius: 4;
+    background-color: white;
+}
+
+ul.keylist li {
+    padding: .25em;
+    margin: 0 1ex 1ex 1ex;
+    list-style: square;
+}
+
+.help h1 {
+    text-align: center;
+    margin: .15ex;
+    padding: .15ex;
+}
+
+ul.keylist li.nodot {
+    list-style: none;
+    padding-left: 2em;
+}
+
+.key {
+    background-color: yellow;
+    border: 2px outset darkgoldenrod;
+    -webkit-border-radius: 9;
+    -moz-border-radius: 9;
+    border-radius: 9;
+    margin: .125em;
+    padding: 0.25ex 1.5ex .25ex 1.5ex;
+}
+
+div.infobox {
+    font-family: "mOsOul,TopazPlus a600a1200a4000",MicroKnightPlus, Consolas, monospace;
+    position: absolute;
+    top: 1ex;
+    left: 1ex;
+    -webkit-border-radius: 42;
+    -moz-border-radius: 42;
+    border-radius: 42;
+    padding: 2ex;
+    pargin: 3em;
+    background-color: aliceblue;
+    opacity: .85;
+}
+
+
+h1.infobox {
+    margin: 0 0 .125ex 0;
+    padding 0px;
+    border-bottom: 1px black solid;
+}
+
+h2.infobox {
+    margin: 0.5ex 0 .125ex 1ex;
+}
+
+h3.infobox {
+    margin: .75ex .25ex .25ex 1em;
+}
+
+p.infobox {
+    margin: .25ex;
+}
+
+.bigtext {
+    background-color: lightsteelblue;
+    border: 1px outset steelblue;
+    margin: .25ex;
+    -webkit-border-radius: 3;
+    -moz-border-radius: 3;
+    border-radius: 3;
+    width: 30ex;
+}
+
+.mosoul {
+    font-family: mOsOul;
+    text-align: left;
+}
+
+
+.pot-noodle , .p0t-noodle {
+    font-family: 'P0T\-NOoDLE';
+    text-align: left;
+}
+
+.topaz, .topaz500 {
+    font-family: 'TopazPlus a500a1000a2000';
+    text-align: left;
+}
+
+.propaz, .topaz1200 {
+    font-family: 'TopazPlus a600a1200a4000';
+    text-align: left;
+}
+
+.microknight, .microknightplus {
+    font-family: 'MicroKnightPlus','MicroKnight,MicroKnightPlus';
+    text-align: left;
+}
+
