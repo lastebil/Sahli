@@ -8,7 +8,16 @@ the 13th comes on Friday this month)
 (B) Add fonts - Amiga 500
 (B) Add fonts - Amiga 1200 (replace or compare w/16colors version)
 
+SAUCE file parsing -
+(A) remove the SAUCE lines at bottom, return ANSI object for render
+(B) load SAUCE into 'info' lines (should be done at prep)
+
+OTHER file parsing -
+(A) remove their lines like SAUCE, return ANSI object for render
+(B) load other-info into 'info' (done at prep)
+
 (A) Create Editor - Standalone
 (A)  - create interface
+(A)  - parse files for 'info'
 
 (B) Get with dfox on the partymeister package version
