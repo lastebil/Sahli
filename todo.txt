@@ -1,0 +1,14 @@
+Sahli todo (programmer's day 2013 - Churchy La Femme reminds us that Friday
+the 13th comes on Friday this month)
+
+(A) Fix Amiga mode rendering via sixteencolors lib
+(B) Add fonts - mOsOul
+(B) Add fonts - microknight
+(B) Add p0t - fonts-nOodle
+(B) Add fonts - Amiga 500
+(B) Add fonts - Amiga 1200 (replace or compare w/16colors version)
+
+(A) Create Editor - Standalone
+(A)  - create interface
+
+(B) Get with dfox on the partymeister package version
