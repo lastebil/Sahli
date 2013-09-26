@@ -68,8 +68,8 @@ for details, or just get the license:
 
  * tl;dr wtf omg how duz thz wrk omg wtf
  
-1. Put this file on a webserver or local directory.
-2. Put your 
+1. Place the important files (.js, .css, .html, .sahli) on a webserver or local directory.
+2. Put your ansi and ascii files on the webserver / local directory.
 3. Edit the 'list.sahli' file (it's json) to have
   the proper filenames.
   * yes an editor is coming for the standalone
