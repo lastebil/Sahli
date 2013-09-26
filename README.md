@@ -1,7 +1,7 @@
-      .___________________________________.     ._____.
-      |            /      |   |      .    |     |_____|
-      |           ____    |          :    |     |     |
-    : |___/      /        |          |    l_____|     |
+      .___________________________________,       ___
+      |            /      |   |      .     \    .(___):
+      |        _______    |          :      \   :     |
+    : |___/      /        |          |       \__|     |
     |           /         |          |          |     |
     l__________/__________|___|______l__________j_____j
 
@@ -50,7 +50,7 @@ To use with _local_ files you need to run your browser
 in "developer" mode, that means:
 
    *** DO NOT OPEN ANY LINKS ON THE INTERNET ***
-   
+
 This works just fine if you use remote urls for the files.
 
   *** DO NOT. EVER. MIX REMOTE AND LOCAL FILES
@@ -60,14 +60,14 @@ This works just fine if you use remote urls for the files.
       APPLIES TO YOU AND YOUR ENTIRE FAMILY AND
       EVERY PERSON ALIVE, DEAD, OR IMAGINARY,
       INCLUDING THE NONEXISTENT.               ***
-      
+
 This product is licensed under the WTFPL.  See:
              http://www.wtfpl.net
 for details, or just get the license:
         http://www.wtfpl.net/txt/copying/
 
  * tl;dr wtf omg how duz thz wrk omg wtf
- 
+
 1. Place the important files (.js, .css, .html, .sahli) on a webserver or local directory.
 2. Put your ansi and ascii files on the webserver / local directory.
 3. Edit the 'list.sahli' file (it's json) to have
