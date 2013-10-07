@@ -10,7 +10,7 @@ class @ImageTextModeSAUCE
 
     parse: ( content ) ->
         sauceMarker = content.length - 128;
-        return false if content.substr( sauceMarker, 5 ) is not 'SAUCE'
+        return false if content.substr( sauceMarker, 5 ) isnt 'SAUCE'
         @id = 'SAUCE'
         @version = content.substr( sauceMarker + 5, 2 )
         @title = content.substr( sauceMarker + 7, 35 )
@@ -66,7 +66,8 @@ class @ImageTextModePalette
 class @ImageTextModePaletteVGA extends @ImageTextModePalette
 
     constructor: ( options ) ->
-        super @colors = [
+        super
+        @colors = [
             [ 0x00, 0x00, 0x00 ],
             [ 0x00, 0x00, 0xaa ],
             [ 0x00, 0xaa, 0x00 ],
@@ -918,12 +919,12 @@ class @ImageTextMode
 
     constructor: ( options ) ->
         @screen  = []
-        @palette = new ImageTextModePaletteVGA
-        @font    = new ImageTextModeFont8x16
-        this[k]  = v for own k, v of options
+        @palette = new ImageTextModePaletteVGA()
+        @font    = new ImageTextModeFont8x16()
+        @[k]  = v for own k, v of options
 
     parseUrl: ( url ) ->
-        req = new XMLHttpRequest
+        req = new XMLHttpRequest()
         req.open 'GET', url, false
         req.overrideMimeType 'text/plain; charset=x-user-defined'
         req.send null
@@ -945,6 +946,8 @@ class @ImageTextMode
     getByteAt: ( data, offset ) ->
         return data.charCodeAt( offset ) & 0xFF
 
+# could we replace this with math.max ?
+
     getWidth: ->
         max = 0
         for y in [ 0 .. @screen.length - 1 ]
@@ -965,7 +968,7 @@ class @ImageTextMode
             b = b << 2 | b >> 4
             colors.push [ r, g, b ]
 
-        @palette = new ImageTextModePalette( { colors: colors } )
+        @palette = new ImageTextModePalette( colors: colors )
 
     parseFontData: ( data, height = 16 ) ->
         chars = []
@@ -973,8 +976,10 @@ class @ImageTextMode
             chr = []
             for j in [ 0 .. height - 1 ]
                 chr.push @getByteAt( data, i * height + j )
-            chars.push chr 
+            chars.push chr
         @font = new ImageTextModeFont( { chars: chars, height: height } )
+
+# the majority of time is spent in this routine
 
     renderCanvas: ( canvasElem ) ->
         w = @getWidth() * @font.width
@@ -985,9 +990,9 @@ class @ImageTextMode
         canvas.setAttribute 'height', h
         ctx = canvas.getContext '2d'
 
-        for cy in [ 0 .. @screen.length - 1 ]
+        for cy in [ 0 ... @screen.length ]
             continue if !@screen[ cy ]?
-            for cx in [ 0 .. @screen[ cy ].length - 1 ]
+            for cx in [ 0 ... @screen[ cy ].length ]
                 pixel = @screen[ cy ][ cx ]
                 continue if !pixel?
                 if pixel.attr?
@@ -1005,9 +1010,9 @@ class @ImageTextMode
 
                 ctx.fillStyle = @palette.toRgbaString( @palette.colors[ fg ] )
                 chr = @font.chars[ pixel.ch.charCodeAt( 0 ) & 0xff ]
-                for i in [ 0 .. @font.height - 1 ]
+                for i in [ 0 ... @font.height ]
                     line = chr[ i ]
-                    for j in [ 0 .. @font.width - 1 ]
+                    for j in [ 0 ... @font.width ]
                         if line & ( 1 << @font.width - 1 - j )
                             ctx.fillRect px + j, py + i, 1, 1
 
@@ -1056,7 +1061,7 @@ class @ImageTextModeXBin extends @ImageTextMode
     parse: ( content ) ->
         @screen    = []
         headerData = content.substr( 0, 11 )
-        if headerData.length is not 11 || !headerData.match( '^XBIN\x1a' )
+        if headerData.length isnt 11 || !headerData.match( '^XBIN\x1a' )
             throw new Error( 'File is not an XBin' )
 
         @header.width = @unpackShort( headerData.substr( 5, 2 ) )
@@ -1353,7 +1358,7 @@ class @ImageTextModeIDF extends @ImageTextMode
 
     parse: ( content ) ->
         headerData = content.substr( 0, 12 )
-        if headerData.length is not 12 || !headerData.match( '^\x041.4' )
+        if headerData.length isnt 12 || !headerData.match( '^\x041.4' )
             throw new Error( 'File is not an IDF' )
 
         @header.x0 = @unpackShort( headerData.substr( 4, 2 ) )
@@ -1558,7 +1563,7 @@ class @ImageTextModePCBoard extends @ImageTextMode
                 else if ch + content[ 0..2 ].join( '' ) is 'POS:'
                     content.shift() for [ 1 .. 3 ]
                     @x = content.shift()
-                    @x += content.shift() if content[ 0 ] is not '@'
+                    @x += content.shift() if content[ 0 ] isnt '@'
                     @x--
                     
                     content.shift()
@@ -1648,3 +1653,5 @@ class @ImageTextModeAVATAR extends @ImageTextMode
         if ++@x >= @linewrap
             @x = 0
             @y++
+
+
