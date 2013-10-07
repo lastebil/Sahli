@@ -980,6 +980,7 @@ class @ImageTextMode
         @font = new ImageTextModeFont( { chars: chars, height: height } )
 
 # the majority of time is spent in this routine
+# list comprehension seems to speed up from 1.8 seconds to 1.29 seconds from first comprehension / cleanup?
 
     renderCanvas: ( canvasElem ) ->
         w = @getWidth() * @font.width
@@ -1013,12 +1014,6 @@ class @ImageTextMode
                         chr = @font.chars[ pixel.ch.charCodeAt( 0 ) & 0xff ]
                         i = 0
                         for line in chr
-                        # [ 0 ... @font.height ]
-#                            line = chr[ i ]
-#                            for j in [ 0 ... @font.width ]
-#                                if line & ( 1 << @font.width - 1 - j )
-#                                    ctx.fillRect px + j, py + i, 1, 1
-
                             ctx.fillRect px + j, py + i, 1, 1 for j in [ 0 ... @font.width ] when line & (1 << @font.width - 1 - j )
                             i += 1
 
