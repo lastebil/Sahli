@@ -304,7 +304,7 @@
     };
 
     ImageTextMode.prototype.renderCanvas = function(canvasElem) {
-      var bg, canvas, chr, ctx, cx, cy, fg, h, i, j, line, pixel, px, py, w, _i, _j, _k, _l, _ref, _ref1, _ref2, _ref3;
+      var bg, canvas, chr, ctx, cx, cy, fg, h, i, j, line, pixel, px, py, w, _i, _j, _k, _l, _len, _ref, _ref1, _ref2;
       w = this.getWidth() * this.font.width;
       h = this.getHeight() * this.font.height;
       canvas = document.createElement('canvas');
@@ -312,32 +312,32 @@
       canvas.setAttribute('height', h);
       ctx = canvas.getContext('2d');
       for (cy = _i = 0, _ref = this.screen.length; 0 <= _ref ? _i < _ref : _i > _ref; cy = 0 <= _ref ? ++_i : --_i) {
-        if (this.screen[cy] == null) {
-          continue;
-        }
-        for (cx = _j = 0, _ref1 = this.screen[cy].length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; cx = 0 <= _ref1 ? ++_j : --_j) {
-          pixel = this.screen[cy][cx];
-          if (pixel == null) {
-            continue;
-          }
-          if (pixel.attr != null) {
-            fg = pixel.attr & 15;
-            bg = (pixel.attr & 240) >> 4;
-          } else {
-            fg = pixel.fg;
-            bg = pixel.bg;
-          }
-          px = cx * this.font.width;
-          py = cy * this.font.height;
-          ctx.fillStyle = this.palette.toRgbaString(this.palette.colors[bg]);
-          ctx.fillRect(px, py, this.font.width, this.font.height);
-          ctx.fillStyle = this.palette.toRgbaString(this.palette.colors[fg]);
-          chr = this.font.chars[pixel.ch.charCodeAt(0) & 0xff];
-          for (i = _k = 0, _ref2 = this.font.height; 0 <= _ref2 ? _k < _ref2 : _k > _ref2; i = 0 <= _ref2 ? ++_k : --_k) {
-            line = chr[i];
-            for (j = _l = 0, _ref3 = this.font.width; 0 <= _ref3 ? _l < _ref3 : _l > _ref3; j = 0 <= _ref3 ? ++_l : --_l) {
-              if (line & (1 << this.font.width - 1 - j)) {
-                ctx.fillRect(px + j, py + i, 1, 1);
+        if (this.screen[cy] != null) {
+          for (cx = _j = 0, _ref1 = this.screen[cy].length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; cx = 0 <= _ref1 ? ++_j : --_j) {
+            pixel = this.screen[cy][cx];
+            if (pixel != null) {
+              if (pixel.attr != null) {
+                fg = pixel.attr & 15;
+                bg = (pixel.attr & 240) >> 4;
+              } else {
+                fg = pixel.fg;
+                bg = pixel.bg;
+              }
+              px = cx * this.font.width;
+              py = cy * this.font.height;
+              ctx.fillStyle = this.palette.toRgbaString(this.palette.colors[bg]);
+              ctx.fillRect(px, py, this.font.width, this.font.height);
+              ctx.fillStyle = this.palette.toRgbaString(this.palette.colors[fg]);
+              chr = this.font.chars[pixel.ch.charCodeAt(0) & 0xff];
+              i = 0;
+              for (_k = 0, _len = chr.length; _k < _len; _k++) {
+                line = chr[_k];
+                for (j = _l = 0, _ref2 = this.font.width; 0 <= _ref2 ? _l < _ref2 : _l > _ref2; j = 0 <= _ref2 ? ++_l : --_l) {
+                  if (line & (1 << this.font.width - 1 - j)) {
+                    ctx.fillRect(px + j, py + i, 1, 1);
+                  }
+                }
+                i += 1;
               }
             }
           }

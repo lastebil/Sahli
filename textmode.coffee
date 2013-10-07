@@ -991,30 +991,35 @@ class @ImageTextMode
         ctx = canvas.getContext '2d'
 
         for cy in [ 0 ... @screen.length ]
-            continue if !@screen[ cy ]?
-            for cx in [ 0 ... @screen[ cy ].length ]
-                pixel = @screen[ cy ][ cx ]
-                continue if !pixel?
-                if pixel.attr?
-                    fg = pixel.attr & 15
-                    bg = ( pixel.attr & 240 ) >> 4
-                else
-                    fg = pixel.fg
-                    bg = pixel.bg
+            if @screen[ cy ]?
+                for cx in [ 0 ... @screen[ cy ].length ]
+                    pixel = @screen[ cy ][ cx ]
+                    if pixel?
+                        if pixel.attr?
+                            fg = pixel.attr & 15
+                            bg = ( pixel.attr & 240 ) >> 4
+                        else
+                            fg = pixel.fg
+                            bg = pixel.bg
 
-                px = cx * @font.width
-                py = cy * @font.height
+                        px = cx * @font.width
+                        py = cy * @font.height
 
-                ctx.fillStyle = @palette.toRgbaString( @palette.colors[ bg ] )
-                ctx.fillRect px, py, @font.width, @font.height
+                        ctx.fillStyle = @palette.toRgbaString( @palette.colors[ bg ] )
+                        ctx.fillRect px, py, @font.width, @font.height
 
-                ctx.fillStyle = @palette.toRgbaString( @palette.colors[ fg ] )
-                chr = @font.chars[ pixel.ch.charCodeAt( 0 ) & 0xff ]
-                for i in [ 0 ... @font.height ]
-                    line = chr[ i ]
-                    for j in [ 0 ... @font.width ]
-                        if line & ( 1 << @font.width - 1 - j )
-                            ctx.fillRect px + j, py + i, 1, 1
+                        ctx.fillStyle = @palette.toRgbaString( @palette.colors[ fg ] )
+                        chr = @font.chars[ pixel.ch.charCodeAt( 0 ) & 0xff ]
+                        i = 0
+                        for line in chr
+                        # [ 0 ... @font.height ]
+#                            line = chr[ i ]
+#                            for j in [ 0 ... @font.width ]
+#                                if line & ( 1 << @font.width - 1 - j )
+#                                    ctx.fillRect px + j, py + i, 1, 1
+
+                            ctx.fillRect px + j, py + i, 1, 1 for j in [ 0 ... @font.width ] when line & (1 << @font.width - 1 - j )
+                            i += 1
 
         canvasElem.setAttribute 'width', w
         canvasElem.setAttribute 'height', h
