@@ -946,8 +946,8 @@ class @ImageTextMode
     getByteAt: ( data, offset ) ->
         return data.charCodeAt( offset ) & 0xFF
 
-# could we replace this with math.max ?
-
+# could we replace this with math.max ?  Not worth it,called once per view
+# we COULD, but we'd do some crap like "Math.max.apply(null,blah) and that's not readable"
     getWidth: ->
         max = 0
         for y in [ 0 .. @screen.length - 1 ]
@@ -955,7 +955,7 @@ class @ImageTextMode
         return max
 
     getHeight: ->
-        return @screen.length
+        @screen.length
 
     parsePaletteData: ( data ) ->
         colors = []
@@ -994,6 +994,7 @@ class @ImageTextMode
             if @screen[ cy ]?
                 for cx in [ 0 ... @screen[ cy ].length ]
                     pixel = @screen[ cy ][ cx ]
+                    curfillstyle = null
                     if pixel?
                         if pixel.attr?
                             fg = pixel.attr & 15

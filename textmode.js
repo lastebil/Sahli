@@ -304,7 +304,7 @@
     };
 
     ImageTextMode.prototype.renderCanvas = function(canvasElem) {
-      var bg, canvas, chr, ctx, cx, cy, fg, h, i, j, line, pixel, px, py, w, _i, _j, _k, _l, _len, _ref, _ref1, _ref2;
+      var bg, canvas, chr, ctx, curfillstyle, cx, cy, fg, h, i, j, line, pixel, px, py, w, _i, _j, _k, _l, _len, _ref, _ref1, _ref2;
       w = this.getWidth() * this.font.width;
       h = this.getHeight() * this.font.height;
       canvas = document.createElement('canvas');
@@ -315,6 +315,7 @@
         if (this.screen[cy] != null) {
           for (cx = _j = 0, _ref1 = this.screen[cy].length; 0 <= _ref1 ? _j < _ref1 : _j > _ref1; cx = 0 <= _ref1 ? ++_j : --_j) {
             pixel = this.screen[cy][cx];
+            curfillstyle = null;
             if (pixel != null) {
               if (pixel.attr != null) {
                 fg = pixel.attr & 15;
