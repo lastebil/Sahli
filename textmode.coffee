@@ -63,10 +63,15 @@ class @ImageTextModePalette
     toRgbaString: ( color ) ->
         return 'rgba(' + color.join( ',' ) + ',1)';
 
+# getting a "cannot call super outside an instance method" error here -
+# the resulting code produced does not end up using the super/parent bit
+# or at least it doesn't produce bugs in the result if it is not here.
+# commenting for now.
+
 class @ImageTextModePaletteVGA extends @ImageTextModePalette
 
     constructor: ( options ) ->
-        super
+#        super
         @colors = [
             [ 0x00, 0x00, 0x00 ],
             [ 0x00, 0x00, 0xaa ],
@@ -90,7 +95,7 @@ class @ImageTextModePaletteVGA extends @ImageTextModePalette
 class @ImageTextModePaletteANSI extends @ImageTextModePalette
 
     constructor: ( options ) ->
-        super
+#        super
         @colors = [
             [ 0x00, 0x00, 0x00 ],
             [ 0xaa, 0x00, 0x00 ],
@@ -972,9 +977,9 @@ class @ImageTextMode
 
     parseFontData: ( data, height = 16 ) ->
         chars = []
-        for i in [ 0 .. data.length / height - 1 ]
+        for i in [ 0 ... data.length / height ]
             chr = []
-            for j in [ 0 .. height - 1 ]
+            for j in [ 0 ... height ]
                 chr.push @getByteAt( data, i * height + j )
             chars.push chr
         @font = new ImageTextModeFont( { chars: chars, height: height } )
