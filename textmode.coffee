@@ -937,16 +937,16 @@ class @ImageTextMode
         shrt = ( @getByteAt( data, 1 ) << 8 ) + @getByteAt( data, 0 )
         if shrt < 0
             shrt += 65536
-        return shrt
+        shrt
 
     unpackLong: ( data ) ->
         lng = ((( @getByteAt( data, 0 ) << 8 ) + @getByteAt( data, 1 ) << 8 ) + @getByteAt( data, 2 ) << 8 ) + @getByteAt( data, 3 )
         if lng < 0
             lng += 4294967296
-        return lng;
+        lng;
 
     getByteAt: ( data, offset ) ->
-        return data.charCodeAt( offset ) & 0xFF
+        data.charCodeAt( offset ) & 0xFF
 
 # could we replace this with math.max ?  Not worth it,called once per view
 # we COULD, but we'd do some crap like "Math.max.apply(null,blah) and that's not readable"
@@ -954,7 +954,7 @@ class @ImageTextMode
         max = 0
         for y in [ 0 .. @screen.length - 1 ]
             max = @screen[ y ].length if @screen[ y ]? && @screen[ y ].length > max
-        return max
+        max
 
     getHeight: ->
         @screen.length
@@ -1027,15 +1027,8 @@ class @ImageTextMode
     toBinaryArray: (str) ->
         buf = new ArrayBuffer(str.length * 2) # 2 bytes for each char
         bufView = new Uint8Array(buf)
-        i = 0
-        strLen = str.length
-
-        while i < strLen
-            bufView[i] = str.charCodeAt(i)
-            i++
+        bufView[i] = str.charCodeAt(i) for i in [0...str.length]
         buf
-
-
 
 class @ImageTextModeXBin extends @ImageTextMode
 
