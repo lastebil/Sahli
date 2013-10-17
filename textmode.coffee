@@ -72,7 +72,8 @@ class @ImageTextModePalette
 # this is used, is identical.
 # I am not seeing this pattern (the 'super by itself') being used or referenced
 # - instead I am seeting very different patterns using super to reference
-# complete items.
+# complete items. (referenced meaning "in books, searches, or coffescript
+# documentation")
 
 class @ImageTextModePaletteVGA extends @ImageTextModePalette
     constructor: (options) ->
@@ -942,7 +943,7 @@ class @ImageTextMode
         lng = ((( @getByteAt( data, 0 ) << 8 ) + @getByteAt( data, 1 ) << 8 ) + @getByteAt( data, 2 ) << 8 ) + @getByteAt( data, 3 )
         if lng < 0
             lng += 4294967296
-        lng;
+        lng
 
     getByteAt: ( data, offset ) ->
         data.charCodeAt( offset ) & 0xFF
@@ -1044,11 +1045,12 @@ class @ImageTextModeANSI extends @ImageTextMode
     ANSI_RETURN     = 'A'
 
     constructor: ( options ) ->
-        super
+        super @screen
+        super @font
         @palette  = new ImageTextModePaletteANSI
         @tabstop  = 8
         @linewrap = 80
-        this[k]  = v for own k, v of options
+        @[k]  = v for own k, v of options
 
     write: ->
         content = "#{ ANSI_CSI }2J" # initiate document
