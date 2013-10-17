@@ -58,7 +58,7 @@ class @ImageTextModePalette
 
     constructor: ( options ) ->
         @colors = []
-        this[k] = v for own k, v of options
+        @[k] = v for own k, v of options
 
     toRgbaString: ( color ) ->
         return 'rgba(' + color.join( ',' ) + ',1)';
@@ -66,12 +66,16 @@ class @ImageTextModePalette
 # getting a "cannot call super outside an instance method" error here -
 # the resulting code produced does not end up using the super/parent bit
 # or at least it doesn't produce bugs in the result if it is not here.
-# commenting for now.
+# calling the constructor without super works, and with super the difference is
+#  ImageTextModePaletteVGA.__super__.constructor.apply(this, arguments);
+# is placed inside the constructor. I believe the end result, based on how
+# this is used, is identical.
+# I am not seeing this pattern (the 'super by itself') being used or referenced
+# - instead I am seeting very different patterns using super to reference
+# complete items.
 
 class @ImageTextModePaletteVGA extends @ImageTextModePalette
-
-    constructor: ( options ) ->
-#        super
+    constructor: (options) ->
         @colors = [
             [ 0x00, 0x00, 0x00 ],
             [ 0x00, 0x00, 0xaa ],
@@ -90,12 +94,9 @@ class @ImageTextModePaletteVGA extends @ImageTextModePalette
             [ 0xff, 0xff, 0x55 ],
             [ 0xff, 0xff, 0xff ]
         ]
-        this[k] = v for own k, v of options
 
 class @ImageTextModePaletteANSI extends @ImageTextModePalette
-
-    constructor: ( options ) ->
-#        super
+    constructor: (options) ->
         @colors = [
             [ 0x00, 0x00, 0x00 ],
             [ 0xaa, 0x00, 0x00 ],
@@ -114,19 +115,17 @@ class @ImageTextModePaletteANSI extends @ImageTextModePalette
             [ 0x55, 0xff, 0xff ],
             [ 0xff, 0xff, 0xff ]
         ]
-        this[k] = v for own k, v of options
 
 class @ImageTextModeFont
 
     constructor: ( options ) ->
         @chars  = []
         @width  = 8
-        this[k] = v for own k, v of options
+        @[k] = v for own k, v of options
 
 class @ImageTextModeFont8x16 extends @ImageTextModeFont
-
     constructor: ( options ) ->
-        super
+        super @width
         @chars  = [
             [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ],
             [ 0x00, 0x00, 0x7e, 0x81, 0xa5, 0x81, 0x81, 0xbd, 0x99, 0x81, 0x81, 0x7e, 0x00, 0x00, 0x00, 0x00 ],
@@ -386,12 +385,11 @@ class @ImageTextModeFont8x16 extends @ImageTextModeFont
             [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ]
         ]
         @height = 16
-        this[k] = v for own k, v of options
+        @[k] = v for own k, v of options
 
 class @ImageTextModeFont8x8 extends @ImageTextModeFont
-
     constructor: ( options ) ->
-        super
+        super width
         @chars  = [
             [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ],
             [ 0x7e, 0x81, 0xa5, 0x81, 0xbd, 0x99, 0x81, 0x7e ],
@@ -651,12 +649,11 @@ class @ImageTextModeFont8x8 extends @ImageTextModeFont
             [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ]
         ]
         @height = 8
-        this[k] = v for own k, v of options
+        @[k] = v for own k, v of options
 
 class @ImageTextModeFontAmiga extends @ImageTextModeFont
-
     constructor: ( options ) ->
-        super
+        super width
         @chars  = [
             [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 ],
             [ 0x83, 0x83, 0x39, 0x39, 0x21, 0x21, 0x29, 0x29, 0x21, 0x21, 0x3f, 0x3f, 0x87, 0x87, 0xff, 0xff ],
@@ -916,7 +913,7 @@ class @ImageTextModeFontAmiga extends @ImageTextModeFont
             [ 0x00, 0x00, 0x66, 0x66, 0x00, 0x00, 0x66, 0x66, 0x66, 0x66, 0x3c, 0x3c, 0x18, 0x18, 0x30, 0x30 ]
         ]
         @height = 16
-        this[k] = v for own k, v of options
+        @[k] = v for own k, v of options
 
 class @ImageTextMode
 
