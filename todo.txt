@@ -21,3 +21,17 @@ OTHER file parsing -
 (A)  - parse files for 'info'
 
 (B) Get with dfox on the partymeister package version
+
+main renderer:
+hook for progress
+
+Support:
+(B) ADF
+(B) Tundra
+(A) SAUCE
+(B) XBIN
+(B) Avatar
+(B) BIN
+(B) IDF
+(B) PCBOARD
+(A) Amiga ANSI

@@ -29,29 +29,6 @@
             "text": "No tools, just a text editor"
         },
         {
-            "file": "ARTX-LGO.ADF",
-            "name": "Example ADF (not Amiga Disk File)",
-            "amiga": false,
-            "width": "80",
-            "author": "Apathy",
-            "font": "ansifont",
-            "color": [
-                200,
-                200,
-                200,
-                255
-            ],
-            "bg": [
-                0,
-                0,
-                0,
-                0
-            ],
-            "line1": "Artx-logo",
-            "line2": "Apathy",
-            "text": "From the apathy pack announcing ADF. Again, not Amiga Disk File."
-        },
-        {
             "file": "az0!-revi510n.txt",
             "name": "Revi510n",
             "amiga": true,
@@ -119,6 +96,29 @@
             "line1": "Revision 2013",
             "line2": "Blocktronics & Accession",
             "text": "Pablodraw osX"
+        },
+        {
+        "file": "ARTX-LGO.ADF",
+        "name": "Example ADF (not Amiga Disk File)",
+            "amiga": false,
+            "width": "80",
+            "color": [
+                0,
+                30,
+                30,
+                255
+            ],
+            "bg": [
+                240,
+                240,
+                250,
+                255
+            ],
+            "author": "Apathy",
+            "font": "ansifont",
+            "line1": "ADF example",
+            "line2": "...",
+            "text": "not Amiga disk file"
         }
     ]
 }
