@@ -1030,8 +1030,19 @@ class @ImageTextMode
         bufView[i] = str.charCodeAt(i) for i in [0...str.length]
         buf
 
+# tests show the resulting code is not altered for results or for the logic
+# but this makes the linter happy. (coffeescript's own I guess.)
+# (the constructor right after the class def, before locals)
 
 class @ImageTextModeANSI extends @ImageTextMode
+    constructor: ( options ) ->
+        super @screen
+        super @font
+        @palette  = new ImageTextModePaletteANSI
+        @tabstop  = 8
+        @linewrap = 80
+        @[k]  = v for own k, v of options
+
     ANSI_ESC        = String.fromCharCode(0x1b)
     ANSI_CSI        = ANSI_ESC + '['
     ANSI_TEXT_PROP  = 'm'
@@ -1044,20 +1055,16 @@ class @ImageTextModeANSI extends @ImageTextMode
     ANSI_SEP        = ';'
     ANSI_RETURN     = 'A'
 
-    constructor: ( options ) ->
-        super @screen
-        super @font
-        @palette  = new ImageTextModePaletteANSI
-        @tabstop  = 8
-        @linewrap = 80
-        @[k]  = v for own k, v of options
+# not going to mess with this for now, as I think it is the 'write' code
+# for the actual ansi editor. That would be bad to mess up.
+# did redo the for loops to read nicer tho.
 
     write: ->
         content = "#{ ANSI_CSI }2J" # initiate document
-        for y in [0..@screen.length - 1]
+        for y in [0...@screen.length]
             content += "\n" if !@screen[y]?
             continue if !@screen[y]?
-            for x in [0..@getWidth() - 1]
+            for x in [0...@getWidth()]
                 pixel = @screen[y][x]
                 if !pixel?
                     pixel = { ch: ' ', attr: 7   }
@@ -1067,17 +1074,17 @@ class @ImageTextModeANSI extends @ImageTextMode
                     prevattr = attr
                 content += if pixel.ch? then pixel.ch else ' '
                 max_x = x
-            #content += "\n"
-            #content += ANSI_CSI + ANSI_RETURN  # go to the next line
         content += "#{ ANSI_CSI }0m"
         @toBinaryArray(content)
-
 
     gen_args: ( attr ) ->
         fg      = 30 + ( attr & 7 )
         bg      = 40  + ( ( attr & 112 ) >> 4)
         bl      = if attr & 128 then 5 else ''
         intense = if attr & 8 then 1 else ''
+
+# um why do we make this attrs variable and not use it?
+
         attrs = a for a in [fg, bg, bl, intense] when a != ''
         return [fg, bg, bl, intense].join(";")
 
@@ -1419,7 +1426,7 @@ class @ImageTextModePCBoard extends @ImageTextMode
         for key, val of @codes
             code = new RegExp '@' + key + '@', 'g'
             content.replace code, val
-        
+
         content = content.split( '' )
         while ch = content.shift()
             if @state is 0
@@ -1434,7 +1441,7 @@ class @ImageTextModePCBoard extends @ImageTextMode
                         i = ( @x + 1 ) % @tabstop
                         @putpixel ' ' while i-- > 0
                     else
-                        @putpixel ch 
+                        @putpixel ch
             else if @state is 1
                 if ch is 'X'
                     @attr = ( parseInt( content.shift(), 16 ) << 4 ) + parseInt( content.shift(), 16 )
@@ -1446,7 +1453,7 @@ class @ImageTextModePCBoard extends @ImageTextMode
                     @x = content.shift()
                     @x += content.shift() if content[ 0 ] isnt '@'
                     @x--
-                    
+
                     content.shift()
                 else
                     @putpixel '@'
