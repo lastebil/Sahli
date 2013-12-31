@@ -71,6 +71,7 @@ var Sahli = function() {
 
         } else {
             this.image = new ImageTextModeANSI();
+            this.SAUCE = new ImageTextModeSAUCE();
             this.image.parseUrl(picdata.file);
             this.image.renderCanvas(canv);
             pdiv.append(canv);
