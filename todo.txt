@@ -1,37 +1,37 @@
-Sahli todo (programmer's day 2013 - Churchy La Femme reminds us that Friday
-the 13th comes on Friday this month)
+(C) separate to individual renderers  @16colors
+(C) load to array/picture, render from picture @16colors
+(C) speed up rendering more? @16colors
 
-(A) Fix Amiga mode rendering via sixteencolors lib
-(B) Add fonts - mOsOul
-(B) Add fonts - microknight
-(B) Add p0t - fonts-nOodle
-(B) Add fonts - Amiga 500
-(B) Add fonts - Amiga 1200 (replace or compare w/16colors version)
+(A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
+(B) load SAUCE into 'info' lines (should be done at prep) @SAUCE
+(A) Study 16colors site - how does IT remove sauce info?
 
-SAUCE file parsing -
-(A) remove the SAUCE lines at bottom, return ANSI object for render
-(B) load SAUCE into 'info' lines (should be done at prep)
+(A) remove their lines like SAUCE, return ANSI object for render @OTHER
+(B) load other-info into 'info' (done at prep) @OTHER
 
-OTHER file parsing -
-(A) remove their lines like SAUCE, return ANSI object for render
-(B) load other-info into 'info' (done at prep)
+(A) Create Editor - Standalone @EDITOR
+(A)  - create interface   @EDITOR
+(A)  - parse files for 'info' @EDITOR @SAUCE
 
-(A) Create Editor - Standalone
-(A)  - create interface
-(A)  - parse files for 'info'
+x 2014-03-24 (B) Get with dfox on the partymeister package version
+(B) implement package import from partymeister  @PARTYMEISTER
 
-(B) Get with dfox on the partymeister package version
+(C) hook for progress  @progress @PARTYMEISTER
 
-main renderer:
-hook for progress
+(B) ADF  @OTHER
+(B) Tundra @OTHER
+(A) SAUCE @SAUCE
+(B) XBIN @OTHER
+(B) Avatar @OTHER
+(B) BIN @OTHER
+(B) IDF @OTHER
+(B) PCBOARD @OTHER
+(A) Amiga ANSI @OTHER
 
-Support:
-(B) ADF
-(B) Tundra
-(A) SAUCE
-(B) XBIN
-(B) Avatar
-(B) BIN
-(B) IDF
-(B) PCBOARD
-(A) Amiga ANSI
+(C) Fix Amiga mode rendering via sixteencolors lib @16colors
+(C) Add fonts - mOsOul @Fonts @16colors
+(C) Add fonts - microknight @16colors
+(C) Add p0t - fonts-nOodle @16colors
+(C) Add fonts - Amiga 500 @16colors
+(C) Add fonts - Amiga 1200 (replace or compare w/16colors version) @16colors
+
