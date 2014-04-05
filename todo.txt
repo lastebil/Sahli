@@ -4,7 +4,7 @@
 
 (A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
 (B) load SAUCE into 'info' lines (should be done at prep) @SAUCE
-(A) Study 16colors site - how does IT remove sauce info?
+x 2014-04-05 (A) Study 16colors site - how does IT remove sauce info? It DOESN'T. FUCK.
 
 (A) remove their lines like SAUCE, return ANSI object for render @OTHER
 (B) load other-info into 'info' (done at prep) @OTHER
