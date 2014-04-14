@@ -55,33 +55,34 @@ The slide format is currently unused, but consists of a background picture,
 a html template, and a css file.
 
     class Sahli
-    constructor: ->
-        filedef = {
-            "file": "",
-            "name": "",
-            "amiga": true,
-            "width": "",
-            "author": "",
-            "font": "Propaz",
-            "color": [ 0,0,0,0 ],
-            "bg": [ 0,0,0,0 ],
-            "line1": "",
-            "line2": "",
-            "text": ""
-        }
-        slidesdef = {
-            "background": "",
-            "template": "",
-            "css": ""
-        }
-        blank = {
-            "slides": slidesdef,
-            "filedef": [ filedef ]
-        }
+        constructor: ->
+            @filedef = {
+                "file": "",
+                "name": "",
+                "amiga": true,
+                "width": "",
+                "author": "",
+                "font": "Propaz",
+                "color": [ 0,0,0,0 ],
+                "bg": [ 0,0,0,0 ],
+                "line1": "",
+                "line2": "",
+                "text": ""
+            }
+            @slidesdef = {
+                "background": "",
+                "template": "",
+                "css": ""
+            }
+            @blank = {
+                "slides": @slidesdef,
+                "filedef": [ @filedef ]
+            }
 
     dumpjson = (obj) ->
         JSON.stringify(obj)
 
     newsahli = ->
         sahli = new Sahli
-        alert dumpjson this.sahli
+        alert dumpjson sahli
+
