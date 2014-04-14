@@ -10,6 +10,8 @@ x 2014-04-05 (A) Split coffeescript into files, use cake.
 (A) remove their lines like SAUCE, return ANSI object for render @OTHER
 (B) load other-info into 'info' (done at prep) @OTHER
 
+(B) THUMBNAILS - for returning to partymeister
+
 (A) Create Editor - Standalone @EDITOR
 (A)  - create interface   @EDITOR
 (A)  - parse files for 'info' @EDITOR @SAUCE
