@@ -24,22 +24,37 @@ We need to make a screen that has a few things in it for starters
 Title, load existing, and new file options.
 
 Silliness for checking that this works.
+
     $(-> $("h1").hide().slideDown(500))
 
 Create a split button to choose between the New and Load functionalities
 (As we aren't going to ever load a file _and_ do a new file.)
 (If someone wants to do that, they can restart with F5 or something.)
+Also hide the hidden things.
 
     $(-> 
         $("#newsahli")
         .button { disabled: false}
-        .click -> newsahli 'new'
-        )
+        .click -> 
+            newsahli 'new'
+            $("#formica").dialog {
+                width:'800',
+                modal: false,
+                title:'Line Item', buttons: [{
+                    text: "OK",
+                    click: ->
+                        $(@).dialog "close"
+                }] }
+            )
                         
     $(->
         $("#loadsahli")
         .button { disabled: false}
         .click -> alert "heyoh!"
+        )
+    $(->
+        $(".hidden").hide()
+        $(".45box").css {width:'45%',float:'left'}
         )
 
 
@@ -79,10 +94,32 @@ a html template, and a css file.
                 "filedef": [ @filedef ]
             }
 
+        loader: ->
+            alert "loader"
+
+        editor: (data) ->
+
+            alert dumpjson data
+
+
+            
+
+
+
+A Helper function to dump json out of an object as text:
+
     dumpjson = (obj) ->
         JSON.stringify(obj)
 
+When clicking 'New' we want to make a brand new Sahli, and then clear out
+the buttons and create the editor bit as blank.
+
     newsahli = ->
         sahli = new Sahli
-        alert dumpjson sahli
+        $('#buttonbox').hide()
+        sahli.data = sahli.blank
+        sahli.editor sahli.data.filedef
+
+
+
 

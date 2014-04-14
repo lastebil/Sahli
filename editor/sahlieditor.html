@@ -1,19 +1,101 @@
 <html>
 <head>
-    <title>Sahli Editor</title>
-    <script src="//code.jquery.com/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
-    <script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript" charset="utf-8" ></script>
-    <script src="/editor/sahliedit.js" type="text/javascript" charset="utf-8" async defer></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/dot-luv/jquery-ui.css">
+	<title>Sahli Editor</title>
+	<script src="//code.jquery.com/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript" charset="utf-8" ></script>
+	<script src="/editor/sahliedit.js" type="text/javascript" charset="utf-8" async defer></script>
+	<link rel="stylesheet" href="/editor/sahliedit.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/dot-luv/jquery-ui.css">
 </head>
 <body>
-    <h1>Sahli Editor</h1>
-    <div id='editbox'>
-        <div>
-            <button id='newsahli'>New</button>
-            <button id='loadsahli'>Load</button>
-        </div>
-    </div>
+	<h1>Sahli Editor</h1>
+	<div id='editbox'>
+		<div id='buttonbox'>
+			<button id='newsahli'>New</button>
+			<button id='loadsahli'>Load</button>
+		</div>
+	</div>
 
+	<div class='hidden' id='formica'>
+		<form action="sahlieditor_submit" method="get" accept-charset="utf-8">
+			<ol>
+				<div class='groupbox' id='basics'>
+					<p>Basics:</p>
+					<div>
+						<ul>
+							<label for="file">File name:</label>
+							<input type="file" name="file" value="" placeholder="">
+						</ul>
+						<ul>                
+							<label for="file">Title:</label>            
+							<input type="text" name="name" value="" placeholder="">
+						</ul>
+						<ul>                
+							<label for="author">Author's name:</label>
+							<input type="text" name="author" value="" placeholder="">
+						</ul>
+					</div>
+				</div>
+				<div class='groupbox' id='displaydata'>
+					<p>Display:</p>
+					<div>
+						<ul>                
+							<label for="file">Ascii or Ansi?</label>
+							<button name="amiga" id='amiga'>Ascii?</button>
+						</ul>
+						<ul>                
+							<label for="width">With of file:</label>
+							<input type="number" name="width" value="80" placeholder="">
+						</ul>
+						<ul>                
+							<label for="font">Font:</label>
+							<select name="font">
+								<option value="Propaz">Propaz</option>
+								<option value="Topaz13">Topaz13</option>
+								<option value="mOsOul">mOsOul</option>
+								<option value="MicroKnight">Microknight</option>
+								<option value="Ansifont">Ansifont</option>
+							</select>
+						</ul>
+						<div class='45box'>
+							<ul>                
+								<label for="color">Text Color:</label>
+								<input type="color" name="color" value="#D0D0D0" placeholder="" class="colorbox">
+							</ul>
+							<ul>                
+								<label for="bg">Background color:</label>
+								<input type="color" name="bg" value="#000000" placeholder="" class="colorbox">
+							</ul>
+						</div>
+						<div class='45box'>
+							<pre>
+ ________________________,  ._____,
+|  ___|___    |  |   |   |  |_____|
+|_____  |  _  |      |   |__|   |
+  |_____|_____|___|__|______|___|
+
+							</pre>
+						</div>
+					</div>
+				</div>
+				<div class='groupbox' id='optionals'>
+				<p>Optional text:</p>
+				<div>
+					<ul>                
+						<label for="line1">Optional Info line 1:</label>
+						<input type="text" name="line1" value="" placeholder="">
+					</ul>
+					<ul>                
+						<label for="line2">Optional Info line 2:</label>
+						<input type="text" name="line2" value="" placeholder="">
+					</ul>
+					<ul>                
+						<label for="text">Optional Text (notes, comments, etc):</label>            
+						<textarea name='text'></textarea>
+					</ul>
+				</div>
+			</ol>
+		</form> 
+	</div>
 </body>
 </html>

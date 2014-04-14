@@ -1,0 +1,17 @@
+label, input, textarea{
+    display: block;
+}
+
+input, textarea {
+    width: 90%;
+}
+
+textarea {
+    height: 8em;
+}
+
+.colorbox {
+    border: 0;
+    padding: 0;
+    height: 2em;
+}
