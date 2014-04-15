@@ -41,7 +41,7 @@ Also hide the editor until needed, and initialize some elements.
     $(->
         $("#loadsahli")
         .button { disabled: false}
-        .click -> alert "heyoh!"
+        .click -> loadsahli()
         )
     $(->
         $(".hidden").hide()
@@ -90,11 +90,17 @@ a html template, and a css file.
             }
             @empty = {
                 "slides": @emptyslidesdef,
-                "filedef": [ ]
+                "filedata": [ ]
             }
 
         loader: ->
-            alert "loader"
+            $.ajax {
+                url: '../list.sahli',
+                dataType: "json",
+                success: (result) =>
+                    @data = result
+                    @.edit()
+            }
 
 Editor functionality:
 Close the new/load buttons - unneeded now.
@@ -107,8 +113,7 @@ edit button.
 
         buildlist: (data) ->
             $('#list').show 100
-            @data.filedef[0] ?= @emptyfiledef
-            @.additem item for item in @data.filedef
+            @.additem item for item in @data.filedata
 
         additem: (item) ->
             alert dumpjson item
@@ -135,11 +140,11 @@ the buttons and create the editor bit as blank.
     newsahli = ->
         sahli = new Sahli
         sahli.data = sahli.empty
+        sahli.data.filedata.push sahli.emptyfiledef
         sahli.edit()
 
 And when clicking 'load' we want to load the existing sahli file.
 
     loadsahli = ->
         sahli = new Sahli
-        sahli.data = sahli.loader 'list.sahli'
-        sahli.edit()
+        sahli.loader 'list.sahli'
