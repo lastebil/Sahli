@@ -17,11 +17,11 @@
 	</div>
 
 	<div class='hidden' id='formica'>
-		<form action="sahlieditor_submit" method="get" accept-charset="utf-8">
+		<form accept-charset="utf-8">
 			<ol>
 				<div class='groupbox' id='basics'>
 					<p>Basics:</p>
-					<div>
+					<div class='drop'>
 						<ul>
 							<label for="file">File name:</label>
 							<input type="file" name="file" value="" placeholder="">
@@ -38,10 +38,10 @@
 				</div>
 				<div class='groupbox' id='displaydata'>
 					<p>Display:</p>
-					<div>
+					<div class='drop' id='fl'>
 						<ul>                
 							<label for="file">Ascii or Ansi?</label>
-							<button name="amiga" id='amiga'>Ascii?</button>
+							<button name="amiga" id='amiga' type='button' value='1'>Ascii</button>
 						</ul>
 						<ul>                
 							<label for="width">With of file:</label>
@@ -80,7 +80,7 @@
 				</div>
 				<div class='groupbox' id='optionals'>
 				<p>Optional text:</p>
-				<div>
+				<div class='drop'>
 					<ul>                
 						<label for="line1">Optional Info line 1:</label>
 						<input type="text" name="line1" value="" placeholder="">

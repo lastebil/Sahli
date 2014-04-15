@@ -15,3 +15,12 @@ textarea {
     padding: 0;
     height: 2em;
 }
+
+pre {
+    font-family: 'TopazPlus a500a1000a2000','mOsOul',Monaco,monospace;
+    font-size: 16;
+}
+
+label {
+    font-size: 10;
+}

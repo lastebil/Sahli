@@ -54,9 +54,17 @@ Also hide the hidden things.
         )
     $(->
         $(".hidden").hide()
+        $("#amiga").button {icons: {primary:"ui-icon-gear"}}
+            .click ->
+                stuff = $(@).children()
+                if @.value == "1"
+                    stuff[1].textContent = 'Ansi'
+                    @.value = "0"
+                else
+                    stuff[1].textContent = 'Ascii'
+                    @.value = "1"
         $(".45box").css {width:'45%',float:'left'}
-        )
-
+    )
 
 The sahli file definition format is as follows:
 "file" - the actual filename on disk, "name" - the title of the piece,
@@ -98,13 +106,7 @@ a html template, and a css file.
             alert "loader"
 
         editor: (data) ->
-
-            alert dumpjson data
-
-
-            
-
-
+            q = data
 
 A Helper function to dump json out of an object as text:
 
