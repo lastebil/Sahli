@@ -113,10 +113,13 @@ edit button.
 
         buildlist: (data) ->
             $('#list').show 100
-            @.additem item for item in @data.filedata
+            $('#sortlist').append @.additem item for item in @data.filedata
+            $('#sortlist').sortable().disableSelection()
+
 
         additem: (item) ->
-            alert dumpjson item
+            $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{item.author} : #{item.name} : #{item.file}</li>")
+
 
         editline: (data) ->
             $("#formica").dialog {
