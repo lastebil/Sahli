@@ -55,6 +55,10 @@ Also hide the editor until needed, and initialize some elements.
                     stuff[1].textContent = 'Ascii'
                     @.value = "1"
         $(".45box").css {width:'45%',float:'left'}
+        $("#entryfilepick").change ->
+            if @.files[0]? then $("#entryfile").val @.files[0].name
+        $("#entryfile").click ->
+            $("#entryfilepick").click()
     )
 
 The sahli file definition format is as follows:
@@ -109,6 +113,12 @@ edit button.
 
         edit: ->
             $('#buttonbox').hide()
+            $('#listsave').button {icons: {primary:"ui-icon-disk"}}
+                .click =>
+                    alert 'SAVE ME'
+You need to save the order, and extract these in that order; moving around
+does not alter the array. Alternately, _have_ it alter the array.
+
             @buildlist @data
 
         buildlist: (data) ->
@@ -118,19 +128,37 @@ edit button.
 
 
         additem: (item) ->
-            $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{item.author} : #{item.name} : #{item.file}</li>")
-
+            entry = $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{item.author} : #{item.name} : #{item.file}</li>")
+            entry.dblclick =>
+                    @.editline item
 
         editline: (data) ->
             $("#formica").dialog {
                 width:'800',
                 modal: false,
-                title:'Line Item', buttons: [{
+                title:"Entry #{data.file} ",
+                buttons: [{
                     text: "OK",
                     click: ->
                         $(@).dialog "close"
-                }]
-             }
+                }]            
+            }
+            $("#entryname").val data.name
+            $("#entryauthor").val data.author
+            $("#entryamiga").val data.amiga
+            $("#entryfont").val data.font
+
+fix these color entries to supply rgb() bits
+
+            $("#entrycolor").val data.color
+            $("#entrybg").val data.bg            
+            $("#entrywidth").val data.width
+            $("#entryline1").val data.line1
+            $("#entryline2").val data.line2
+            $("#entrytext").val data.text
+            $("#entryfile").val data.file            
+Need to change the file name, but we don't seem to have the ability to do so.
+
 
 A Helper function to dump json out of an object as text:
 

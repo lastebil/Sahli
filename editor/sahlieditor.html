@@ -19,6 +19,7 @@
     <div class='hidden' id='list'>
         <ol id='sortlist'>
         </ol>
+        <p id='listsave'>Save</p>
     </div>
 
 	<div class='hidden' id='formica'>
@@ -29,15 +30,16 @@
 					<div class='drop'>
 						<ul>
 							<label for="file">File name:</label>
-							<input type="file" name="file" value="" placeholder="">
+                            <input id='entryfile' type="text" name="file" value="" placeholder="">
+                            <input class='hidden' id='entryfilepick' type="file" name="pickfile" value="" placeholder="">
 						</ul>
 						<ul>                
 							<label for="file">Title:</label>            
-							<input type="text" name="name" value="" placeholder="">
+							<input id='entryname' type="text" name="name" value="" placeholder="">
 						</ul>
 						<ul>                
 							<label for="author">Author's name:</label>
-							<input type="text" name="author" value="" placeholder="">
+							<input id='entryauthor' type="text" name="author" value="" placeholder="">
 						</ul>
 					</div>
 				</div>
@@ -46,30 +48,30 @@
 					<div class='drop' id='fl'>
 						<ul>                
 							<label for="file">Ascii or Ansi?</label>
-							<button name="amiga" id='amiga' type='button' value='1'>Ascii</button>
+							<button id='entryamiga' name="amiga" id='amiga' type='button' value='1'>Ascii</button>
 						</ul>
 						<ul>                
 							<label for="width">With of file:</label>
-							<input type="number" name="width" value="80" placeholder="">
+							<input id='entrywidth' type="number" name="width" value="80" placeholder="">
 						</ul>
 						<ul>                
 							<label for="font">Font:</label>
-							<select name="font">
+							<select id='entryfont' name="font">
 								<option value="Propaz">Propaz</option>
-								<option value="Topaz13">Topaz13</option>
-								<option value="mOsOul">mOsOul</option>
-								<option value="MicroKnight">Microknight</option>
-								<option value="Ansifont">Ansifont</option>
+<!--								<option value="Topaz13">Topaz13</option> -->
+<!--								<option value="mOsOul">mOsOul</option> -->
+<!--								<option value="MicroKnight">Microknight</option> -->
+								<option value="ansifont">Ansifont</option>
 							</select>
 						</ul>
 						<div class='45box'>
 							<ul>                
 								<label for="color">Text Color:</label>
-								<input type="color" name="color" value="#D0D0D0" placeholder="" class="colorbox">
+								<input id='entrycolor' type="color" name="color" value="#D0D0D0" placeholder="" class="colorbox">
 							</ul>
 							<ul>                
 								<label for="bg">Background color:</label>
-								<input type="color" name="bg" value="#000000" placeholder="" class="colorbox">
+								<input id='entrybg' type="color" name="bg" value="#000000" placeholder="" class="colorbox">
 							</ul>
 						</div>
 						<div class='45box'>
@@ -88,15 +90,15 @@
 				<div class='drop'>
 					<ul>                
 						<label for="line1">Optional Info line 1:</label>
-						<input type="text" name="line1" value="" placeholder="">
+						<input id='entryline1' type="text" name="line1" value="" placeholder="">
 					</ul>
 					<ul>                
 						<label for="line2">Optional Info line 2:</label>
-						<input type="text" name="line2" value="" placeholder="">
+						<input id='entryline2' type="text" name="line2" value="" placeholder="">
 					</ul>
 					<ul>                
 						<label for="text">Optional Text (notes, comments, etc):</label>            
-						<textarea name='text'></textarea>
+						<textarea id='entrytext' name='text'></textarea>
 					</ul>
 				</div>
 			</ol>
