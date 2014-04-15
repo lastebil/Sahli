@@ -24,3 +24,7 @@ pre {
 label {
     font-size: 10;
 }
+
+#list {
+    border: 1px solid black;
+}

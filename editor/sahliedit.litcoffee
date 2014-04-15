@@ -27,25 +27,16 @@ Silliness for checking that this works.
 
     $(-> $("h1").hide().slideDown(500))
 
-Create a split button to choose between the New and Load functionalities
+Create buttos to choose between the New and Load functionalities
 (As we aren't going to ever load a file _and_ do a new file.)
 (If someone wants to do that, they can restart with F5 or something.)
-Also hide the hidden things.
+Also hide the editor until needed, and initialize some elements.
 
     $(-> 
         $("#newsahli")
         .button { disabled: false}
-        .click -> 
-            newsahli 'new'
-            $("#formica").dialog {
-                width:'800',
-                modal: false,
-                title:'Line Item', buttons: [{
-                    text: "OK",
-                    click: ->
-                        $(@).dialog "close"
-                }] }
-            )
+        .click -> newsahli()
+        )
                         
     $(->
         $("#loadsahli")
@@ -79,7 +70,7 @@ a html template, and a css file.
 
     class Sahli
         constructor: ->
-            @filedef = {
+            @emptyfiledef = {
                 "file": "",
                 "name": "",
                 "amiga": true,
@@ -92,21 +83,46 @@ a html template, and a css file.
                 "line2": "",
                 "text": ""
             }
-            @slidesdef = {
+            @emptyslidesdef = {
                 "background": "",
                 "template": "",
                 "css": ""
             }
-            @blank = {
-                "slides": @slidesdef,
-                "filedef": [ @filedef ]
+            @empty = {
+                "slides": @emptyslidesdef,
+                "filedef": [ ]
             }
 
         loader: ->
             alert "loader"
 
-        editor: (data) ->
-            q = data
+Editor functionality:
+Close the new/load buttons - unneeded now.
+list, and allow dragon-droppings for sorting.  Doubleclick to edit, or use
+edit button.
+
+        edit: ->
+            $('#buttonbox').hide()
+            @buildlist @data
+
+        buildlist: (data) ->
+            $('#list').show 100
+            @data.filedef[0] ?= @emptyfiledef
+            @.additem item for item in @data.filedef
+
+        additem: (item) ->
+            alert dumpjson item
+
+        editline: (data) ->
+            $("#formica").dialog {
+                width:'800',
+                modal: false,
+                title:'Line Item', buttons: [{
+                    text: "OK",
+                    click: ->
+                        $(@).dialog "close"
+                }]
+             }
 
 A Helper function to dump json out of an object as text:
 
@@ -118,10 +134,12 @@ the buttons and create the editor bit as blank.
 
     newsahli = ->
         sahli = new Sahli
-        $('#buttonbox').hide()
-        sahli.data = sahli.blank
-        sahli.editor sahli.data.filedef
+        sahli.data = sahli.empty
+        sahli.edit()
 
+And when clicking 'load' we want to load the existing sahli file.
 
-
-
+    loadsahli = ->
+        sahli = new Sahli
+        sahli.data = sahli.loader 'list.sahli'
+        sahli.edit()
