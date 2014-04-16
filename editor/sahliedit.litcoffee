@@ -155,7 +155,7 @@ insert it into the array at end position.  A la the draggon-dropping.
 
 
         additem: (item) ->
-            entry = $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{item.author} : #{item.name} : #{item.file}</li>")
+            entry = $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{ansiorascii booltoint item.amiga} | #{item.author} : #{item.name} : #{item.file}</li>")
             entry.dblclick =>
                     @.editline item
 
