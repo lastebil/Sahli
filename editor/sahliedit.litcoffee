@@ -154,14 +154,16 @@ does not alter the array. Alternately, _have_ it alter the array.
                 }]
             }
 
-            $("#smt").click (event) ->
+            $("#smt").click (event) =>
                 event.preventDefault()
                 alert 'bob'
 
-            
+            data.amiga = booltoint data.amiga
+
             $("#entryname").val data.name
             $("#entryauthor").val data.author
             $("#entryamiga").val data.amiga
+            $("#entryamiga").children()[1].textContent = ansiorascii data.amiga
             $("#entryfont").val data.font
 
 fix these color entries to supply rgb() bits
@@ -180,6 +182,20 @@ A Helper function to dump json out of an object as text:
 
     dumpjson = (obj) ->
         JSON.stringify(obj)
+
+Boolean / integer Helpers
+    
+    booltoint = (bool) ->
+        bool + 1 - 1
+
+    inttobool = (intstr) ->
+        (intstr == 1).toString()
+
+Resolve ansi or ascii status
+
+    ansiorascii = (status) ->
+        if status is 0 then "Ansi" else "Ascii"
+
 
 Color conversion from array to color item:
 
