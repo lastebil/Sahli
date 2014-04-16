@@ -144,6 +144,9 @@ does not alter the array. Alternately, _have_ it alter the array.
                         $(@).dialog "close"
                 }]            
             }
+            
+            alert arraytocolor colortoarray '#102030'
+
             $("#entryname").val data.name
             $("#entryauthor").val data.author
             $("#entryamiga").val data.amiga
@@ -165,6 +168,29 @@ A Helper function to dump json out of an object as text:
 
     dumpjson = (obj) ->
         JSON.stringify(obj)
+
+Color conversion from array to color item:
+
+This decimal to hex conversion only handles 00-FF but it's fine for this purpose;
+we actually _want_ that limitation in the output.
+
+    dec2hex = (num) ->
+        "#{('000'+num.toString 16).slice -2}"
+
+    hex2dec = (num) ->
+        parseInt num,16
+
+    arraytocolor = (array) ->
+         c = (dec2hex x for x in array)[0..2].join ''
+         "##{c}"
+
+    colortoarray = (color) ->
+        re = /(\d\d)(\d\d)(\d\d)/
+        c = color.slice 1
+        c1 = c.replace re,"$1,$2,$3"
+        x = (hex2dec i for i in c1.split ",")
+        x.push 0
+        x
 
 When clicking 'New' we want to make a brand new Sahli, and then clear out
 the buttons and create the editor bit as blank.
