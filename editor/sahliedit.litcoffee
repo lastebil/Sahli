@@ -54,7 +54,8 @@ Also hide the editor until needed, and initialize some elements.
                 else
                     stuff[1].textContent = 'Ascii'
                     @.value = "1"
-        $(".45box").css {width:'45%',float:'left'}
+        $(".45box").css {width:'45%',display:'inline-block'}
+        $(".groupbox p").css {margin:"0 0 .25em 0"}
         $("#entryfilepick").change ->
             if @.files[0]? then $("#entryfile").val @.files[0].name
         $("#entryfile").click ->

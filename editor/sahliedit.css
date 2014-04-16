@@ -29,6 +29,10 @@ label {
     border: 1px solid black;
 }
 
+#formica {
+    font-size: medium;
+}
+
 .entry {
     margin: 0 3px 3px 3px;
     padding: 0.4em;
@@ -41,4 +45,15 @@ label {
 
 .entry span {
     display: inline-block;
+}
+
+# this does not actually change anything because the design is set by
+# the jquery-ui bit. Altering in the script does work. Here for reference.
+.45box {
+    width: 45%;
+    display: inline-block;
+}
+
+div.groupbox p {
+    margin: .25 ex;
 }
