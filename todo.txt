@@ -15,9 +15,13 @@ x 2014-04-05 (A) Split coffeescript into files, use cake.
 (A) Create Editor - Standalone @EDITOR
 x 2014-04-16 (A)  - create interface   @EDITOR
 @EDITOR save (print) routine
-@EDITOR edit item saves data routine
+x 2014-04-16 @EDITOR edit item saves data routine
+@EDITOR update the line item when saving
 @EDITOR text/bg colors change 'SAHLI' thing
 @EDITOR fix filename 'holdover' from previous bit
+@EDITOR fix filenames
+@EDITOR dump to screen or file, not to console when saving
+@EDITOR delete an entry
 (A)  - parse files for 'info' @EDITOR @SAUCE
 
 x 2014-03-24 (B) Get with dfox on the partymeister package version
