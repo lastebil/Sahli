@@ -19,6 +19,7 @@ textarea {
 pre {
     font-family: 'TopazPlus a500a1000a2000','mOsOul',Monaco,monospace;
     font-size: 16;
+    border: 2px inset #808080;
 }
 
 label {
