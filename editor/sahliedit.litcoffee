@@ -19,6 +19,14 @@ Editor for Sahli files.
 - output to screen (copy into file)
  * run from node - save filename dialog
 
+***
+It should be noted that this does not do bounds checking, and it would be very
+possible to overflow this by using a debugger and such.  As the purpose of this
+is limited, and this should NOT be put on a live website, I feel that is ok for
+now. Perhaps I will fix it after Revision.
+
+***  
+
 == Create Initial crappage
 We need to make a screen that has a few things in it for starters
 Title, load existing, and new file options.
@@ -126,7 +134,24 @@ does not alter the array. Alternately, _have_ it alter the array.
         buildlist: (data) ->
             $('#list').show 100
             $('#sortlist').append @.additem item for item in @data.filedata
-            $('#sortlist').sortable().disableSelection()
+            $('#sortlist').sortable 
+                start: (event,ui) ->
+                    ui.item.data {startpos:ui.item.index()}
+                stop: (event,ui) =>
+                    s = ui.item.data().startpos
+                    e = ui.item.index()
+                    @data.filedata = @.rearrangearray s,e,@data.filedata
+                    console.log name.author for name in @data.filedata
+                    console.log '---'
+
+Given a start and and end position, pop the array element at start off and
+insert it into the array at end position.  A la the draggon-dropping.
+
+        rearrangearray: (startpos,endpos,a) ->
+            moving = a[startpos]
+            alen = a.length
+            tarr = a[0...startpos].concat a[startpos+1..-1]
+            tarr[0...endpos].concat [moving].concat tarr[endpos..-1]
 
 
         additem: (item) ->
@@ -156,10 +181,12 @@ does not alter the array. Alternately, _have_ it alter the array.
 
             $("#smt").click (event) =>
                 event.preventDefault()
-                alert 'bob'
+
+                alert @
 
             data.amiga = booltoint data.amiga
 
+            $("#entryindex").val data.index
             $("#entryname").val data.name
             $("#entryauthor").val data.author
             $("#entryamiga").val data.amiga
