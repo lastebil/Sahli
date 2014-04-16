@@ -1,4 +1,4 @@
-(C) separate to individual renderers  @16colors
+x 2014-04-16 (C) separate to individual renderers  @16colors
 (C) load to array/picture, render from picture @16colors
 (C) speed up rendering more? @16colors
 
@@ -13,7 +13,11 @@ x 2014-04-05 (A) Split coffeescript into files, use cake.
 (B) THUMBNAILS - for returning to partymeister
 
 (A) Create Editor - Standalone @EDITOR
-(A)  - create interface   @EDITOR
+x 2014-04-16 (A)  - create interface   @EDITOR
+@EDITOR save (print) routine
+@EDITOR edit item saves data routine
+@EDITOR text/bg colors change 'SAHLI' thing
+@EDITOR fix filename 'holdover' from previous bit
 (A)  - parse files for 'info' @EDITOR @SAUCE
 
 x 2014-03-24 (B) Get with dfox on the partymeister package version

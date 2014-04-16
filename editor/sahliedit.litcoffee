@@ -25,7 +25,7 @@ possible to overflow this by using a debugger and such.  As the purpose of this
 is limited, and this should NOT be put on a live website, I feel that is ok for
 now. Perhaps I will fix it after Revision.
 
-***  
+***
 
 == Create Initial crappage
 We need to make a screen that has a few things in it for starters
@@ -40,12 +40,12 @@ Create buttos to choose between the New and Load functionalities
 (If someone wants to do that, they can restart with F5 or something.)
 Also hide the editor until needed, and initialize some elements.
 
-    $(-> 
+    $(->
         $("#newsahli")
         .button { disabled: false}
         .click -> newsahli()
         )
-                        
+
     $(->
         $("#loadsahli")
         .button { disabled: false}
@@ -133,8 +133,9 @@ does not alter the array. Alternately, _have_ it alter the array.
 
         buildlist: (data) ->
             $('#list').show 100
-            $('#sortlist').append @.additem item for item in @data.filedata
-            $('#sortlist').sortable 
+            x = 0
+            $('#sortlist').append @.additem item,x++ for item in @data.filedata
+            $('#sortlist').sortable
                 start: (event,ui) ->
                     ui.item.data {startpos:ui.item.index()}
                 stop: (event,ui) =>
@@ -154,12 +155,12 @@ insert it into the array at end position.  A la the draggon-dropping.
             tarr[0...endpos].concat [moving].concat tarr[endpos..-1]
 
 
-        additem: (item) ->
+        additem: (item,pos) ->
             entry = $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{ansiorascii booltoint item.amiga} | #{item.author} : #{item.name} : #{item.file}</li>")
             entry.dblclick =>
-                    @.editline item
+                    @.editline item,pos
 
-        editline: (data) ->
+        editline: (data,pos) ->
             $("#formica").dialog {
                 width:'800',
                 modal: false,
@@ -171,7 +172,7 @@ insert it into the array at end position.  A la the draggon-dropping.
                         $(@).dialog "close"
                 },{
                     text: "Save",
-                    icons: {primary: 'ui-icon-disk'},                    
+                    icons: {primary: 'ui-icon-disk'},
                     click: ->
                         $('#smt').click()
                         $(@).dialog "close"
@@ -181,28 +182,36 @@ insert it into the array at end position.  A la the draggon-dropping.
 
             $("#smt").click (event) =>
                 event.preventDefault()
+                pos = $("#entryindex").val()
+                entry = @data.filedata[pos]
+                entry.name = $("#entryname").val()
+                entry.author = $("#entryauthor").val()
+                entry.amiga = inttobool $("#entryamiga").val()
+                entry.color = colortoarray $("#entrycolor").val()
+                entry.bg = colortoarray $("#entrybg").val()
+                entry.width = $("#entrywidth").val()
+                entry.line1 = $("#entryline1").val()
+                entry.line2 = $("#entryline2").val()
+                entry.text = $("#entrytext").val()
+                entry.file = $("#entryfile").val()
+                console.log entry
 
-                alert @
 
             data.amiga = booltoint data.amiga
 
-            $("#entryindex").val data.index
+            $("#entryindex").val pos
             $("#entryname").val data.name
             $("#entryauthor").val data.author
             $("#entryamiga").val data.amiga
             $("#entryamiga").children()[1].textContent = ansiorascii data.amiga
             $("#entryfont").val data.font
-
-fix these color entries to supply rgb() bits
-
-            $("#entrycolor").val data.color
-            $("#entrybg").val data.bg            
+            $("#entrycolor").val colortoname arraytocolor data.color
+            $("#entrybg").val colortoname arraytocolor data.bg
             $("#entrywidth").val data.width
             $("#entryline1").val data.line1
             $("#entryline2").val data.line2
             $("#entrytext").val data.text
-            $("#entryfile").val data.file            
-Need to change the file name, but we don't seem to have the ability to do so.
+            $("#entryfile").val data.file
 
 
 A Helper function to dump json out of an object as text:
@@ -211,7 +220,7 @@ A Helper function to dump json out of an object as text:
         JSON.stringify(obj)
 
 Boolean / integer Helpers
-    
+
     booltoint = (bool) ->
         bool + 1 - 1
 
@@ -246,6 +255,30 @@ we actually _want_ that limitation in the output.
         x = (hex2dec i for i in c1.split ",")
         x.push 0
         x
+
+Need a way to convert the array back to the color name.
+
+    colortoname = (color) ->
+        names = {
+            "#E0E0E0":"Light Grey"
+            "#A0A0E0":"Light Blue"
+            "#9AFE2E":"Light Green"
+            "#FF0000":"Red"
+            "#FF8000":"Orange"
+            "#FFFF00":"Yellow"
+            "#00f000":"Green"
+            "#2EFEF7":"Cyan"
+            "#2EFEF7":"Blue"
+            "#0B0B3B":"Navy"
+            "#FF00FF":"Magenta"
+            "#8000FF":"Purple"
+            "#0A2A0A":"Dark Green"
+            "#3B3B3B":"Dark Grey"
+            "#FFFFFF":"White"
+            "#000000":"Black"
+        }
+        color = color.toUpperCase()
+        x = if hex2dec(color.slice(1)) > 8421504 then "#FFFFFF" else "#000000"
 
 When clicking 'New' we want to make a brand new Sahli, and then clear out
 the buttons and create the editor bit as blank.
