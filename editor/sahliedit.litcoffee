@@ -45,7 +45,7 @@ Also hide the editor until needed, and initialize some elements.
         )
     $(->
         $(".hidden").hide()
-        $("#amiga").button {icons: {primary:"ui-icon-gear"}}
+        $("#entryamiga").button {icons: {primary:"ui-icon-gear"}}
             .click ->
                 stuff = $(@).children()
                 if @.value == "1"
