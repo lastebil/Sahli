@@ -117,6 +117,7 @@ edit button.
             $('#listsave').button {icons: {primary:"ui-icon-disk"}}
                 .click =>
                     alert 'SAVE ME'
+
 You need to save the order, and extract these in that order; moving around
 does not alter the array. Alternately, _have_ it alter the array.
 
@@ -139,14 +140,25 @@ does not alter the array. Alternately, _have_ it alter the array.
                 modal: false,
                 title:"Entry #{data.file} ",
                 buttons: [{
-                    text: "OK",
+                    text: "Cancel",
+                    icons: {primary: 'ui-icon-trash'},
                     click: ->
                         $(@).dialog "close"
-                }]            
-            }
-            
-            alert arraytocolor colortoarray '#102030'
+                },{
+                    text: "Save",
+                    icons: {primary: 'ui-icon-disk'},                    
+                    click: ->
+                        $('#smt').click()
+                        $(@).dialog "close"
 
+                }]
+            }
+
+            $("#smt").click (event) ->
+                event.preventDefault()
+                alert 'bob'
+
+            
             $("#entryname").val data.name
             $("#entryauthor").val data.author
             $("#entryamiga").val data.amiga

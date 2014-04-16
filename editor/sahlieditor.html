@@ -24,48 +24,48 @@
 
 	<div class='hidden' id='formica'>
 		<form accept-charset="utf-8">
-			<ol>
+			<ul>
 				<div class='groupbox' id='basics'>
 					<p>Basics:</p>
 					<div class='drop'>
-						<ul>
+						<li>
 							<label for="file">File name:</label>
                             <input id='entryfile' type="hidden" name="file" value="" placeholder="">
                             <input id='entryfilepick' type="file" name="pickfile" value="" placeholder="">
-						</ul>
-						<ul>                
+						</li>
+						<li>                
 							<label for="file">Title:</label>            
 							<input id='entryname' type="text" name="name" value="" placeholder="">
-						</ul>
-						<ul>                
+						</li>
+						<li>                
 							<label for="author">Author's name:</label>
 							<input id='entryauthor' type="text" name="author" value="" placeholder="">
-						</ul>
+						</li>
 					</div>
 				</div>
 				<div class='groupbox' id='displaydata'>
 					<p>Display:</p>
 					<div class='drop' id='fl'>
-						<ul>                
+						<li>                
 							<label for="file">Ascii or Ansi?</label>
 							<button id='entryamiga' name="amiga" id='amiga' type='button' value='1'>Ascii</button>
-						</ul>
-						<ul>                
+						</li>
+						<li>                
 							<label for="width">With of file:</label>
 							<input id='entrywidth' type="number" name="width" value="80" placeholder="">
-						</ul>
-						<ul>                
+						</li>
+						<li>                
 							<label for="font">Font:</label>
 							<select id='entryfont' name="font">
 								<option value="Propaz">Propaz</option>
 <!--								<option value="Topaz13">Topaz13</option> -->
-<!--								<option value="mOsOul">mOsOul</option> -->
+<!--								<option value="mOsOli">mOsOli</option> -->
 <!--								<option value="MicroKnight">Microknight</option> -->
 								<option value="ansifont">Ansifont</option>
 							</select>
-						</ul>
+						</li>
 						<div class='45box'>
-							<ul>                
+							<li>                
 								<label for="color">Text Color:</label>
                                 <select name="color" id='entrycolor' class='colorbox'>
                                     <option value="#E0E0E0">Light Grey</option>
@@ -85,8 +85,8 @@
                                     <option value="#FFFFFF">White</option>
                                     <option value="#000000">Black</option>
                                 </select>
-							</ul>
-							<ul>                
+							</li>
+							<li>                
 								<label for="bg">Background color:</label>
                                 <select name="bg" id='entrybg' class='colorbox'>
                                     <option value="#E0E0E0">Light Grey</option>
@@ -106,7 +106,7 @@
                                     <option value="#FFFFFF">White</option>
                                     <option value="#000000">Black</option>
                                 </select>
-							</ul>
+							</li>
 						</div>
 						<div class='45box'>
 							<pre>
@@ -121,20 +121,21 @@
 				<div class='groupbox' id='optionals'>
 				<p>Optional text:</p>
 				<div class='drop'>
-					<ul>                
+					<li>                
 						<label for="line1">Optional Info line 1:</label>
 						<input id='entryline1' type="text" name="line1" value="" placeholder="">
-					</ul>
-					<ul>                
+					</li>
+					<li>                
 						<label for="line2">Optional Info line 2:</label>
 						<input id='entryline2' type="text" name="line2" value="" placeholder="">
-					</ul>
-					<ul>                
+					</li>
+					<li>                
 						<label for="text">Optional Text (notes, comments, etc):</label>            
 						<textarea id='entrytext' name='text'></textarea>
-					</ul>
+					</li>
 				</div>
-			</ol>
+				<li><input type="submit" name="smt" id="smt" class="hidden" value=""></li>
+			</ul>
 		</form> 
 	</div>
 </body>

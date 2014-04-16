@@ -26,6 +26,10 @@ label {
     font-size: 10;
 }
 
+div ul li{
+    list-style-type: none
+}
+
 #list {
     border: 1px solid black;
 }
