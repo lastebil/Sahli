@@ -249,12 +249,12 @@ we actually _want_ that limitation in the output.
          "##{c}"
 
     colortoarray = (color) ->
-        re = /(\d\d)(\d\d)(\d\d)/
-        c = color.slice 1
-        c1 = c.replace re,"$1,$2,$3"
-        x = (hex2dec i for i in c1.split ",")
+        color = color.slice(1)
+        c1 = [ color[0..1], color[2..3], color[4..5] ]
+        x = (hex2dec i for i in c1)
         x.push 0
         x
+
 
 Need a way to convert the array back to the color name.
 
