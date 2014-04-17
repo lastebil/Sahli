@@ -124,7 +124,8 @@ edit button.
             $('#buttonbox').hide()
             $('#listsave').button {icons: {primary:"ui-icon-disk"}}
                 .click =>
-                    alert 'SAVE ME'
+                    console.log dumpjson @.data
+
 
 You need to save the order, and extract these in that order; moving around
 does not alter the array. Alternately, _have_ it alter the array.
@@ -160,6 +161,21 @@ insert it into the array at end position.  A la the draggon-dropping.
             entry.dblclick =>
                     @.editline item,pos
 
+        save: ->
+            pos = $("#entryindex").val()
+            entry = @data.filedata[pos]
+            entry.name = $("#entryname").val()
+            entry.author = $("#entryauthor").val()
+            entry.amiga = statustobool $("#entryamiga").children()[1].textContent
+            console.log $("#entryamiga").children()[1].textContent,entry.amiga,entry.author
+            entry.color = colortoarray $("#entrycolor").val()
+            entry.bg = colortoarray $("#entrybg").val()
+            entry.width = $("#entrywidth").val()
+            entry.line1 = $("#entryline1").val()
+            entry.line2 = $("#entryline2").val()
+            entry.text = $("#entrytext").val()
+            entry.file = $("#entryfile").val()
+
         editline: (data,pos) ->
             $("#formica").dialog {
                 width:'800',
@@ -173,29 +189,14 @@ insert it into the array at end position.  A la the draggon-dropping.
                 },{
                     text: "Save",
                     icons: {primary: 'ui-icon-disk'},
-                    click: ->
-                        $('#smt').click()
-                        $(@).dialog "close"
-
+                    click: ((_this) ->
+                      (event) ->
+                        event.preventDefault()
+                        _this.save()
+                        $(this).dialog "close"
+                    )(this)
                 }]
             }
-
-            $("#smt").click (event) =>
-                event.preventDefault()
-                pos = $("#entryindex").val()
-                entry = @data.filedata[pos]
-                entry.name = $("#entryname").val()
-                entry.author = $("#entryauthor").val()
-                entry.amiga = inttobool $("#entryamiga").val()
-                entry.color = colortoarray $("#entrycolor").val()
-                entry.bg = colortoarray $("#entrybg").val()
-                entry.width = $("#entrywidth").val()
-                entry.line1 = $("#entryline1").val()
-                entry.line2 = $("#entryline2").val()
-                entry.text = $("#entrytext").val()
-                entry.file = $("#entryfile").val()
-                console.log entry
-
 
             data.amiga = booltoint data.amiga
 
@@ -217,7 +218,7 @@ insert it into the array at end position.  A la the draggon-dropping.
 A Helper function to dump json out of an object as text:
 
     dumpjson = (obj) ->
-        JSON.stringify(obj)
+        JSON.stringify obj,null,"\t"
 
 Boolean / integer Helpers
 
@@ -226,6 +227,9 @@ Boolean / integer Helpers
 
     inttobool = (intstr) ->
         (intstr == 1).toString()
+
+    statustobool = (status) ->
+        if status is 'Ascii' then true else false
 
 Resolve ansi or ascii status
 
