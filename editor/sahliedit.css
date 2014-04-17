@@ -42,10 +42,14 @@ div ul li{
     margin: 0 3px 3px 3px;
     padding: 0.4em;
     padding-left: 1.5em;
-    width: 75%;
+    width: 95%;
     height: 18px;
     border: 2px outset rgb(255,228,196);
     background-color: rgb(245,245,220);
+}
+
+.righty {
+    float: right;
 }
 
 .entry span {

@@ -157,9 +157,23 @@ insert it into the array at end position.  A la the draggon-dropping.
 
 
         additem: (item,pos) ->
-            entry = $("<li class='entry' id='#{item.file}'><span class='ui-icon ui-icon-arrowthick-2-n-s'></span>#{ansiorascii booltoint item.amiga} | #{item.author} : #{item.name} : #{item.file}</li>")
+            entry = @.genentryline item,pos
             entry.dblclick =>
                     @.editline item,pos
+
+        genentryline: (item,pos) ->
+            arrows = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>"
+            amigastatus = ansiorascii booltoint item.amiga
+            delbutton = $("<span class='righty' id=del-#{pos}>delete</span>")
+                .click ((_this) ->
+                    (event) ->
+                        pos = @.id.replace "del-",""
+                        console.log _this.data.filedata.splice pos,1
+                        @.parentNode.remove()
+                    )(this)
+            entry = $("<li class='entry' id='#{item.file}'>#{arrows}#{amigastatus} | #{item.author} : #{item.name} : #{item.file}</li>")
+            entry.append delbutton
+
 
         save: ->
             pos = $("#entryindex").val()
