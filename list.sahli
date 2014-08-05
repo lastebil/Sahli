@@ -31,6 +31,7 @@
     }, {
         "file": "az0!-revi510n.txt",
         "name": "Revi510n",
+        "filetype":"plain",        
         "amiga": true,
         "width": "80",
         "color": [
@@ -53,6 +54,7 @@
     }, {
         "file": "ted_-_spaceship_enterprise.ans",
         "name": "SPACEshiP ENterprISe",
+        "filetype":"ansi",
         "amiga": false,
         "width": "80",
         "color": [
@@ -75,6 +77,7 @@
     }, {
         "file": "h7-supergroupies.ans",
         "name": "Super Groupies",
+        "filetype":"ansi",
         "amiga": false,
         "width": "80",
         "color": [
@@ -97,6 +100,7 @@
     }, {
         "file": "51_DRGN.XB",
         "name": "51 Dragon",
+        "filetype":"xbin",        
         "amiga": false,
         "width": "80",
         "color": [
@@ -119,6 +123,7 @@
     }, {
         "file": "ARTX-LGO.ADF",
         "name": "example ADF",
+        "filetype":"adf",        
         "amiga": false,
         "width": "120",
         "color": [
@@ -141,6 +146,7 @@
     }, {
         "file": "US-SADIS.BIN",
         "name": "bin example",
+        "filetype":"bin",        
         "amiga": false,
         "width": "120",
         "color": [
@@ -163,6 +169,7 @@
     }, {
         "file": "zv_iniq.tnd",
         "name": "tundra example",
+        "filetype":"tundra`",
         "amiga": false,
         "width": "120",
         "color": [
@@ -184,7 +191,8 @@
         "text": "more examples"
     }, {
         "file": "MD-XMAS.IDF",
-        "name": "IVF example",
+        "name": "IDF example",
+        "filetype":"idf",        
         "amiga": false,
         "width": "120",
         "color": [
@@ -205,8 +213,79 @@
         "line2": "...",
         "text": "more examples"
     }, {
+        "file": "example.avatar",
+        "name": "AVATAR example",
+        "filetype":"avatar",        
+        "amiga": false,
+        "width": "80",
+        "color": [
+            0,
+            30,
+            30,
+            255
+        ],
+        "bg": [
+            240,
+            240,
+            250,
+            255
+        ],
+        "author": "avatarperson",
+        "font": "ansifont",
+        "line1": "an avatar file",
+        "line2": "...",
+        "text": "more examples"
+    }, {
+        "file": "pcboard.pcboard",
+        "name": "PCBoard example",
+        "filetype":"pcboard",
+        "amiga": false,
+        "width": "120",
+        "color": [
+            0,
+            30,
+            30,
+            255
+        ],
+        "bg": [
+            240,
+            240,
+            250,
+            255
+        ],
+        "author": "pcboard person",
+        "font": "ansifont",
+        "line1": "PCBOARD example",
+        "line2": "...",
+        "text": "more examples"
+    }, {
+        "file": "example.ICE",
+        "name": "ICE example",
+        "filetype":"ice",        
+        "amiga": false,
+        "width": "120",
+        "color": [
+            0,
+            30,
+            30,
+            255
+        ],
+        "bg": [
+            240,
+            240,
+            250,
+            255
+        ],
+        "author": "ice",
+        "font": "ansifont",
+        "line1": "ICE example",
+        "line2": "...",
+        "text": "more examples"
+
+    }, {
         "file": "51_EMP.XB",
         "name": "WIDE xbin",
+        "filetype":"xbin",
         "amiga": false,
         "width": "120",
         "color": [
