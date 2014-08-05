@@ -3,7 +3,7 @@
 A Sahli file is JSON, so all JSON formatting and rule processing applies.
 
 Version A:
-There were 2 primary sections within the file: The slide section and the 
+There were 2 primary sections within the file: The slide section and the
 filedata section.
 Version B:
 3 primary sections, slide / filedata and now location.
@@ -14,8 +14,9 @@ Version B:
 === slides ===
 
   This, if implemented (which it isn't) would allow you to generate slides-
-  such as if you weren't using partymeister for slides. 
+  such as if you weren't using partymeister for slides.
 
+EXAMPLE:
     "slides": {
         "background": "screen.png",
         "template": "template.html",
@@ -36,7 +37,7 @@ Version B:
   This _is_ implemented and holds the data for each ansi or ascii "slide" in
   the "slideshow" (if using a 'slideshow' paradigm.)
 
-
+EXAMPLE:
     "filedata": [{
         "file": "spaceflight.asc",
         "name": "Spaceflight",
@@ -67,7 +68,8 @@ Version B:
     filetype: * NEW IN VERSION B*
       The type of file - i.e. use the parsing method for file type X.
       Possible legal types:
-      "plain" - for standard ascii and ansi (i.e. the default.)
+      "plain" - for 'standard' ascii (Amiga or pc.) ISO-8859-1
+      "ansi" - 'normal' ansi, can have or not have SAUCE data.
       "xbin" - saved as xbin
       "ice" - saved in the ICE format
       "adf" - saved as ADF (NOT amiga disk file, some ansi format that is not
@@ -76,7 +78,7 @@ Version B:
       "avatar" - avatar format
       "bin" - bin format. Not "any binary" format, but the ansi 'bin' format.
        * no I don't know the difference, but someone does and they wrote the
-       original code for it.
+         original code for it.
       "idf" - idf format.
       "pcboard" - pcboard ansi format.
       "tundra" - tundra format. (from tundradraw, I assume.)

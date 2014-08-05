@@ -34,58 +34,104 @@ var Sahli = function() {
     this.nonfsheight = document.height - 40;
 
     this.loadpic = function(picdata, inserthere) {
-        var infob = $('div.infobox');
+        var jumptable = {
+            'plain':this.loadplain(),
+            'xbin':this.loadxbin(),
+            'ice':this.loadice(),
+            'avatar':this.loadavatar(),
+            'pcboard':this.loadpcboard(),
+            'ansi':this.loadansi(),
+            'idf':this.loadidf(),
+            'bin':this.loadbin(),
+            'adf':this.loadadf(),
+            'tundra':this.loadtundra()
+        }
+        jumptable[picdata.filetype](picdata,inserthere);
+    }
+
+    this.loadplain = function(picdata, inserthere) {
+        ref = this;
         var pdiv = $('<div>');
         var canv = document.createElement('canvas');
         var req = new XMLHttpRequest();
-        var fname = sahli.location + '/' + picdata.file;        
+        var fname = sahli.location + '/' + picdata.file;
+        var ptxt = $('<pre></pre>');
+        var color = this.calccolor(picdata.color);
+        var bgcolor = this.calccolor(picdata.bg);
+
         pdiv.addClass('scrolly');
-        ref = this;
-        if (picdata.amiga && this.asciiasgfx) {
-            var ptxt = $('<pre></pre>');
-            var color = this.calccolor(picdata.color);
-            var bgcolor = this.calccolor(picdata.bg);
-            ptxt.addClass(picdata.font.toLowerCase());
-            ptxt.css({
-                'color': color,
-                'background-color': bgcolor,
-                'margin': 'auto'
-            });
-            ptxt.width(picdata.width * 8);
-            pdiv.width('100%');
-            pdiv.append(ptxt);
-            // x-user-defined
-            req.overrideMimeType('text/plain; charset=ISO-8859-1');
-            req.onreadystatechange = function() {
-                if (req.readyState === req.DONE) {
-                    if (req.status === 200 || req.status === 0) {
-                        ptxt.text(this.responseText);
-                        inserthere.after(pdiv);
-                    } else {
-                        sahli.loaderror(inserthere,fname,req.statusText,req.status)
-                        // I really should make a real error handler.
-                    }
+        ptxt.addClass(picdata.font.toLowerCase());
+        ptxt.css({
+            'color': color,
+            'background-color': bgcolor,
+            'margin': 'auto'
+        });
+        ptxt.width(picdata.width * 8);
+        pdiv.width('100%');
+        pdiv.append(ptxt);
+        // x-user-defined
+        // this is going to be interesting when dealing with ansi files in UTF-8 and SHIFT-JIS etc
+        req.overrideMimeType('text/plain; charset=ISO-8859-1');
+        req.onreadystatechange = function() {
+            if (req.readyState === req.DONE) {
+                if (req.status === 200 || req.status === 0) {
+                    ptxt.text(this.responseText);
+                    inserthere.after(pdiv);
+                } else {
+                    sahli.loaderror(inserthere,fname,req.statusText,req.status)
                 }
-            };
-            req.open('GET', fname , true);
-            req.send(null);
-
-        } else {
-            this.image = new ImageTextModeANSI();
-            this.SAUCE = new ImageTextModeSAUCE();
-            var picload = this.image.parseUrl(fname);
-            this.image.renderCanvas(canv);
-            pdiv.append(canv);
-            inserthere.after(pdiv);
-            this.origwidth = canv.width;
-            this.origheight = canv.height;
-            if (picload < 1) {                
-                // this is incorrect but currently parseUrl does not return errors.
-                // fix, then deal with.
-                sahli.loaderror(inserthere,fname,'Not found',404);
             }
+        };
+        req.open('GET', fname , true);
+        req.send(null);
 
+    this.loadansi = function(picdata,inserthere) {
+        this.image = new ImageTextModeANSI();
+        this.SAUCE = new ImageTextModeSAUCE();
+        var picload = this.image.parseUrl(fname);
+        this.image.renderCanvas(canv);
+        pdiv.append(canv);
+        inserthere.after(pdiv);
+        this.origwidth = canv.width;
+        this.origheight = canv.height;
+        if (picload < 1) {
+            // this is incorrect but currently parseUrl does not return errors.
+            // fix, then deal with.
+            sahli.loaderror(inserthere,fname,'Not found',404);
         }
+
+    this.loadxbin = function(picdata,inserthere){
+        alert('xbin');
+    }
+
+    this.loadbin = function(picdata,inserthere){
+        alert('bin');
+    }
+    this.loadice = function(picdata,inserthere){
+        alert('ice');
+    }
+    this.loadidf = function(picdata,inserthere){
+        alert('idf');
+    }
+    this.loadadf = function(picdata,inserthere){
+        alert('adf');
+    }
+    this.loadavatar = function(picdata,inserthere){
+        alert('avatar');
+    }
+    this.loadtundra = function(picdata,inserthere){
+        alert('tundra');
+    }
+    this.loadpcboard = function(picdata,inserthere){
+        alert('pcboard');
+    }
+    this.loadxbin = function(picdata,inserthere){
+        alert('xbin');
+    }
+
+
+    this.fillinfo = function(picdata) {
+        var infob = $('div.infobox');
         infob.find('h1').text(picdata.name);
         infob.find('h2').text(picdata.author);
         infob.find('h3#text').text(picdata.line1);
@@ -104,7 +150,7 @@ var Sahli = function() {
             tmptxt = $("<h1>").text("error! "+ errorText + " code " + errorCode +
                 " file " + fname);
         }
-        inserthere.after(tmptxt);        
+        inserthere.after(tmptxt);
     }
 
     this.calccolor = function(colorset) {
