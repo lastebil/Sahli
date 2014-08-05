@@ -38,6 +38,7 @@ var Sahli = function() {
         var pdiv = $('<div>');
         var canv = document.createElement('canvas');
         var req = new XMLHttpRequest();
+        var fname = sahli.location + '/' + picdata.file;        
         pdiv.addClass('scrolly');
         ref = this;
         if (picdata.amiga && this.asciiasgfx) {
@@ -61,23 +62,29 @@ var Sahli = function() {
                         ptxt.text(this.responseText);
                         inserthere.after(pdiv);
                     } else {
+                        sahli.loaderror(inserthere,fname,req.statusText,req.status)
                         // I really should make a real error handler.
-                        alert(req);
                     }
                 }
             };
-            req.open('GET', picdata.file, true);
+            req.open('GET', fname , true);
             req.send(null);
 
         } else {
             this.image = new ImageTextModeANSI();
             this.SAUCE = new ImageTextModeSAUCE();
-            this.image.parseUrl(picdata.file);
+            var picload = this.image.parseUrl(fname);
             this.image.renderCanvas(canv);
             pdiv.append(canv);
             inserthere.after(pdiv);
             this.origwidth = canv.width;
             this.origheight = canv.height;
+            if (picload < 1) {                
+                // this is incorrect but currently parseUrl does not return errors.
+                // fix, then deal with.
+                sahli.loaderror(inserthere,fname,'Not found',404);
+            }
+
         }
         infob.find('h1').text(picdata.name);
         infob.find('h2').text(picdata.author);
@@ -88,6 +95,17 @@ var Sahli = function() {
         infob.find('span#infowidth').text("| " + picdata.width + " cols |");
         infob.find('span#fontname').text(picdata.font);
     };
+
+    this.loaderror = function(inserthere,fname,errorText,errorCode) {
+        var temptxt = "";
+        if (errorCode === 404) {
+            tmptxt = $("<h1>").text("Unable to find file " + fname);
+        } else {
+            tmptxt = $("<h1>").text("error! "+ errorText + " code " + errorCode +
+                " file " + fname);
+        }
+        inserthere.after(tmptxt);        
+    }
 
     this.calccolor = function(colorset) {
         return 'rgba(' + colorset.toString() + ')';
@@ -202,6 +220,7 @@ var Sahli = function() {
         $.getJSON(url, function(json) {
             ref.filedata = json.filedata;
             ref.slides = json.slides;
+            ref.location = json.location;
             ref.buildcompo();
         });
     };

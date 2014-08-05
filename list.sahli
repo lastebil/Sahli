@@ -1,5 +1,5 @@
 {
-    "location": "subdir",
+    "location": "testshow",
     "slides": {
         "background": "screen.png",
         "template": "template.html",
