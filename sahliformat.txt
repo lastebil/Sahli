@@ -2,14 +2,19 @@
 
 A Sahli file is JSON, so all JSON formatting and rule processing applies.
 
-There are 2 primary sections within the file: The slide section and the 
+Version A:
+There were 2 primary sections within the file: The slide section and the 
 filedata section.
+Version B:
+3 primary sections, slide / filedata and now location.
+
+=== location ===
+  The directory in which the slide and filedata files sit.
 
 === slides ===
 
-  This, if implemented (which it isn't) would allow you to show a different
-  look - i.e. if you were not using partymeister and needed a showcase that
-  was different than the standard look.
+  This, if implemented (which it isn't) would allow you to generate slides-
+  such as if you weren't using partymeister for slides. 
 
     "slides": {
         "background": "screen.png",
@@ -18,14 +23,13 @@ filedata section.
     },
 
     background: a file that would be put in the background when showing
-     the files. This is not implemented in version A or B.
-    template: a html template, which would be used to... I don't exactly
-     know what I was thinking with this templating, possibly a method of
-     displaying a different menu or something else. Not implemented and
-     I honestly have no idea if I will do that because I don't know why
-     I have it here.
-    css: This would let you define the css for the entire Sahli, which could
-     possibly override fonts and so on. (Because it's css.) Not implemented.
+     the slides.
+    template: a html template, which would be used to display the 'info'
+    on the slide. (Author, line1, line2, text, etc.)  Not implemented, but
+    when it is, it probably will allow you to have blank spots for each of
+    the variables in 'filedata.'
+    css: This would let you define the css for the slide; thus allowing
+    font changes for each line, size changes, color changes, etc.
 
 === filedata ===
 
@@ -106,4 +110,3 @@ filedata section.
     bg: similarly, this is the background color for ascii. I believe this may
       work whichever rendering mode you use.
     line1 / line2 / text:  Stuff for the info panel.
-    

@@ -9,6 +9,8 @@
         Coded by Sir Garbagetruck / Accession 2013
           Uses fonts by DMG, http:trueschool.se
      Uses SixteenColors textmode js library for rendering
+            (well, my optimized version...)
+                      Version B
 --
 This ANSI / Ascii viewer was designed _SPECIFICALLY_ to
 address shortcomings with acidview and other viewers in
@@ -31,8 +33,8 @@ so if we just would do something in a browser, it would
 all work out nicely.
 
 That was the impetus for this, and it's turned out...
-well, fairly well.  It has been used at Revision 2013
-and Evoke 2013, and the folks who saw their stuff in
+well, fairly well.  It has been used at Revision,
+Evoke, and Payback, and the folks who saw their stuff in
 it have basically said it is really good.  I think it
 needs a bit more feedback and some bugfixes, and the
 folks at sixteencolors have had some suggestions and
@@ -68,25 +70,21 @@ for details, or just get the license:
 
  * tl;dr wtf omg how duz thz wrk omg wtf
 
-1. Place the important files (.js, .css, .html, .sahli) on a webserver or local directory.
-2. Put your ansi and ascii files on the webserver / local directory.
-3. Edit the 'list.sahli' file (it's json) to have
-  the proper filenames.
-  * yes an editor is coming for the standalone
-  * for the integrated-with-partymeister version,
-  partymeister will do the sorting/listgen and you
-  will take the generated 'pack' and ... do something.
-  I'll write that code at some point after we work out
-  the details.
-4. If you want edit other stuff too, like the descriptions
+1. Place the important files (.js, .css, .html, .sahli)
+ on a webserver or local directory.
+2. Put your ansi and ascii files on the webserver / local
+ directory. (Or unpack your colly, etc...)
+3. Fire up the editor and set up the .sahli file.
+ Alternately, edit it as JSON.  (Just be sure it's 100%
+ correct or your show won't go like you planned.)
 5. Open the index file in your browser. Something like
     http://localhost/somewhere/sahli/index.html
-or if it's on the web, then:
+  ** or if it's on the web, then:
     http://www.example.com/ansiasciicompo/sahli/index.html
 6. When it says things are loaded, hit 'space' - OR ? or h
    ? and h are "help"
 7. Everything is done by keys.
-8. Ok on a tablet tap corners and stuff, cuz no keys.
+8. On a tablet tap corners and stuff, cuz no keys.
 
 - Great so yeah why is it 'Sahli'
 
@@ -97,3 +95,6 @@ than a Truck-can't-speak-Finnish-well accent.
 - Example files are from Breakpoint 2013's compo, credits:
 H7/Blocktronics/Accession, Urs/Mercury, Ted/Pöo-crüe^3ln,
 Azzarro/Madwizards.
+- More examples came from 16colors archive. When the final
+Sahli ver. B comes out, I'll select some test files and
+put those credits in here too.

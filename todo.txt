@@ -1,6 +1,7 @@
 x 2014-04-16 (C) separate to individual renderers  @16colors
 (C) load to array/picture, render from picture @16colors
 (C) speed up rendering more? @16colors
+(A) Add "type" of file(format) - plain, xbin, etc.
 
 (A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
 (B) load SAUCE into 'info' lines (should be done at prep) @SAUCE

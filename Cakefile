@@ -26,7 +26,7 @@ source = [
   '16col/avatar.coffee',
   '16col/xbin.coffee',
   '16col/pallette.coffee',
-  '16col/fonts.coffee'
+  '16col/fonts.coffee',
 ]
 
 task 'build', 'Build merged file for production', (options) ->
