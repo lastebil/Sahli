@@ -10,7 +10,7 @@
 // Uses fonts by DMG, http://trueschool.se
 // Uses SixteenColors textmode js library for rendering
 
-var Sahli = function() {
+var Sahli = function () {
     this.outbox = $('div#outbox');
     this.dbox = $('div#drawbox');
     this.image = 0;
@@ -33,9 +33,9 @@ var Sahli = function() {
     this.currentpic = 0;
     this.nonfsheight = document.height - 40;
 
-    this.loadpic = function(picdata, inserthere) {
+    this.loadpic = function (picdata, inserthere) {
         var jumptable = {
-            'plain':this.loadplain(),
+            'plain':this.loadplain(picdata,inserthere),
             'xbin':this.loadxbin(),
             'ice':this.loadice(),
             'avatar':this.loadavatar(),
@@ -46,7 +46,8 @@ var Sahli = function() {
             'adf':this.loadadf(),
             'tundra':this.loadtundra()
         }
-        jumptable[picdata.filetype](picdata,inserthere);
+        console.log('here');
+       jumptable[picdata.filetype];
     }
 
     this.loadplain = function(picdata, inserthere) {
@@ -84,6 +85,7 @@ var Sahli = function() {
         };
         req.open('GET', fname , true);
         req.send(null);
+    }
 
     this.loadansi = function(picdata,inserthere) {
         this.image = new ImageTextModeANSI();
@@ -99,6 +101,7 @@ var Sahli = function() {
             // fix, then deal with.
             sahli.loaderror(inserthere,fname,'Not found',404);
         }
+    }
 
     this.loadxbin = function(picdata,inserthere){
         alert('xbin');

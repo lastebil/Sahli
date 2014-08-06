@@ -7,7 +7,7 @@
 	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript" charset="utf-8" ></script>
 -->
   <script src="jquery-2.1.0.min.js" type="text/javascript" async defer></script>
-  <script src="jquery-ui.min.js" type="text/javascript" async defer></script>  
+  <script src="jquery-ui.min.js" type="text/javascript" async defer></script>
 	<script src="/editor/sahliedit.js" type="text/javascript" charset="utf-8" async defer></script>
 	<link rel="stylesheet" href="/editor/sahliedit.css">
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/dot-luv/jquery-ui.css">
@@ -22,6 +22,7 @@
 	</div>
 
     <div class='hidden' id='list'>
+        <label>Location of Files:<input type="text" id='dirlocation' name="location" value=""></label>
         <ol id='sortlist'>
         </ol>
         <p id='listsave'>Save</p>
@@ -39,11 +40,11 @@
                             <input id='entryfile' type="text" name="file" value="" placeholder="">
                             <input id='entryfilepick' type="file" class='hidden' name="pickfile" value="" placeholder="">
 						</li>
-						<li>                
-							<label for="file">Title:</label>            
+						<li>
+							<label for="file">Title:</label>
 							<input id='entryname' type="text" name="name" value="" placeholder="">
 						</li>
-						<li>                
+						<li>
 							<label for="author">Author's name:</label>
 							<input id='entryauthor' type="text" name="author" value="" placeholder="">
 						</li>
@@ -52,7 +53,7 @@
 				<div class='groupbox' id='displaydata'>
 					<p>Display:</p>
 					<div class='drop' id='fl'>
-						<li>                
+						<li>
 							<label for="file">Ascii or Ansi?</label>
 							<button id='entryamiga' name="amiga" id='amiga' type='button' value='1'>Ascii</button>
 						</li>
@@ -71,11 +72,11 @@
                 <option value="tundra">tundra</option>
               </select>
             </li>
-						<li>                
+						<li>
 							<label for="width">Width of file:</label>
 							<input id='entrywidth' type="number" name="width" value="80" placeholder="">
 						</li>
-						<li>                
+						<li>
 							<label for="font">Font:</label>
 							<select id='entryfont' name="font">
 								<option value="Propaz">Propaz</option>
@@ -86,7 +87,7 @@
 							</select>
 						</li>
 						<div class='45box'>
-							<li>                
+							<li>
 								<label for="color">Text Color:</label>
                                 <select name="color" id='entrycolor' class='colorbox'>
                                     <option value="#E0E0E0">Light Grey</option>
@@ -107,7 +108,7 @@
                                     <option value="#000000">Black</option>
                                 </select>
 							</li>
-							<li>                
+							<li>
 								<label for="bg">Background color:</label>
                                 <select name="bg" id='entrybg' class='colorbox'>
                                     <option value="#E0E0E0">Light Grey</option>
@@ -142,21 +143,21 @@
 				<div class='groupbox' id='optionals'>
 				<p>Optional text:</p>
 				<div class='drop'>
-					<li>                
+					<li>
 						<label for="line1">Optional Info line 1:</label>
 						<input id='entryline1' type="text" name="line1" value="" placeholder="">
 					</li>
-					<li>                
+					<li>
 						<label for="line2">Optional Info line 2:</label>
 						<input id='entryline2' type="text" name="line2" value="" placeholder="">
 					</li>
-					<li>                
-						<label for="text">Optional Text (notes, comments, etc):</label>            
+					<li>
+						<label for="text">Optional Text (notes, comments, etc):</label>
 						<textarea id='entrytext' name='text'></textarea>
 					</li>
 				</div>
 			</ul>
-		</form> 
+		</form>
 	</div>
 </body>
 </html>

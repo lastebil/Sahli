@@ -87,6 +87,7 @@ a html template, and a css file.
                 "file": "",
                 "name": "",
                 "amiga": true,
+                "filetype": 'plain',
                 "width": "",
                 "author": "",
                 "font": "Propaz",
@@ -102,6 +103,7 @@ a html template, and a css file.
                 "css": ""
             }
             @empty = {
+                "location": "",
                 "slides": @emptyslidesdef,
                 "filedata": [ ]
             }
@@ -122,6 +124,8 @@ edit button.
 
         edit: ->
             $('#buttonbox').hide()
+            $('#dirlocation').change (event) =>
+                @.data.location = event.target.value
             $('#listsave').button {icons: {primary:"ui-icon-disk"}}
                 .click =>
                     console.log dumpjson @.data

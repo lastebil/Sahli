@@ -62,6 +62,7 @@
         "file": "",
         "name": "",
         "amiga": true,
+        "filetype": 'plain',
         "width": "",
         "author": "",
         "font": "Propaz",
@@ -77,6 +78,7 @@
         "css": ""
       };
       this.empty = {
+        "location": "",
         "slides": this.emptyslidesdef,
         "filedata": []
       };
@@ -97,6 +99,11 @@
 
     Sahli.prototype.edit = function() {
       $('#buttonbox').hide();
+      $('#dirlocation').change((function(_this) {
+        return function(event) {
+          return _this.data.location = event.target.value;
+        };
+      })(this));
       $('#listsave').button({
         icons: {
           primary: "ui-icon-disk"
