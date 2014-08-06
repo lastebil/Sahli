@@ -218,6 +218,9 @@ insert it into the array at end position.  A la the draggon-dropping.
 
             data.amiga = booltoint data.amiga
 
+            fcol = colortoname arraytocolor data.color
+            bcol = colortoname arraytocolor data.bg
+
             $("#entryindex").val pos
             $("#entryname").val data.name
             $("#entryauthor").val data.author
@@ -226,8 +229,10 @@ insert it into the array at end position.  A la the draggon-dropping.
             $("#entryamiga").val data.amiga
             $("#entryamiga").children()[1].textContent = ansiorascii data.amiga
             $("#entryfont").val data.font
-            $("#entrycolor").val colortoname arraytocolor data.color
-            $("#entrybg").val colortoname arraytocolor data.bg
+            $("#entrycolor").val fcol
+            $("#entrycolor").children()[colorindex fcol ].selected = true
+            $("#entrybg").val bcol
+            $("#entrybg").children()[colorindex bcol ].selected = true
             $("#entrywidth").val data.width
             $("#entryline1").val data.line1
             $("#entryline2").val data.line2
@@ -306,9 +311,9 @@ Need a way to convert the array back to the color name.
             "#FF0000":"Red"
             "#FF8000":"Orange"
             "#FFFF00":"Yellow"
-            "#00f000":"Green"
+            "#00F000":"Green"
             "#2EFEF7":"Cyan"
-            "#2EFEF7":"Blue"
+            "#002EF7":"Blue"
             "#0B0B3B":"Navy"
             "#FF00FF":"Magenta"
             "#8000FF":"Purple"
@@ -318,7 +323,32 @@ Need a way to convert the array back to the color name.
             "#000000":"Black"
         }
         color = color.toUpperCase()
-        x = if hex2dec(color.slice(1)) > 8421504 then "#FFFFFF" else "#000000"
+        colorname = names[color]
+        bw = if hex2dec(color.slice(1)) > 8421504 then 'White' else "Black"
+        ret = if colorname? then colorname else bw
+
+Similarly, need to be able to get the color index.
+
+    colorindex = (colorname) ->
+        names = {
+            "Light Grey":0
+            "Light Blue":1
+            "Light Green":2
+            "Red":3
+            "Orange":4
+            "Yellow":5
+            "Green":6
+            "Cyan":7
+            "Blue":8
+            "Navy":9
+            "Magenta":10
+            "Purple":11
+            "Dark Green":12
+            "Dark Grey":13
+            "White":14
+            "Black":15
+        }
+        names[colorname]
 
 When clicking 'New' we want to make a brand new Sahli, and then clear out
 the buttons and create the editor bit as blank.
