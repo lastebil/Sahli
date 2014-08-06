@@ -8,6 +8,8 @@ x 2014-08-06 @EDITOR save (print) routine
 @EDITOR text/bg colors change 'SAHLI' thing
 x 2014-08-07 @EDITOR update the line item when saving - what the heck is 'line item?' (meant update the listing to show edits)
 
+(A) fix color functions to use alpha (so they show up!)
+
 x 2014-08-06 (A) Add "type" of file(format) - plain, xbin, etc.(
 x 2014-08-06 (A) Create Editor - Standalone @EDITOR
 (A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE

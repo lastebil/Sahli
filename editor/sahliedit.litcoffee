@@ -186,6 +186,7 @@ does not alter the array. Alternately, _have_ it alter the array.
                     @data.filedata = @.rearrangearray s,e,@data.filedata
                     console.log name.author,name.name,name.file for name in @data.filedata
                     console.log '---'
+                    @buildlist @data
 
 Given a start and and end position, pop the array element at start off and
 insert it into the array at end position.  A la the draggon-dropping.

@@ -206,7 +206,8 @@
               name = _ref2[_k];
               console.log(name.author, name.name, name.file);
             }
-            return console.log('---');
+            console.log('---');
+            return _this.buildlist(_this.data);
           };
         })(this)
       });
