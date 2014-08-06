@@ -187,13 +187,10 @@ insert it into the array at end position.  A la the draggon-dropping.
             arrows = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>"
             amigastatus = ansiorascii booltoint item.amiga
             delbutton = $("<span class='righty' id=del-#{pos}>delete</span>")
-                .click ((_this) ->
-                    (event) ->
-                        pos = @.id.replace "del-",""
-                        console.log @
-                        console.log _this.data.filedata.splice pos,1
-                        @.parentNode.remove()
-                    )(this)
+                .click (event) =>
+                    pos = event.currentTarget.id.replace "del-",""
+                    @data.filedata.splice pos,1
+                    @buildlist @data
             entry = $("<li class='entry' id='#{item.file}'>#{arrows}#{amigastatus} | #{item.author} : #{item.name} : #{item.file}</li>")
             entry.append delbutton
 

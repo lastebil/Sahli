@@ -212,10 +212,9 @@
       amigastatus = ansiorascii(booltoint(item.amiga));
       delbutton = $("<span class='righty' id=del-" + pos + ">delete</span>").click((function(_this) {
         return function(event) {
-          pos = this.id.replace("del-", "");
-          console.log(this);
-          console.log(_this.data.filedata.splice(pos, 1));
-          return this.parentNode.remove();
+          pos = event.currentTarget.id.replace("del-", "");
+          _this.data.filedata.splice(pos, 1);
+          return _this.buildlist(_this.data);
         };
       })(this));
       entry = $("<li class='entry' id='" + item.file + "'>" + arrows + amigastatus + " | " + item.author + " : " + item.name + " : " + item.file + "</li>");
