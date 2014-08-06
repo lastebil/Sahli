@@ -81,9 +81,26 @@ The three remaining lines are informational and optional.
 The slide format is currently unused, but consists of a background picture,
 a html template, and a css file.
 
+    class emptyfiledef
+        constructor: ->
+                @file = ""
+                @name = ""
+                @amiga = true
+                @filetype = 'plain'
+                @width = ""
+                @author = ""
+                @font = "Propaz"
+                @color = [ 255,255,255,255 ]
+                @bg = [ 0,0,0,0 ]
+                @line1 = ""
+                @line2 = ""
+                @text = ""
+
+
     class Sahli
         constructor: ->
-            @emptyfiledef = {
+            @emptyfiledef = new emptyfiledef
+            @bob = {
                 "file": "",
                 "name": "",
                 "amiga": true,
@@ -134,9 +151,11 @@ edit button.
             $('#listlist').button {icons: {primary:"ui-icon-folder-open"}}
                 .click =>
                     alert 'clicked'
-            $('#listinsert').button {icons: {primary:"ui-icon-1-n"}}
-                .click =>
-                    alert 'clicked'
+            $('#listappend').button {icons: {primary:"ui-icon-1-n"}}
+                .click (event) =>
+                    newentry = new emptyfiledef
+                    @data.filedata.push newentry
+                    @buildlist @data
             $('#listdisplay').button {icons: {primary:"ui-icon-refresh"}}
                 .click =>
                     @buildlist @data
@@ -165,7 +184,7 @@ does not alter the array. Alternately, _have_ it alter the array.
                     s = ui.item.data().startpos
                     e = ui.item.index()
                     @data.filedata = @.rearrangearray s,e,@data.filedata
-                    console.log name.author for name in @data.filedata
+                    console.log name.author,name.name,name.file for name in @data.filedata
                     console.log '---'
 
 Given a start and and end position, pop the array element at start off and
@@ -179,9 +198,9 @@ insert it into the array at end position.  A la the draggon-dropping.
 
 
         additem: (item,pos) ->
-            entry = @.genentryline item,pos
+            entry = @genentryline item,pos
             entry.dblclick =>
-                    @.editline item,pos
+                    @editline item,pos
 
         genentryline: (item,pos) ->
             arrows = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>"
@@ -209,6 +228,7 @@ insert it into the array at end position.  A la the draggon-dropping.
             entry.line2 = $("#entryline2").val()
             entry.text = $("#entrytext").val()
             entry.file = $("#entryfile").val()
+            @buildlist @data
 
         editline: (data,pos) ->
             $("#formica").dialog {
@@ -223,12 +243,11 @@ insert it into the array at end position.  A la the draggon-dropping.
                 },{
                     text: "Save",
                     icons: {primary: 'ui-icon-disk'},
-                    click: ((_this) ->
-                      (event) ->
+                    click: (event) =>
                         event.preventDefault()
-                        _this.save()
-                        $(this).dialog "close"
-                    )(this)
+                        @save()
+                        event.currentTarget.previousElementSibling.click()
+
                 }]
             }
 
@@ -372,7 +391,8 @@ the buttons and create the editor bit as blank.
     newsahli = ->
         sahli = new Sahli
         sahli.data = sahli.empty
-        sahli.data.filedata.push sahli.emptyfiledef
+        newentry = new emptyfiledef
+        sahli.data.filedata.push newentry
         sahli.edit()
 
 And when clicking 'load' we want to load the existing sahli file.
