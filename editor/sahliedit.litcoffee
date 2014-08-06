@@ -139,6 +139,7 @@ does not alter the array. Alternately, _have_ it alter the array.
         buildlist: (data) ->
             $('#list').show 100
             x = 0
+            $('#dirlocation').val @data.location
             $('#sortlist').append @.additem item,x++ for item in @data.filedata
             $('#sortlist').sortable
                 start: (event,ui) ->

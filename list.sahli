@@ -1,309 +1,322 @@
 {
-    "location": "testshow",
-    "slides": {
-        "background": "screen.png",
-        "template": "template.html",
-        "css": "template.css"
-    },
-    "filedata": [{
-        "file": "spaceflight.asc",
-        "name": "Spaceflight",
-        "filetype":"plain",
-        "amiga": true,
-        "width": "80",
-        "author": "Urs",
-        "font": "Propaz",
-        "color": [
-            200,
-            200,
-            200,
-            255
-        ],
-        "bg": [
-            0,
-            0,
-            0,
-            0
-        ],
-        "line1": "Revision 2013",
-        "line2": "Mercury",
-        "text": "No tools, just a text editor"
-    }, {
-        "file": "az0!-revi510n.txt",
-        "name": "Revi510n",
-        "filetype":"plain",        
-        "amiga": true,
-        "width": "80",
-        "color": [
-            200,
-            200,
-            200,
-            255
-        ],
-        "bg": [
-            0,
-            0,
-            0,
-            0
-        ],
-        "author": "Azzaro",
-        "font": "Propaz",
-        "line1": "Revision 2013",
-        "line2": "Madwizards+Floppy",
-        "text": "Wow I'm back to ascii scene after 12 years break. Have fun people! Amiiiiiiga :)"
-    }, {
-        "file": "ted_-_spaceship_enterprise.ans",
-        "name": "SPACEshiP ENterprISe",
-        "filetype":"ansi",
-        "amiga": false,
-        "width": "80",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "Ted",
-        "font": "ansifont",
-        "line1": "Revision 2013",
-        "line2": "Pöo-crüe^3ln",
-        "text": "Special greets to m0d - you're AWESOME! -\nThis displays more nicely in 80x50 mode\nTruck said it was OK to do that mode outside the rules\nProper resolution in Partymeister"
-    }, {
-        "file": "h7-supergroupies.ans",
-        "name": "Super Groupies",
-        "filetype":"ansi",
-        "amiga": false,
-        "width": "80",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "H7",
-        "font": "ansifont",
-        "line1": "Revision 2013",
-        "line2": "Blocktronics & Accession",
-        "text": "Pablodraw osX"
-    }, {
-        "file": "51_DRGN.XB",
-        "name": "51 Dragon",
-        "filetype":"xbin",        
-        "amiga": false,
-        "width": "80",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "CIA",
-        "font": "ansifont",
-        "line1": "CIA Pack 62",
-        "line2": "",
-        "text": "16colors archive"
-    }, {
-        "file": "ARTX-LGO.ADF",
-        "name": "example ADF",
-        "filetype":"adf",        
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "Apathy",
-        "font": "ansifont",
-        "line1": "ADF example",
-        "line2": "...",
-        "text": "not Amiga disk file"
-    }, {
-        "file": "US-SADIS.BIN",
-        "name": "bin example",
-        "filetype":"bin",        
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "CIA",
-        "font": "ansifont",
-        "line1": "BIN example",
-        "line2": "...",
-        "text": "whee"
-    }, {
-        "file": "zv_iniq.tnd",
-        "name": "tundra example",
-        "filetype":"tundra`",
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "Sense",
-        "font": "ansifont",
-        "line1": "Tundra example",
-        "line2": "...",
-        "text": "more examples"
-    }, {
-        "file": "MD-XMAS.IDF",
-        "name": "IDF example",
-        "filetype":"idf",        
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "MD",
-        "font": "ansifont",
-        "line1": "Xmas (ivf example)",
-        "line2": "...",
-        "text": "more examples"
-    }, {
-        "file": "example.avatar",
-        "name": "AVATAR example",
-        "filetype":"avatar",        
-        "amiga": false,
-        "width": "80",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "avatarperson",
-        "font": "ansifont",
-        "line1": "an avatar file",
-        "line2": "...",
-        "text": "more examples"
-    }, {
-        "file": "pcboard.pcboard",
-        "name": "PCBoard example",
-        "filetype":"pcboard",
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "pcboard person",
-        "font": "ansifont",
-        "line1": "PCBOARD example",
-        "line2": "...",
-        "text": "more examples"
-    }, {
-        "file": "example.ICE",
-        "name": "ICE example",
-        "filetype":"ice",        
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "ice",
-        "font": "ansifont",
-        "line1": "ICE example",
-        "line2": "...",
-        "text": "more examples"
-
-    }, {
-        "file": "51_EMP.XB",
-        "name": "WIDE xbin",
-        "filetype":"xbin",
-        "amiga": false,
-        "width": "120",
-        "color": [
-            0,
-            30,
-            30,
-            255
-        ],
-        "bg": [
-            240,
-            240,
-            250,
-            255
-        ],
-        "author": "Apathy",
-        "font": "ansifont",
-        "line1": "wide XBIN",
-        "line2": "...",
-        "text": "wide XBIN example"
-    }]
-}
+	"location": "testshow",
+	"slides": {
+		"background": "screen.png",
+		"template": "template.html",
+		"css": "template.css"
+	},
+	"filedata": [
+		{
+			"file": "spaceflight.asc",
+			"name": "Spaceflight",
+			"filetype": "plain",
+			"amiga": true,
+			"width": "80",
+			"author": "Urs",
+			"font": "Propaz",
+			"color": [
+				255,
+				255,
+				0,
+				0
+			],
+			"bg": [
+				11,
+				11,
+				59,
+				0
+			],
+			"line1": "Revision 2013",
+			"line2": "Mercury",
+			"text": "No tools, just a text editor"
+		},
+		{
+			"file": "az0!-revi510n.txt",
+			"name": "Revi510n",
+			"filetype": "plain",
+			"amiga": true,
+			"width": "80",
+			"color": [
+				200,
+				200,
+				200,
+				255
+			],
+			"bg": [
+				0,
+				0,
+				0,
+				0
+			],
+			"author": "Azzaro",
+			"font": "Propaz",
+			"line1": "Revision 2013",
+			"line2": "Madwizards+Floppy",
+			"text": "Wow I'm back to ascii scene after 12 years break. Have fun people! Amiiiiiiga :)"
+		},
+		{
+			"file": "ted_-_spaceship_enterprise.ans",
+			"name": "SPACEshiP ENterprISe",
+			"filetype": "ansi",
+			"amiga": false,
+			"width": "80",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "Ted",
+			"font": "ansifont",
+			"line1": "Revision 2013",
+			"line2": "Pöo-crüe^3ln",
+			"text": "Special greets to m0d - you're AWESOME! -\nThis displays more nicely in 80x50 mode\nTruck said it was OK to do that mode outside the rules\nProper resolution in Partymeister"
+		},
+		{
+			"file": "h7-supergroupies.ans",
+			"name": "Super Groupies",
+			"filetype": "ansi",
+			"amiga": false,
+			"width": "80",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "H7",
+			"font": "ansifont",
+			"line1": "Revision 2013",
+			"line2": "Blocktronics & Accession",
+			"text": "Pablodraw osX"
+		},
+		{
+			"file": "51_DRGN.XB",
+			"name": "51 Dragon",
+			"filetype": "xbin",
+			"amiga": false,
+			"width": "80",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "CIA",
+			"font": "ansifont",
+			"line1": "CIA Pack 62",
+			"line2": "",
+			"text": "16colors archive"
+		},
+		{
+			"file": "ARTX-LGO.ADF",
+			"name": "example ADF",
+			"filetype": "adf",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "Apathy",
+			"font": "ansifont",
+			"line1": "ADF example",
+			"line2": "...",
+			"text": "not Amiga disk file"
+		},
+		{
+			"file": "US-SADIS.BIN",
+			"name": "bin example",
+			"filetype": "bin",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "CIA",
+			"font": "ansifont",
+			"line1": "BIN example",
+			"line2": "...",
+			"text": "whee"
+		},
+		{
+			"file": "zv_iniq.tnd",
+			"name": "tundra example",
+			"filetype": "tundra",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "Sense",
+			"font": "ansifont",
+			"line1": "Tundra example",
+			"line2": "...",
+			"text": "more examples"
+		},
+		{
+			"file": "MD-XMAS.IDF",
+			"name": "IDF example",
+			"filetype": "idf",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "MD",
+			"font": "ansifont",
+			"line1": "Xmas (ivf example)",
+			"line2": "...",
+			"text": "more examples"
+		},
+		{
+			"file": "example.avatar",
+			"name": "AVATAR example",
+			"filetype": "avatar",
+			"amiga": false,
+			"width": "80",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "avatarperson",
+			"font": "ansifont",
+			"line1": "an avatar file",
+			"line2": "...",
+			"text": "more examples"
+		},
+		{
+			"file": "pcboard.pcboard",
+			"name": "PCBoard example",
+			"filetype": "pcboard",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "pcboard person",
+			"font": "ansifont",
+			"line1": "PCBOARD example",
+			"line2": "...",
+			"text": "more examples"
+		},
+		{
+			"file": "example.ICE",
+			"name": "ICE example",
+			"filetype": "ice",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "ice",
+			"font": "ansifont",
+			"line1": "ICE example",
+			"line2": "...",
+			"text": "more examples"
+		},
+		{
+			"file": "51_EMP.XB",
+			"name": "WIDE xbin",
+			"filetype": "xbin",
+			"amiga": false,
+			"width": "120",
+			"color": [
+				0,
+				30,
+				30,
+				255
+			],
+			"bg": [
+				240,
+				240,
+				250,
+				255
+			],
+			"author": "Apathy",
+			"font": "ansifont",
+			"line1": "wide XBIN",
+			"line2": "...",
+			"text": "wide XBIN example"
+		}
+	]
+} 

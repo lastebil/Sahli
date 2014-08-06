@@ -120,6 +120,7 @@
       var item, x, _i, _len, _ref;
       $('#list').show(100);
       x = 0;
+      $('#dirlocation').val(this.data.location);
       _ref = this.data.filedata;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         item = _ref[_i];
