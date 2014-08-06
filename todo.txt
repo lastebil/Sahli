@@ -1,7 +1,7 @@
-@EDITOR delete an entry
+@EDITOR delete an entry CORRECTLY
 @EDITOR redo filenames to load from list of files in directory (specfied in 'location')
-@EDITOR button to reload filename list from directory
-@EDITOR button to insert an entry
+x 2014-08-06 @EDITOR button to reload filename list from directory
+@EDITOR button to insert an entry - make it insert a blank
 
 x 2014-08-06 @EDITOR dump to screen or file, not to console when saving
 x 2014-08-06 @EDITOR save (print) routine

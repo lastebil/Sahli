@@ -131,6 +131,16 @@ edit button.
                     $('#sahlioutput').text dumpjson @.data
                     $('#dumparea').show 100
                     console.log dumpjson @.data
+            $('#listlist').button {icons: {primary:"ui-icon-folder-open"}}
+                .click =>
+                    alert 'clicked'
+            $('#listinsert').button {icons: {primary:"ui-icon-1-n"}}
+                .click =>
+                    alert 'clicked'
+            $('#listdisplay').button {icons: {primary:"ui-icon-refresh"}}
+                .click =>
+                    @buildlist @data
+
             $('#closespan').click ->
                 $(@parentElement.parentElement).hide()
                 $('#sahlioutput').text ''
@@ -143,6 +153,8 @@ does not alter the array. Alternately, _have_ it alter the array.
 
         buildlist: (data) ->
             $('#list').show 100
+            $('#list ol li').remove()
+            console.log i.author for i in @data.filedata
             x = 0
             $('#dirlocation').val @data.location
             $('#sortlist').append @.additem item,x++ for item in @data.filedata
@@ -178,6 +190,7 @@ insert it into the array at end position.  A la the draggon-dropping.
                 .click ((_this) ->
                     (event) ->
                         pos = @.id.replace "del-",""
+                        console.log @
                         console.log _this.data.filedata.splice pos,1
                         @.parentNode.remove()
                     )(this)

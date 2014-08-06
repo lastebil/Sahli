@@ -115,6 +115,33 @@
           return console.log(dumpjson(_this.data));
         };
       })(this));
+      $('#listlist').button({
+        icons: {
+          primary: "ui-icon-folder-open"
+        }
+      }).click((function(_this) {
+        return function() {
+          return alert('clicked');
+        };
+      })(this));
+      $('#listinsert').button({
+        icons: {
+          primary: "ui-icon-1-n"
+        }
+      }).click((function(_this) {
+        return function() {
+          return alert('clicked');
+        };
+      })(this));
+      $('#listdisplay').button({
+        icons: {
+          primary: "ui-icon-refresh"
+        }
+      }).click((function(_this) {
+        return function() {
+          return _this.buildlist(_this.data);
+        };
+      })(this));
       $('#closespan').click(function() {
         $(this.parentElement.parentElement).hide();
         return $('#sahlioutput').text('');
@@ -123,13 +150,19 @@
     };
 
     Sahli.prototype.buildlist = function(data) {
-      var item, x, _i, _len, _ref;
+      var i, item, x, _i, _j, _len, _len1, _ref, _ref1;
       $('#list').show(100);
-      x = 0;
-      $('#dirlocation').val(this.data.location);
+      $('#list ol li').remove();
       _ref = this.data.filedata;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-        item = _ref[_i];
+        i = _ref[_i];
+        console.log(i.author);
+      }
+      x = 0;
+      $('#dirlocation').val(this.data.location);
+      _ref1 = this.data.filedata;
+      for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+        item = _ref1[_j];
         $('#sortlist').append(this.additem(item, x++));
       }
       return $('#sortlist').sortable({
@@ -140,13 +173,13 @@
         },
         stop: (function(_this) {
           return function(event, ui) {
-            var e, name, s, _j, _len1, _ref1;
+            var e, name, s, _k, _len2, _ref2;
             s = ui.item.data().startpos;
             e = ui.item.index();
             _this.data.filedata = _this.rearrangearray(s, e, _this.data.filedata);
-            _ref1 = _this.data.filedata;
-            for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
-              name = _ref1[_j];
+            _ref2 = _this.data.filedata;
+            for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+              name = _ref2[_k];
               console.log(name.author);
             }
             return console.log('---');
@@ -180,6 +213,7 @@
       delbutton = $("<span class='righty' id=del-" + pos + ">delete</span>").click((function(_this) {
         return function(event) {
           pos = this.id.replace("del-", "");
+          console.log(this);
           console.log(_this.data.filedata.splice(pos, 1));
           return this.parentNode.remove();
         };
