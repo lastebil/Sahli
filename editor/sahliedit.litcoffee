@@ -221,6 +221,8 @@ insert it into the array at end position.  A la the draggon-dropping.
             $("#entryindex").val pos
             $("#entryname").val data.name
             $("#entryauthor").val data.author
+            $("#entryfiletpye").val data.filetype
+            $("#entryfiletype").children()[resolvefiletype data.filetype].selected = true
             $("#entryamiga").val data.amiga
             $("#entryamiga").children()[1].textContent = ansiorascii data.amiga
             $("#entryfont").val data.font
@@ -249,6 +251,23 @@ Boolean / integer Helpers
     statustobool = (status) ->
         if status is 'Ascii' then true else false
 
+Resolve filetype offset in array:
+
+    resolvefiletype = (filetype) ->
+        options = {
+            "plain":0
+            "ansi":1
+            "xbin":2
+            "ice":3
+            "adf":4
+            "avatar":5
+            "bin":6
+            "idf":7
+            "pcboard":8
+            "tundra":9
+        }
+        options[filetype]
+
 Resolve ansi or ascii status
 
     ansiorascii = (status) ->
@@ -276,7 +295,6 @@ we actually _want_ that limitation in the output.
         x = (hex2dec i for i in c1)
         x.push 0
         x
-
 
 Need a way to convert the array back to the color name.
 
