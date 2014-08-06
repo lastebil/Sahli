@@ -334,7 +334,7 @@ we actually _want_ that limitation in the output.
         color = color.slice(1)
         c1 = [ color[0..1], color[2..3], color[4..5] ]
         x = (hex2dec i for i in c1)
-        x.push 0
+        x.push 255
         x
 
 Need a way to convert the array back to the color name.
