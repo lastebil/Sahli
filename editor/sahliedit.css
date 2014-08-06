@@ -66,3 +66,33 @@ div ul li{
 div.groupbox p {
     margin: .25 ex;
 }
+
+#dumparea {
+    position: absolute;
+    top: 1em;
+    padding: 1em;
+    margin: 1em;
+    width: 90%;
+    height: 90%;
+    background: floralwhite;
+    border: inset 2px royalblue;
+}
+
+#sahlioutput {
+    font-family: 'TopazPlus a500a1000a2000','mOsOul',Monaco,monospace;
+    font-size: 16;
+    background: aliceblue;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 100%;
+    height: 95%;
+    padding: 1ex;
+    border: inset 2px royalblue;
+}
+
+#closespan {
+    float: right;
+    margin: 0px 0px 1ex;
+    padding: 0px;
+
+}

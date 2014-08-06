@@ -128,7 +128,12 @@ edit button.
                 @.data.location = event.target.value
             $('#listsave').button {icons: {primary:"ui-icon-disk"}}
                 .click =>
+                    $('#sahlioutput').text dumpjson @.data
+                    $('#dumparea').show 100
                     console.log dumpjson @.data
+            $('#closespan').click ->
+                $(@parentElement.parentElement).hide()
+                $('#sahlioutput').text ''
 
 
 You need to save the order, and extract these in that order; moving around

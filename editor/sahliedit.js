@@ -110,9 +110,15 @@
         }
       }).click((function(_this) {
         return function() {
+          $('#sahlioutput').text(dumpjson(_this.data));
+          $('#dumparea').show(100);
           return console.log(dumpjson(_this.data));
         };
       })(this));
+      $('#closespan').click(function() {
+        $(this.parentElement.parentElement).hide();
+        return $('#sahlioutput').text('');
+      });
       return this.buildlist(this.data);
     };
 

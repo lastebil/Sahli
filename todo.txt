@@ -1,5 +1,15 @@
-(A) Add "type" of file(format) - plain, xbin, etc.
-(A) Create Editor - Standalone @EDITOR
+@EDITOR delete an entry
+@EDITOR redo filenames to load from list of files in directory (specfied in 'location')
+@EDITOR button to reload filename list from directory
+@EDITOR button to insert an entry
+
+x 2014-08-06 @EDITOR dump to screen or file, not to console when saving
+x 2014-08-06 @EDITOR save (print) routine
+@EDITOR text/bg colors change 'SAHLI' thing
+@EDITOR update the line item when saving - what the heck is 'line item?'
+
+x 2014-08-06 (A) Add "type" of file(format) - plain, xbin, etc.(
+x 2014-08-06 (A) Create Editor - Standalone @EDITOR
 (A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
 (A) XBIN @OTHER
 (A) load SAUCE into 'info' lines (should be done at prep) @SAUCE @EDITRO
@@ -25,13 +35,7 @@
 (C) hook for progress  @progress @PARTYMEISTER
 (C) load to array/picture, render from picture @16colors
 (C) speed up rendering more? @16colors
-@EDITOR delete an entry
-@EDITOR dump to screen or file, not to console when saving
-@EDITOR fix filename 'holdover' from previous bit, 'escape/cancel' reset as well
-@EDITOR fix filenames
-@EDITOR save (print) routine
-@EDITOR text/bg colors change 'SAHLI' thing
-@EDITOR update the line item when saving
+
 x (A) Error handler for file not found
 x 2014-03-24 (B) Get with dfox on the partymeister package version
 x 2014-04-05 (A) Split coffeescript into files, use cake.
