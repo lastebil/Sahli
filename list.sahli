@@ -18,13 +18,13 @@
 				255,
 				255,
 				0,
-				0
+				255
 			],
 			"bg": [
 				11,
 				11,
 				59,
-				0
+				255
 			],
 			"line1": "Revision 2013",
 			"line2": "Mercury",
@@ -319,4 +319,4 @@
 			"text": "wide XBIN example"
 		}
 	]
-} 
+}
