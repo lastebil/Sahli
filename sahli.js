@@ -34,24 +34,41 @@ var Sahli = function () {
     this.nonfsheight = document.height - 40;
 
     this.loadpic = function (picdata, inserthere) {
-        var jumptable = {
-            'plain':this.loadplain(picdata,inserthere),
-            'xbin':this.loadxbin(),
-            'ice':this.loadice(),
-            'avatar':this.loadavatar(),
-            'pcboard':this.loadpcboard(),
-            'ansi':this.loadansi(),
-            'idf':this.loadidf(),
-            'bin':this.loadbin(),
-            'adf':this.loadadf(),
-            'tundra':this.loadtundra()
+        switch (picdata.filetype) {
+        case 'plain':
+            this.loadplain(picdata, inserthere);
+            break;
+        case 'ansi':
+            this.loadansi(picdata, inserthere);
+            break;
+        case 'xbin':
+            this.loadxbin(picdata, inserthere);
+            break;
+        case 'ice':
+            this.loadice(picdata, inserthere);
+            break;
+        case 'avatar':
+            this.loadavatar(picdata, inserthere);
+            break;
+        case 'pcboard':
+            this.loadpcboard(picdata, inserthere);
+            break;
+        case 'idf':
+            this.loadidf(picdata, inserthere);
+            break;
+        case 'adf':
+            this.loadadf(picdata, inserthere);
+            break;
+        case 'tundra':
+            this.loadtundra(picdata, inserthere);
+            break;
+        default:
+            this.loadplain(picdata, inserthere);
         }
-        console.log('here');
-       jumptable[picdata.filetype];
-    }
+    };
 
-    this.loadplain = function(picdata, inserthere) {
-        ref = this;
+    this.loadplain = function (picdata, inserthere) {
+        var ref = this;
         var pdiv = $('<div>');
         var canv = document.createElement('canvas');
         var req = new XMLHttpRequest();

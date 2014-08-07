@@ -104,20 +104,6 @@ a html template, and a css file.
     class Sahli
         constructor: ->
             @emptyfiledef = new emptyfiledef
-            @bob = {
-                "file": "",
-                "name": "",
-                "amiga": true,
-                "filetype": 'plain',
-                "width": "",
-                "author": "",
-                "font": "Propaz",
-                "color": [ 0,0,0,0 ],
-                "bg": [ 0,0,0,0 ],
-                "line1": "",
-                "line2": "",
-                "text": ""
-            }
             @emptyslidesdef = {
                 "background": "",
                 "template": "",
@@ -233,6 +219,7 @@ insert it into the array at end position.  A la the draggon-dropping.
             entry.line2 = $("#entryline2").val()
             entry.text = $("#entrytext").val()
             entry.file = $("#entryfile").val()
+            entry.filetype = $("#entryfiletype").val()
             @buildlist @data
 
         editline: (data,pos) ->

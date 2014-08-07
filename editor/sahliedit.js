@@ -84,20 +84,6 @@
   Sahli = (function() {
     function Sahli() {
       this.emptyfiledef = new emptyfiledef;
-      this.bob = {
-        "file": "",
-        "name": "",
-        "amiga": true,
-        "filetype": 'plain',
-        "width": "",
-        "author": "",
-        "font": "Propaz",
-        "color": [0, 0, 0, 0],
-        "bg": [0, 0, 0, 0],
-        "line1": "",
-        "line2": "",
-        "text": ""
-      };
       this.emptyslidesdef = {
         "background": "",
         "template": "",
@@ -264,6 +250,7 @@
       entry.line2 = $("#entryline2").val();
       entry.text = $("#entrytext").val();
       entry.file = $("#entryfile").val();
+      entry.filetype = $("#entryfiletype").val();
       return this.buildlist(this.data);
     };
 
