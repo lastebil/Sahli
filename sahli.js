@@ -72,7 +72,7 @@ var Sahli = function () {
         var pdiv = $('<div>');
         var canv = document.createElement('canvas');
         var req = new XMLHttpRequest();
-        var fname = sahli.location + '/' + picdata.file;
+        var fname = this.location + '/' + picdata.file;
         var ptxt = $('<pre></pre>');
         var color = this.calccolor(picdata.color);
         var bgcolor = this.calccolor(picdata.bg);
@@ -105,6 +105,9 @@ var Sahli = function () {
     }
 
     this.loadansi = function(picdata,inserthere) {
+        var fname = this.location + '/' + picdata.file;
+        var canv = document.createElement('canvas');
+        var pdiv = $('<div>');
         this.image = new ImageTextModeANSI();
         this.SAUCE = new ImageTextModeSAUCE();
         var picload = this.image.parseUrl(fname);
