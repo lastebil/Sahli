@@ -5,7 +5,7 @@ x 2014-08-07 @EDITOR button to insert an entry - make it insert a blank
 
 x 2014-08-06 @EDITOR dump to screen or file, not to console when saving
 x 2014-08-06 @EDITOR save (print) routine
-@EDITOR text/bg colors change 'SAHLI' thing
+x 2014-08-07 @EDITOR text/bg colors change 'SAHLI' thing
 x 2014-08-07 @EDITOR update the line item when saving - what the heck is 'line item?' (meant update the listing to show edits)
 
 x 2014-08-07 (A) fix color functions to use alpha (so they show up!)

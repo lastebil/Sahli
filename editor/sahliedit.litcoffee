@@ -64,10 +64,14 @@ Also hide the editor until needed, and initialize some elements.
                     @.value = "1"
         $(".45box").css {width:'45%',display:'inline-block'}
         $(".groupbox p").css {margin:"0 0 .25em 0"}
+        $(".colorbox").change =>
+            sahlicolor()
+
         $("#entryfilepick").change ->
             if @.files[0]? then $("#entryfile").val @.files[0].name
         $("#entryfile").click ->
             $("#entryfilepick").click()
+
     )
 
 The sahli file definition format is as follows:
@@ -201,7 +205,7 @@ insert it into the array at end position.  A la the draggon-dropping.
         additem: (item,pos) ->
             entry = @genentryline item,pos
             entry.dblclick =>
-                    @editline item,pos
+                @editline item,pos
 
         genentryline: (item,pos) ->
             arrows = "<span class='ui-icon ui-icon-arrowthick-2-n-s'></span>"
@@ -274,6 +278,7 @@ insert it into the array at end position.  A la the draggon-dropping.
             $("#entryline2").val data.line2
             $("#entrytext").val data.text
             $("#entryfile").val data.file
+            sahlicolor()
 
 
 A Helper function to dump json out of an object as text:
@@ -385,6 +390,16 @@ Similarly, need to be able to get the color index.
             "Black":15
         }
         names[colorname]
+
+
+A function for changing the fore and background colors of the sahli ascii example
+
+    sahlicolor = ->
+        fg = $('#entrycolor').val()
+        bg = $('#entrybg').val()
+        console.log 'sahlicolor',fg,bg
+        $('#sahliascii').css {'color':fg,'background':bg}
+
 
 When clicking 'New' we want to make a brand new Sahli, and then clear out
 the buttons and create the editor bit as blank.
