@@ -146,15 +146,15 @@ edit button.
         edit: ->
             $('#buttonbox').hide()
             $('#dirlocation').change (event) =>
-                @.data.location = event.target.value
+                @data.location = event.target.value
             $('#listsave').button {icons: {primary:"ui-icon-disk"}}
                 .click =>
-                    $('#sahlioutput').text dumpjson @.data
+                    $('#sahlioutput').text dumpjson @data
                     $('#dumparea').show 100
-                    console.log dumpjson @.data
+                    console.log dumpjson @data
             $('#listlist').button {icons: {primary:"ui-icon-folder-open"}}
-                .click =>
-                    alert 'clicked'
+                .click ->
+                    getfilelist()
             $('#listappend').button {icons: {primary:"ui-icon-1-n"}}
                 .click (event) =>
                     newentry = new emptyfiledef
@@ -399,6 +399,16 @@ A function for changing the fore and background colors of the sahli ascii exampl
         bg = $('#entrybg').val()
         console.log 'sahlicolor',fg,bg
         $('#sahliascii').css {'color':fg,'background':bg}
+
+Function for loading the filelist from the specified directory on the server/filesystem.
+
+    getfilelist = ->
+        location = $("#dirlocation").val()
+        $.get("../#{location}", (listing) ->
+                console.log listing
+            )
+
+
 
 
 When clicking 'New' we want to make a brand new Sahli, and then clear out
