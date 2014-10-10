@@ -77,9 +77,7 @@ var Sahli = function () {
     };
 
     this.loadplain = function (picdata, inserthere) {
-//        var ref = this;
         var pdiv = $('<div>');
-//        var canv = document.createElement('canvas');
         var req = new XMLHttpRequest();
         var fname = this.location + '/' + picdata.file;
         var ptxt = $('<pre></pre>');
@@ -124,7 +122,7 @@ var Sahli = function () {
             this.origwidth = canv.width;
             this.origheight = canv.height;
             this.SAUCE = SAUCE;
-        }, {"font": "80x25", "bits": "8", "columns": 80, "thumbnail": 0});
+        }, {"font": "80x25", "bits": "8", "columns": 160, "thumbnail": 0});
     };
 
     this.loadhugeansi = function (picdata, inserthere) {
@@ -132,6 +130,7 @@ var Sahli = function () {
         var pdiv = $('<div>');
         var calcheight = 0;
         var canvwidth = 0;
+        pdiv.css('display', 'inline-block');
         AnsiLove.splitRender(fname, function (chunks, SAUCE) {
             chunks.forEach(function (canv) {
                 canv.style.verticalAlign = "bottom";
@@ -143,6 +142,7 @@ var Sahli = function () {
             this.SAUCE = SAUCE;
             this.origwidth = canvwidth;
             this.origheight = calcheight;
+            pdiv.width(canvwidth);
         }, 30, {"bits": "8"});
     };
 
