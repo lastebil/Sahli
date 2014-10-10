@@ -45,28 +45,31 @@ var Sahli = function () {
             this.loadplain(picdata, inserthere);
             break;
         case 'ansi':
+            this.loadhugeansi(picdata, inserthere);
+            break;
+        case 'bin':
             this.loadansi(picdata, inserthere);
             break;
         case 'xbin':
-            this.loadxbin(picdata, inserthere);
+            this.loadansi(picdata, inserthere);
             break;
         case 'ice':
-            this.loadice(picdata, inserthere);
+            this.loadansi(picdata, inserthere);
             break;
         case 'avatar':
             this.loadavatar(picdata, inserthere);
             break;
         case 'pcboard':
-            this.loadpcboard(picdata, inserthere);
+            this.loadansi(picdata, inserthere);
             break;
         case 'idf':
-            this.loadidf(picdata, inserthere);
+            this.loadansi(picdata, inserthere);
             break;
         case 'adf':
-            this.loadadf(picdata, inserthere);
+            this.loadansi(picdata, inserthere);
             break;
         case 'tundra':
-            this.loadtundra(picdata, inserthere);
+            this.loadansi(picdata, inserthere);
             break;
         default:
             this.loadplain(picdata, inserthere);
@@ -121,41 +124,31 @@ var Sahli = function () {
             this.origwidth = canv.width;
             this.origheight = canv.height;
             this.SAUCE = SAUCE;
-        }, {"font": "80x25", "bits": "9", "columns": 80, "thumbnail": 0});
+        }, {"font": "80x25", "bits": "8", "columns": 80, "thumbnail": 0});
     };
 
-    this.loadxbin = function (picdata, inserthere) {
-        alert('xbin', picdata, inserthere);
-    };
-
-    this.loadbin = function (picdata, inserthere) {
-        alert('bin', picdata, inserthere);
-    };
-
-    this.loadice = function (picdata, inserthere) {
-        alert('ice', picdata, inserthere);
-    };
-
-    this.loadidf = function (picdata, inserthere) {
-        alert('idf', picdata, inserthere);
-    };
-
-    this.loadadf = function (picdata, inserthere) {
-        alert('adf', picdata, inserthere);
+    this.loadhugeansi = function (picdata, inserthere) {
+        var fname = this.location + '/' + picdata.file;
+        var pdiv = $('<div>');
+        var calcheight = 0;
+        var canvwidth = 0;
+        AnsiLove.splitRender(fname, function (chunks, SAUCE) {
+            chunks.forEach(function (canv) {
+                canv.style.verticalAlign = "bottom";
+                pdiv.append(canv);
+                calcheight = calcheight + canv.height;
+                canvwidth = canv.width;
+            });
+            inserthere.after(pdiv);
+            this.SAUCE = SAUCE;
+            this.origwidth = canvwidth;
+            this.origheight = calcheight;
+        }, 30, {"bits": "8"});
     };
 
     this.loadavatar = function (picdata, inserthere) {
         alert('avatar', picdata, inserthere);
     };
-
-    this.loadtundra = function (picdata, inserthere) {
-        alert('tundra', picdata, inserthere);
-    };
-
-    this.loadpcboard = function (picdata, inserthere) {
-        alert('pcboard', picdata, inserthere);
-    };
-
 
     this.fillinfo = function (picdata) {
         var infob = $('div.infobox');
