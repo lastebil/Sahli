@@ -10,6 +10,12 @@
 // Uses fonts by DMG, http://trueschool.se
 // Uses SixteenColors textmode js library for rendering
 
+/* remove this before publishing, as alert is ... well just crap to leave in */
+/*global alert */
+// but don't remove these
+
+/*global XMLHttpRequest, AnsiLove, Element */
+
 var Sahli = function () {
     this.outbox = $('div#outbox');
     this.dbox = $('div#drawbox');
@@ -68,9 +74,9 @@ var Sahli = function () {
     };
 
     this.loadplain = function (picdata, inserthere) {
-        var ref = this;
+//        var ref = this;
         var pdiv = $('<div>');
-        var canv = document.createElement('canvas');
+//        var canv = document.createElement('canvas');
         var req = new XMLHttpRequest();
         var fname = this.location + '/' + picdata.file;
         var ptxt = $('<pre></pre>');
@@ -90,70 +96,68 @@ var Sahli = function () {
         // x-user-defined
         // this is going to be interesting when dealing with ansi files in UTF-8 and SHIFT-JIS etc
         req.overrideMimeType('text/plain; charset=ISO-8859-1');
-        req.onreadystatechange = function() {
+        req.onreadystatechange = function () {
             if (req.readyState === req.DONE) {
                 if (req.status === 200 || req.status === 0) {
                     ptxt.text(this.responseText);
                     inserthere.after(pdiv);
                 } else {
-                    sahli.loaderror(inserthere,fname,req.statusText,req.status)
+                    this.loaderror(inserthere, fname, req.statusText, req.status);
                 }
             }
         };
-        req.open('GET', fname , true);
+        req.open('GET', fname, true);
         req.send(null);
-    }
+    };
 
-    this.loadansi = function(picdata,inserthere) {
+    this.loadansi = function (picdata, inserthere) {
         var fname = this.location + '/' + picdata.file;
-        var canv = document.createElement('canvas');
+//        var canv = document.createElement('canvas');
         var pdiv = $('<div>');
-        this.image = new ImageTextModeANSI();
-        this.SAUCE = new ImageTextModeSAUCE();
-        var picload = this.image.parseUrl(fname);
-        this.image.renderCanvas(canv);
-        pdiv.append(canv);
-        inserthere.after(pdiv);
-        this.origwidth = canv.width;
-        this.origheight = canv.height;
-        if (picload < 1) {
-            // this is incorrect but currently parseUrl does not return errors.
-            // fix, then deal with.
-            sahli.loaderror(inserthere,fname,'Not found',404);
-        }
-    }
+//        var SAUCE;
+        AnsiLove.render(fname, function (canv, SAUCE) {
+            pdiv.append(canv);
+            inserthere.after(pdiv);
+            this.origwidth = canv.width;
+            this.origheight = canv.height;
+            this.SAUCE = SAUCE;
+        }, {"font": "80x25", "bits": "9", "columns": 80, "thumbnail": 0});
+    };
 
-    this.loadxbin = function(picdata,inserthere){
-        alert('xbin');
-    }
+    this.loadxbin = function (picdata, inserthere) {
+        alert('xbin', picdata, inserthere);
+    };
 
-    this.loadbin = function(picdata,inserthere){
-        alert('bin');
-    }
-    this.loadice = function(picdata,inserthere){
-        alert('ice');
-    }
-    this.loadidf = function(picdata,inserthere){
-        alert('idf');
-    }
-    this.loadadf = function(picdata,inserthere){
-        alert('adf');
-    }
-    this.loadavatar = function(picdata,inserthere){
-        alert('avatar');
-    }
-    this.loadtundra = function(picdata,inserthere){
-        alert('tundra');
-    }
-    this.loadpcboard = function(picdata,inserthere){
-        alert('pcboard');
-    }
-    this.loadxbin = function(picdata,inserthere){
-        alert('xbin');
-    }
+    this.loadbin = function (picdata, inserthere) {
+        alert('bin', picdata, inserthere);
+    };
+
+    this.loadice = function (picdata, inserthere) {
+        alert('ice', picdata, inserthere);
+    };
+
+    this.loadidf = function (picdata, inserthere) {
+        alert('idf', picdata, inserthere);
+    };
+
+    this.loadadf = function (picdata, inserthere) {
+        alert('adf', picdata, inserthere);
+    };
+
+    this.loadavatar = function (picdata, inserthere) {
+        alert('avatar', picdata, inserthere);
+    };
+
+    this.loadtundra = function (picdata, inserthere) {
+        alert('tundra', picdata, inserthere);
+    };
+
+    this.loadpcboard = function (picdata, inserthere) {
+        alert('pcboard', picdata, inserthere);
+    };
 
 
-    this.fillinfo = function(picdata) {
+    this.fillinfo = function (picdata) {
         var infob = $('div.infobox');
         infob.find('h1').text(picdata.name);
         infob.find('h2').text(picdata.author);
@@ -165,22 +169,22 @@ var Sahli = function () {
         infob.find('span#fontname').text(picdata.font);
     };
 
-    this.loaderror = function(inserthere,fname,errorText,errorCode) {
+    this.loaderror = function (inserthere, fname, errorText, errorCode) {
         var temptxt = "";
         if (errorCode === 404) {
-            tmptxt = $("<h1>").text("Unable to find file " + fname);
+            temptxt = $("<h1>").text("Unable to find file " + fname);
         } else {
-            tmptxt = $("<h1>").text("error! "+ errorText + " code " + errorCode +
+            temptxt = $("<h1>").text("error! " + errorText + " code " + errorCode +
                 " file " + fname);
         }
-        inserthere.after(tmptxt);
-    }
+        inserthere.after(temptxt);
+    };
 
-    this.calccolor = function(colorset) {
+    this.calccolor = function (colorset) {
         return 'rgba(' + colorset.toString() + ')';
     };
 
-    this.resize = function(amt) {
+    this.resize = function (amt) {
         var canv = $('canvas');
         var w = canv.width() * amt;
         var h = canv.height() * amt;
@@ -190,9 +194,9 @@ var Sahli = function () {
         }, this.zoomspeed);
     };
 
-    this.fullwidth = function() {
+    this.fullwidth = function () {
         this.stopscroll();
-        if ($('canvas').width() == this.dbox.width()) {
+        if ($('canvas').width() === this.dbox.width()) {
             this.originalsize(this.zoomspeed);
         } else {
             var ratio = this.origwidth / this.dbox.width();
@@ -204,9 +208,9 @@ var Sahli = function () {
         }
     };
 
-    this.fullheight = function() {
+    this.fullheight = function () {
         var canv = $('canvas');
-        if (canv.height() == this.dbox.height()) {
+        if (canv.height() === this.dbox.height()) {
             this.originalsize(this.zoomspeed);
         } else {
             var ratio = this.origheight / this.dbox.height();
@@ -217,9 +221,11 @@ var Sahli = function () {
         }
     };
 
-    this.originalsize = function(zoomspeed) {
+    this.originalsize = function (zoomspeed) {
         // why do we not have origwidth now? hmm.
         var canv = $('canvas');
+        var zs = zoomspeed;  // why are we not using this?
+        zs = zs + 1;
         canv.animate({
             width: this.origwidth,
             height: this.origheight
@@ -227,13 +233,13 @@ var Sahli = function () {
     };
 
 
-    this.toptext = function(text) {
+    this.toptext = function (text) {
         if (this.DEBUG) {
             $('h1#top').text(text);
         }
     };
 
-    this.setscroll = function() {
+    this.setscroll = function () {
         var bottom = $('.scrolly').height();
         var scrollto = bottom;
         var steps;
@@ -254,9 +260,9 @@ var Sahli = function () {
         }, this.scroll_speed * steps, 'linear');
     };
 
-    this.resizedrawbox = function(height) {
+    this.resizedrawbox = function (height) {
         var dbox1 = $('div#drawbox');
-        if ('undefined' === typeof height) {
+        if ('undefined' === height) {
             dbox1.height(window.innerHeight - 2);
         } else {
             dbox1.height(height);
@@ -264,29 +270,29 @@ var Sahli = function () {
         dbox1.width(window.innerWidth - 2);
     };
 
-    this.stopscroll = function() {
+    this.stopscroll = function () {
         this.dbox.stop(true);
     };
 
-    this.moveabout = function(lines) {
+    this.moveabout = function (lines) {
         var line = this.dbox.scrollTop();
         this.dbox.stop(true);
         switch (lines) {
-            case 0:
-                this.dbox.scrollTop(0);
-                break;
-            case Infinity:
-                this.dbox.scrollTop(this.origheight);
-                break;
-            default:
-                this.dbox.scrollTop(line - lines * 8);
-                break;
+        case 0:
+            this.dbox.scrollTop(0);
+            break;
+        case Infinity:
+            this.dbox.scrollTop(this.origheight);
+            break;
+        default:
+            this.dbox.scrollTop(line - lines * 8);
+            break;
         }
     };
 
-    this.requestsahlifile = function(url) {
+    this.requestsahlifile = function (url) {
         var ref = this;
-        $.getJSON(url, function(json) {
+        $.getJSON(url, function (json) {
             ref.filedata = json.filedata;
             ref.slides = json.slides;
             ref.location = json.location;
@@ -295,12 +301,12 @@ var Sahli = function () {
     };
 
 
-    this.buildcompo = function() {
+    this.buildcompo = function () {
         this.resizedrawbox();
         alert("SAHLI READY TO GO");
     };
 
-    this.nextpic = function() {
+    this.nextpic = function () {
         this.dbox.children().remove();
         // reset scrolling;
         this.stopscroll();
@@ -317,9 +323,9 @@ var Sahli = function () {
     };
 
 
-    this.gofullscreen = function() {
+    this.gofullscreen = function () {
         var docElm = document.documentElement;
-        var toid = window.setTimeout(sahli.resizedrawbox, 100);
+        window.setTimeout(this.resizedrawbox, 100);
         if (docElm.requestFullscreen) {
             docElm.requestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
         } else if (docElm.mozRequestFullScreen) {
@@ -330,8 +336,8 @@ var Sahli = function () {
 
     };
 
-    this.cancelfullscreen = function() {
-        var toid = window.setTimeout(sahli.resizedrawbox, 100, this.nonfsheight);
+    this.cancelfullscreen = function () {
+        window.setTimeout(this.resizedrawbox, 100, this.nonfsheight);
         if (document.exitFullscreen) {
             document.exitFullscreen();
         } else if (document.mozCancelFullScreen) {
@@ -341,7 +347,7 @@ var Sahli = function () {
         }
     };
 
-    this.fixhelpbox = function() {
+    this.fixhelpbox = function () {
         var h = $('.help');
         //        var xy = {'top': document.height/2 - h.height()/2, 'left': document.width/2 - h.width()/2};
         var xy = {
@@ -351,14 +357,14 @@ var Sahli = function () {
         h.css(xy);
     };
 
-    this.toggledebug = function() {
+    this.toggledebug = function () {
         $('h1#top').fadeToggle();
         this.DEBUG = (!this.DEBUG);
     };
 
-    this.loadkeys = function() {
+    this.loadkeys = function () {
         var ref = this;
-        $(document).bind('click', function(ev) {
+        $(document).bind('click', function (ev) {
             if (ev.clientY < 100) {
                 if (ev.clientX < 100) {
                     ref.nextpic();
@@ -370,113 +376,113 @@ var Sahli = function () {
             }
         });
 
-        $(document).bind('keydown', function(ev) {
+        $(document).bind('keydown', function (ev) {
             switch (ev.which) {
-                case 84: // t
-                    ref.asciiasgfx = (!ref.asciiasgfx);
-                    ref.toptext(ref.asciiasgfx);
-                    break;
-                case 85: // u
-                case 9: // u
-                    $('div.infobox').slideToggle('slow');
-                    break;
-                case 70: // f
-                    ref.gofullscreen();
-                    break;
-                case 27: // esc
-                case 71: // G, as escape seems to not get passed from fullscreen on chrome
-                    ref.cancelfullscreen();
-                    break;
-                case 73: // i
-                    ref.resize(2);
-                    break;
-                case 75: // k
-                    ref.resize(0.5);
-                    break;
-                case 79: // o
-                    ref.fullwidth();
-                    break;
-                case 76: // l
-                    ref.fullheight();
-                    break;
-                case 80: // p
-                    ref.originalsize(0);
-                    break;
+            case 84: // t
+                ref.asciiasgfx = (!ref.asciiasgfx);
+                ref.toptext(ref.asciiasgfx);
+                break;
+            case 85: // u
+            case 9: // u
+                $('div.infobox').slideToggle('slow');
+                break;
+            case 70: // f
+                ref.gofullscreen();
+                break;
+            case 27: // esc
+            case 71: // G, as escape seems to not get passed from fullscreen on chrome
+                ref.cancelfullscreen();
+                break;
+            case 73: // i
+                ref.resize(2);
+                break;
+            case 75: // k
+                ref.resize(0.5);
+                break;
+            case 79: // o
+                ref.fullwidth();
+                break;
+            case 76: // l
+                ref.fullheight();
+                break;
+            case 80: // p
+                ref.originalsize(0);
+                break;
 
-                case 83: // s
-                    ref.setscroll();
-                    break;
-                case 72: // h
-                case 191: // "?" (also / but no shift)
-                    $('.help').fadeToggle('fast');
-                    break;
-                case 107: // +
-                case 190: // .
-                    ref.scroll_speed = ref.scroll_speed * 2;
-                    ref.toptext("speed doubled:" + ref.scroll_speed);
-                    break;
-                case 109: // -
-                case 188: // ,
-                    ref.scroll_speed = ref.scroll_speed / 2;
-                    ref.toptext("speed halved:" + ref.scroll_speed);
-                    break;
-                case 49: // 1
-                    ref.scroll_speed = 1;
-                    break;
-                case 50: //2
-                    ref.scroll_speed = 2;
-                    break;
-                case 51: //3
-                    ref.scroll_speed = 3;
-                    break;
-                case 52: //4
-                    ref.scroll_speed = 4;
-                    break;
-                case 53: //5
-                    ref.scroll_speed = 5;
-                    break;
-                case 220: // "\"
-                    ref.toptext(ref.scroll_speed);
-                    break;
-                case 8: // backspace
-                case 68: // D
-                    ref.stopscroll();
-                    break;
-                    // move about keys
-                case 33: // pgup
-                    ref.moveabout(24);
-                    break;
-                case 34: // pgdwn
-                    ref.moveabout(-24);
-                    break;
-                case 36: // home
-                    ref.moveabout(0);
-                    break;
-                case 35: // end
-                    ref.moveabout(Infinity);
-                    break;
-                case 40: // down
-                    ref.moveabout(-1);
-                    break;
-                case 32: // space
-                    ref.nextpic();
-                    break;
-                case 38: // up
-                    ref.moveabout(1);
-                    break;
-                case 19: // pause/break
-                case 121: // F10
-                    ref.toggledebug();
-                    break;
-                    // debug alerts for these keys are annoying (:
-                case 116: // f5
-                case 123: // f12
-                    break;
-                default:
-                    if (ref.DEBUG) {
-                        alert(ev.which);
-                    }
-                    break;
+            case 83: // s
+                ref.setscroll();
+                break;
+            case 72: // h
+            case 191: // "?" (also / but no shift)
+                $('.help').fadeToggle('fast');
+                break;
+            case 107: // +
+            case 190: // .
+                ref.scroll_speed = ref.scroll_speed * 2;
+                ref.toptext("speed doubled:" + ref.scroll_speed);
+                break;
+            case 109: // -
+            case 188: // ,
+                ref.scroll_speed = ref.scroll_speed / 2;
+                ref.toptext("speed halved:" + ref.scroll_speed);
+                break;
+            case 49: // 1
+                ref.scroll_speed = 1;
+                break;
+            case 50: //2
+                ref.scroll_speed = 2;
+                break;
+            case 51: //3
+                ref.scroll_speed = 3;
+                break;
+            case 52: //4
+                ref.scroll_speed = 4;
+                break;
+            case 53: //5
+                ref.scroll_speed = 5;
+                break;
+            case 220: // "\"
+                ref.toptext(ref.scroll_speed);
+                break;
+            case 8: // backspace
+            case 68: // D
+                ref.stopscroll();
+                break;
+                // move about keys
+            case 33: // pgup
+                ref.moveabout(24);
+                break;
+            case 34: // pgdwn
+                ref.moveabout(-24);
+                break;
+            case 36: // home
+                ref.moveabout(0);
+                break;
+            case 35: // end
+                ref.moveabout(Infinity);
+                break;
+            case 40: // down
+                ref.moveabout(-1);
+                break;
+            case 32: // space
+                ref.nextpic();
+                break;
+            case 38: // up
+                ref.moveabout(1);
+                break;
+            case 19: // pause/break
+            case 121: // F10
+                ref.toggledebug();
+                break;
+                // debug alerts for these keys are annoying (:
+            case 116: // f5
+            case 123: // f12
+                break;
+            default:
+                if (ref.DEBUG) {
+                    alert(ev.which);
+                }
+                break;
             }
         });
     };
@@ -485,7 +491,7 @@ var Sahli = function () {
     //    this.loadpic('h7-r2012.ans',this.dbox);
     this.fixhelpbox();
     var ref = this;
-    $(window).resize(function() {
+    $(window).resize(function () {
         ref.resizedrawbox();
     });
     this.requestsahlifile('list.sahli');
