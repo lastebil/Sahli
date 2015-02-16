@@ -1,3 +1,8 @@
+(A) fix scrolling!
+(B) cleanup (remove 16colorslib)
+(C) check below items for neccesity
+
+
 x 2014-08-06 @EDITOR delete an entry CORRECTLY
 @EDITOR redo filenames to load from list of files in directory (specfied in 'location')
 x 2014-08-06 @EDITOR button to reload filename list from directory
