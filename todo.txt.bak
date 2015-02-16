@@ -1,5 +1,8 @@
+(A) fix scrolling!
 x 2015-02-16 cleanup (remove 16colorslib)
+(C) check below items for neccesity
 x 2014-08-06 @EDITOR delete an entry CORRECTLY
+@EDITOR redo filenames to load from list of files in directory (specfied in 'location')
 x 2014-08-06 @EDITOR button to reload filename list from directory
 x 2014-08-07 @EDITOR button to insert an entry - make it insert a blank
 x 2014-08-06 @EDITOR dump to screen or file, not to console when saving
@@ -9,6 +12,27 @@ x 2014-08-07 @EDITOR update the line item when saving - what the heck is 'line i
 x 2014-08-07 (A) fix color functions to use alpha (so they show up!)
 x 2014-08-06 (A) Add "type" of file(format) - plain, xbin, etc.(
 x 2014-08-06 (A) Create Editor - Standalone @EDITOR
+(A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
+(A) XBIN @OTHER
+(A) load SAUCE into 'info' lines (should be done at prep) @SAUCE @EDITRO
+(B) ADF  @OTHER
+(B) Amiga ANSI @OTHER
+(B) Avatar @OTHER
+(B) BIN @OTHER
+(B) IDF @OTHER
+(B) PCBOARD @OTHER
+(B) THUMBNAILS - for returning to partymeister
+(B) Tundra @OTHER
+(C) Add fonts - Amiga 1200 (replace or compare w/16colors version) @16colors
+(C) Add fonts - Amiga 500 @16colors
+(C) Add fonts - microknight @16colors
+(C) Add fonts - mOsOul @Fonts @16colors
+(C) Add p0t - fonts-nOodle @16colors
+(C) implement package import from partymeister  @PARTYMEISTER
+(C) Fix Amiga mode rendering via sixteencolors lib @16colors
+(C) hook for progress  @progress @PARTYMEISTER
+(C) load to array/picture, render from picture @16colors
+(C) speed up rendering more? @16colors
 x (A) Error handler for file not found
 x 2014-03-24 (B) Get with dfox on the partymeister package version
 x 2014-04-05 (A) Split coffeescript into files, use cake.
