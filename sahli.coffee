@@ -136,27 +136,13 @@ class @Sahli
     alert 'avatar', picdata, inserthere
     return
 
-
-  @resizedrawbox = (height) ->
-    dbox1 = $('div#drawbox')
-    if 'undefined' == height
-      dbox1.height window.innerHeight - 2
-    else
-      dbox1.height height
-    dbox1.width window.innerWidth - 2
-
-
   @requestsahlifile = (url) ->
-    ref = this
+    @loadkeys()
     $.getJSON url, (json) ->
-      ref.filedata = json.filedata
-      ref.slides = json.slides
-      ref.location = json.location
-      ref.buildcompo()
-
-  @buildcompo = ->
-#    @resizedrawbox()
-    alert 'SAHLI READY TO GO'
+      @filedata = json.filedata
+      @slides = json.slides
+      @location = json.location
+      alert "SAHLI READY TO GO\n#{@filedata.length} Entries"
 
   @nextpic = ->
     @dbox.children().remove()
@@ -198,4 +184,17 @@ class @Sahli
     $('h1#top').fadeToggle()
     @DEBUG = !@DEBUG
     return
-  
+
+  @keycode = (char) ->
+    char.toUpperCase().charCodeAt 0
+
+  @loadkeys = ->
+    $(document).on('keydown', (ev) =>
+      switch ev.which
+        when @keycode(' ')
+          alert "spaaaace"
+        when @keycode('s')
+          alert("not spaaaace")
+        else
+          console.log ev.which
+      )
