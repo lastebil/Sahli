@@ -137,98 +137,6 @@ Sahli = ->
     alert 'avatar', picdata, inserthere
     return
 
-  @fillinfo = (picdata) ->
-    infob = $('div.infobox')
-    infob.find('h1').text picdata.name
-    infob.find('h2').text picdata.author
-    infob.find('h3#text').text picdata.line1
-    infob.find('h3#text2').text picdata.line2
-    infob.find('.bigtext').text picdata.text
-    infob.find('span#filename').text picdata.file
-    infob.find('span#infowidth').text '| ' + picdata.width + ' cols |'
-    infob.find('span#fontname').text picdata.font
-    return
-
-  @loaderror = (inserthere, fname, errorText, errorCode) ->
-    temptxt = ''
-    if errorCode == 404
-      temptxt = $('<h1>').text('Unable to find file ' + fname)
-    else
-      temptxt = $('<h1>').text('error! ' + errorText + ' code ' + errorCode +
-       ' file ' + fname)
-    inserthere.after temptxt
-    return
-
-  @calccolor = (colorset) ->
-    'rgba(' + colorset.toString() + ')'
-
-  @resize = (amt) ->
-    canv = $('canvas')
-    w = canv.width() * amt
-    h = canv.height() * amt
-    canv.animate {
-      width: w
-      height: h
-    }, @zoomspeed
-    return
-
-  @fullwidth = ->
-    @stopscroll()
-    if $('canvas').width() == @dbox.width()
-      @originalsize @zoomspeed
-    else
-      ratio = @origwidth / @dbox.width()
-      $('canvas').animate {
-        width: @dbox.width()
-        height: @origheight / ratio
-      }, @zoomspeed
-    return
-
-  @fullheight = ->
-    canv = $('canvas')
-    if canv.height() == @dbox.height()
-      @originalsize @zoomspeed
-    else
-      ratio = @origheight / @dbox.height()
-      canv.animate {
-        height: @dbox.height()
-        width: @origwidth / ratio
-      }, @zoomspeed
-    return
-
-  @originalsize = (zoomspeed) ->
-    # why do we not have origwidth now? hmm.
-    canv = $('canvas')
-    zs = zoomspeed
-    # why are we not using this?
-    zs = zs + 1
-    canv.animate {
-      width: @origwidth
-      height: @origheight
-    }, @zoomspeed
-    return
-
-  @toptext = (text) ->
-    if @DEBUG
-      $('h1#top').text text
-    return
-
-  @setscroll = ->
-    bottom = $('.scrolly').height()
-    scrollto = bottom
-    steps = undefined
-    # kill animations from before
-    @dbox.stop true
-    if @scroll_direction == 1
-      @scroll_direction = -1
-      steps = bottom - @dbox.scrollTop()
-    else
-      @scroll_direction = 1
-      scrollto = 0
-      steps = @dbox.scrollTop()
-    @toptext @scroll_speed + ' | ' + steps
-    @dbox.animate { scrollTop: scrollto }, @scroll_speed * steps, 'linear'
-    return
 
   @resizedrawbox = (height) ->
     dbox1 = $('div#drawbox')
@@ -237,24 +145,7 @@ Sahli = ->
     else
       dbox1.height height
     dbox1.width window.innerWidth - 2
-    return
 
-  @stopscroll = ->
-    @dbox.stop true
-    return
-
-  @moveabout = (lines) ->
-    line = @dbox.scrollTop()
-    @dbox.stop true
-    switch lines
-      when 0
-        @dbox.scrollTop 0
-      when Infinity
-        @dbox.scrollTop @origheight
-      else
-        @dbox.scrollTop line - lines * 8
-        break
-    return
 
   @requestsahlifile = (url) ->
     ref = this
@@ -263,13 +154,10 @@ Sahli = ->
       ref.slides = json.slides
       ref.location = json.location
       ref.buildcompo()
-      return
-    return
 
   @buildcompo = ->
-    @resizedrawbox()
+#    @resizedrawbox()
     alert 'SAHLI READY TO GO'
-    return
 
   @nextpic = ->
     @dbox.children().remove()
@@ -320,124 +208,6 @@ Sahli = ->
     @DEBUG = !@DEBUG
     return
 
-  @loadkeys = ->
-    ref = this
-    $(document).bind 'click', (ev) ->
-      if ev.clientY < 100
-        if ev.clientX < 100
-          ref.nextpic()
-        else
-          ref.fullwidth()
-      else
-        ref.setscroll()
-      return
-    $(document).bind 'keydown', (ev) ->
-      switch ev.which
-        when 84
-          # t
-          ref.asciiasgfx = !ref.asciiasgfx
-          ref.toptext ref.asciiasgfx
-        # u
-        when 85, 9
-          # u
-          $('div.infobox').slideToggle 'slow'
-        when 70
-          # f
-          ref.gofullscreen()
-        # esc
-        when 27, 71
-          # G, as escape seems to not get passed from fullscreen on chrome
-          ref.cancelfullscreen()
-        when 73
-          # i
-          ref.resize 2
-        when 75
-          # k
-          ref.resize 0.5
-        when 79
-          # o
-          ref.fullwidth()
-        when 76
-          # l
-          ref.fullheight()
-        when 80
-          # p
-          ref.originalsize 0
-        when 83
-          # s
-          ref.setscroll()
-        # h
-        when 72, 191
-          # "?" (also / but no shift)
-          $('.help').fadeToggle 'fast'
-        # +
-        when 107, 190
-          # .
-          ref.scroll_speed = ref.scroll_speed * 2
-          ref.toptext 'speed doubled:' + ref.scroll_speed
-        # -
-        when 109, 188
-          # ,
-          ref.scroll_speed = ref.scroll_speed / 2
-          ref.toptext 'speed halved:' + ref.scroll_speed
-        when 49
-          # 1
-          ref.scroll_speed = 1
-        when 50
-          #2
-          ref.scroll_speed = 2
-        when 51
-          #3
-          ref.scroll_speed = 3
-        when 52
-          #4
-          ref.scroll_speed = 4
-        when 53
-          #5
-          ref.scroll_speed = 5
-        when 220
-          # "\"
-          ref.toptext ref.scroll_speed
-        # backspace
-        when 8, 68
-          # D
-          ref.stopscroll()
-        # move about keys
-        when 33
-          # pgup
-          ref.moveabout 24
-        when 34
-          # pgdwn
-          ref.moveabout -24
-        when 36
-          # home
-          ref.moveabout 0
-        when 35
-          # end
-          ref.moveabout Infinity
-        when 40
-          # down
-          ref.moveabout -1
-        when 32
-          # space
-          ref.nextpic()
-        when 38
-          # up
-          ref.moveabout 1
-        # pause/break
-        when 19, 121
-          # F10
-          ref.toggledebug()
-        # debug alerts for these keys are annoying (:
-        # f5
-        when 116, 123
-          # f12
-        else
-          if ref.DEBUG
-            alert ev.which
-          break
-      return
-    return
 
   @loadkeys()
   @fixhelpbox()
