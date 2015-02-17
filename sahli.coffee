@@ -12,28 +12,27 @@ l__________/__________|___|______l__________j_____j
  Uses Andy Herbert's Ansilove.js for rendering.
 ###
 
-exports = Sahli
-
-Sahli = ->
-  @outbox = $('div#outbox')
-  @dbox = $('div#drawbox')
-  @image = 0
-  # scroll speed of 5 looks ... "ok" on macbook pro. 4 was original.
-  @scroll_speed = 5
-  @scroll_direction = 1
-  @zoomspeed = 200
-  @asciiasgfx = true
-  @DEBUG = false
-  @dbox.height document.height - 24
-  @dbox.width document.width - 2
-  @sizemult = 16
-  # 32 is larger than screen, and somewhat silly
-  @origheight = 0
-  @origwidth = 0
-  @filedata = ''
-  @slides = 0
-  @currentpic = 0
-  @nonfsheight = document.height - 40
+class @Sahli
+  constructor: () ->
+    @outbox = $('div#outbox')
+    @dbox = $('div#drawbox')
+    @image = 0
+    # scroll speed of 5 looks ... "ok" on macbook pro. 4 was original.
+    @scroll_speed = 5
+    @scroll_direction = 1
+    @zoomspeed = 200
+    @asciiasgfx = true
+    @DEBUG = false
+    @dbox.height document.height - 24
+    @dbox.width document.width - 2
+    @sizemult = 16
+    # 32 is larger than screen, and somewhat silly
+    @origheight = 0
+    @origwidth = 0
+    @filedata = ''
+    @slides = 0
+    @currentpic = 0
+    @nonfsheight = document.height - 40
 
   @loadpic = (picdata, inserthere) ->
     switch picdata.filetype
@@ -195,26 +194,8 @@ Sahli = ->
       document.webkitCancelFullScreen()
     return
 
-  @fixhelpbox = ->
-    h = $('.help')
-    xy =
-      'top': 0
-      'left': document.width / 2 - h.width() / 2
-    h.css xy
-    return
-
   @toggledebug = ->
     $('h1#top').fadeToggle()
     @DEBUG = !@DEBUG
     return
-
-
-  @loadkeys()
-  @fixhelpbox()
-  ref = this
-  $(window).resize ->
-    ref.resizedrawbox()
-    return
-  debugger
-  @requestsahlifile 'list.sahli'
-  return
+  
