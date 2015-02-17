@@ -1,16 +1,20 @@
-#  .___________________________________,       ___
-#  |            /      |   |      .     \    .(___):
-#  |        _______    |          :      \   :     |
-#: |___/      /        |          |       \__|     |
-#|           /         |          |          |     |
-#l__________/__________|___|______l__________j_____j
-#
-#     Ansi/Ansi Viewer in Ecmascript
-# Coded by Sir Garbagetruck / Accession 2013
-# Uses fonts by DMG, http://trueschool.se
-# Uses Andy Herbert's Ansilove.js for rendering.
+###
+  .___________________________________,       ___
+  |            /      |   |      .     \    .(___):
+  |        _______    |          :      \   :     |
+: |___/      /        |          |       \__|     |
+|           /         |          |          |     |
+l__________/__________|___|______l__________j_____j
 
+     Ansi/Ansi Viewer in Ecmascript
+ Coded by Sir Garbagetruck / Accession 2013
+ Uses fonts by DMG, http://trueschool.se
+ Uses Andy Herbert's Ansilove.js for rendering.
+###
 
+exports = Sahli
+
+Sahli = ->
   @outbox = $('div#outbox')
   @dbox = $('div#drawbox')
   @image = 0
@@ -441,5 +445,6 @@
   $(window).resize ->
     ref.resizedrawbox()
     return
+  debugger
   @requestsahlifile 'list.sahli'
   return
