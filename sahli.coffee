@@ -14,25 +14,8 @@ l__________/__________|___|______l__________j_____j
 
 class @Sahli
   constructor: () ->
-    @outbox = $('div#outbox')
-    @dbox = $('div#drawbox')
-    @image = 0
-    # scroll speed of 5 looks ... "ok" on macbook pro. 4 was original.
-    @scroll_speed = 5
-    @scroll_direction = 1
-    @zoomspeed = 200
-    @asciiasgfx = true
-    @DEBUG = false
-    @dbox.height document.height - 24
-    @dbox.width document.width - 2
-    @sizemult = 16
-    # 32 is larger than screen, and somewhat silly
-    @origheight = 0
-    @origwidth = 0
-    @filedata = ''
-    @slides = 0
-    @currentpic = 0
-    @nonfsheight = document.height - 40
+    # I don't think we actually are going to have one, as we don't
+    # need instance variables (things used outside the function)
 
   @loadpic = (picdata, inserthere) ->
     switch picdata.filetype
@@ -138,21 +121,30 @@ class @Sahli
 
   @requestsahlifile = (url) ->
     @loadkeys()
-    $.getJSON url, (json) ->
+    @DEBUG = false
+    @scroll_speed= 5
+    @scroll_direction= 1
+    @asciiasgfx= false
+    @currentpic= 0
+    $.getJSON url, (json) =>
       @filedata = json.filedata
       @slides = json.slides
       @location = json.location
+
       alert "SAHLI READY TO GO\n#{@filedata.length} Entries"
 
-  @nextpic = ->
-    @dbox.children().remove()
+  @nextpic = =>
+    $('div#sahliviewer').children().remove()
     # reset scrolling;
-    @stopscroll()
-    @scroll_direction = 1
+#    @stopscroll()
+#    @scroll_direction = 1
+
+# and we are here.
+
     i = @currentpic
     filedata = @filedata
     filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
-    @dbox.append filedata[i].pic
+    @viewbox.append filedata[i].pic
     @loadpic filedata[i], filedata[i].pic
     @currentpic += 1
     if @currentpic > filedata.length - 1
@@ -192,7 +184,7 @@ class @Sahli
     $(document).on('keydown', (ev) =>
       switch ev.which
         when @keycode(' ')
-          alert "spaaaace"
+          @nextpic()
         when @keycode('s')
           alert("not spaaaace")
         else
