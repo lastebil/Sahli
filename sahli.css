@@ -2,18 +2,19 @@ body {
     background-color: black;
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
 }
 
 h1#top {
     border: 1px solid green;
     color: green;
-    font-family: TopazPlus a600a1200a4000,monospace;
+    font-family: topaz500,monospace;
     position: absolute;
     top: .25ex;
     left: .25ex;
 }
 
-div#drawbox {
+div#sahliviewer {
     border: 1px inset grey;
     color: green;
     padding: 0px;
@@ -49,7 +50,7 @@ h6 {
     -webkit-border-radius: 8;
     -moz-border-radius: 8;
     border-radius: 8;
-    font-family: "TopazPlus a600a1200a4000",mOsOul, Consolas, monospace;
+    font-family: topaz1200,mOsOul, Consolas, monospace;
     opacity: .85;
 }
 
@@ -93,7 +94,7 @@ ul.keylist li.nodot {
 }
 
 div.infobox {
-    font-family: "mOsOul,TopazPlus a600a1200a4000",MicroKnightPlus, Consolas, monospace;
+    font-family: mosoul,topaz1200,microknight, Consolas, monospace;
     position: absolute;
     top: 1ex;
     left: 1ex;

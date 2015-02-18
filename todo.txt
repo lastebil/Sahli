@@ -1,4 +1,7 @@
 (A) fix scrolling!
+(B) @EDITOR add more Amiga fonts.
+
+
 (C) check below items for neccesity
 @EDITOR redo filenames to load from list of files in directory (specfied in 'location')
 (A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE

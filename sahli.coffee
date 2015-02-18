@@ -41,7 +41,6 @@ class @Sahli
         @loadansi picdata, inserthere
       else
         @loadplain picdata, inserthere
-    return
 
   @loadplain = (picdata, inserthere) ->
     pdiv = $('<div>')
@@ -70,11 +69,9 @@ class @Sahli
           inserthere.after pdiv
         else
           @loaderror inserthere, fname, req.statusText, req.status
-      return
-
     req.open 'GET', fname, true
     req.send null
-    return
+
 
   @loadansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
@@ -85,13 +82,11 @@ class @Sahli
       @origwidth = canv.width
       @origheight = canv.height
       @SAUCE = SAUCE
-      return
     ),
       'font': '80x25'
       'bits': '8'
       'columns': 160
       'thumbnail': 0
-    return
 
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
@@ -105,23 +100,20 @@ class @Sahli
         pdiv.append canv
         calcheight = calcheight + canv.height
         canvwidth = canv.width
-        return
       inserthere.after pdiv
       @SAUCE = SAUCE
       @origwidth = canvwidth
       @origheight = calcheight
       pdiv.width canvwidth
-      return
     ), 30, 'bits': '8'
-    return
 
   @loadavatar = (picdata, inserthere) ->
     alert 'avatar', picdata, inserthere
-    return
 
   @requestsahlifile = (url) ->
     @loadkeys()
     @DEBUG = false
+    @fullscreen = false
     @scroll_speed= 5
     @scroll_direction= 1
     @asciiasgfx= false
@@ -150,33 +142,31 @@ class @Sahli
     @currentpic += 1
     if @currentpic > filedata.length - 1
       @currentpic = 0
-    return
 
-  @gofullscreen = ->
+  @togglefullscreen = ->
     docElm = document.documentElement
-    window.setTimeout @resizedrawbox, 100
-    if docElm.requestFullscreen
-      docElm.requestFullscreen Element.ALLOW_KEYBOARD_INPUT
-    else if docElm.mozRequestFullScreen
-      docElm.mozRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
-    else if docElm.webkitRequestFullScreen
-      docElm.webkitRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
-    return
+    if @fullscreen
+      if document.exitFullscreen
+        document.exitFullscreen()
+      else if document.mozCancelFullScreen
+        document.mozCancelFullScreen()
+      else if document.webkitCancelFullScreen
+        document.webkitCancelFullScreen()
+      @fullscreen = false
+    else
+      if docElm.requestFullscreen
+        docElm.requestFullscreen Element.ALLOW_KEYBOARD_INPUT
+      else if docElm.mozRequestFullScreen
+        docElm.mozRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
+      else if docElm.webkitRequestFullScreen
+        docElm.webkitRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
+      @fullscreen = true
 
   @cancelfullscreen = ->
-    window.setTimeout @resizedrawbox, 100, @nonfsheight
-    if document.exitFullscreen
-      document.exitFullscreen()
-    else if document.mozCancelFullScreen
-      document.mozCancelFullScreen()
-    else if document.webkitCancelFullScreen
-      document.webkitCancelFullScreen()
-    return
 
   @toggledebug = ->
     $('h1#top').fadeToggle()
     @DEBUG = !@DEBUG
-    return
 
   @keycode = (char) ->
     char.toUpperCase().charCodeAt 0
@@ -196,6 +186,8 @@ class @Sahli
       switch ev.which
         when @keycode(' ')
           @nextpic()
+        when @keycode('f')
+          @togglefullscreen()
         when @keycode('s')
           alert("not spaaaace")
         else
