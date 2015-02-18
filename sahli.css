@@ -145,35 +145,30 @@ p.infobox {
     font-family: 'P0t-nOodle';
     src: url('amigafonts/P0T-NOoDLE_v1.0.woff2') format('woff2');
     src: url('amigafonts/P0T-NOoDLE_v1.0.woff') format('woff');
-    src: url('amigafonts/P0T-NOoDLE_v1.0.eot') format('eot');
 }
 
 @font-face {
     font-family: 'MicroKnight';
     src: url('amigafonts/MicroKnightPlus_v1.0.woff2') format('woff2');
     src: url('amigafonts/MicroKnightPlus_v1.0.woff') format('woff');
-    src: url('amigafonts/MicroKnightPlus_v1.0.eot') format('eot');
 }
 
 @font-face {
     font-family: 'mOsOul';
     src: url('amigafonts/mOsOul_v1.0.woff2') format('woff2');
     src: url('amigafonts/mOsOul_v1.0.woff') format('woff');
-    src: url('amigafonts/mOsOul_v1.0.eot') format('woff');
 }
 
 @font-face {
     font-family: 'Topaz1200';
     src: url('amigafonts/TopazPlus_a1200_v1.0.woff2') format('woff2');
     src: url('amigafonts/TopazPlus_a1200_v1.0.woff') format('woff');
-    src: url('amigafonts/TopazPlus_a1200_v1.0.eot') format('woff');
 }
 
 @font-face {
     font-family: 'Topaz500';
     src: url('amigafonts/P0T-NOoDLE_v1.0.woff2') format('woff2');
     src: url('amigafonts/P0T-NOoDLE_v1.0.woff') format('woff');
-    src: url('amigafonts/P0T-NOoDLE_v1.0.eot') format('eot');
 }
 
 .mosoul {
