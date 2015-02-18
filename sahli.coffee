@@ -134,7 +134,8 @@ class @Sahli
       alert "SAHLI READY TO GO\n#{@filedata.length} Entries"
 
   @nextpic = =>
-    $('div#sahliviewer').children().remove()
+    viewbox = $('div#sahliviewer')
+    viewbox.children().remove()
     # reset scrolling;
 #    @stopscroll()
 #    @scroll_direction = 1
@@ -144,7 +145,7 @@ class @Sahli
     i = @currentpic
     filedata = @filedata
     filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
-    @viewbox.append filedata[i].pic
+    viewbox.append filedata[i].pic
     @loadpic filedata[i], filedata[i].pic
     @currentpic += 1
     if @currentpic > filedata.length - 1
@@ -179,6 +180,16 @@ class @Sahli
 
   @keycode = (char) ->
     char.toUpperCase().charCodeAt 0
+
+  @calccolor = (colorset) ->
+    "rgba(#{colorset.toString()})"
+
+  @loaderror = (inserthere, fname, errortext, errorcode) ->
+    if errorcode == 404
+      errstr = "Unable to find #{fname}"
+    else
+      errstr = "error! #{errortext} / code #{errorcode}"
+    inserthere.after $("<h1>").text("#{errstr}")
 
   @loadkeys = ->
     $(document).on('keydown', (ev) =>
