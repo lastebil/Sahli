@@ -13,7 +13,7 @@
 			"filetype": "plain",
 			"width": "80",
 			"author": "Urs",
-			"font": "Propaz",
+			"font": "pot-noodle",
 			"color": [
 				255,
 				128,
@@ -21,9 +21,9 @@
 				255
 			],
 			"bg": [
-				59,
-				59,
-				59,
+				0,
+				0,
+				0,
 				255
 			],
 			"line1": "Orange on Dark Grey",
