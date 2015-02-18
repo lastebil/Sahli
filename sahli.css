@@ -3,6 +3,7 @@ body {
     margin: 0px;
     padding: 0px;
     overflow: hidden;
+    border: none;
 }
 
 h1#top {
@@ -15,7 +16,6 @@ h1#top {
 }
 
 div#sahliviewer {
-    border: 1px inset grey;
     color: green;
     padding: 0px;
     margin: 0px;

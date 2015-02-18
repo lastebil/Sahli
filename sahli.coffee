@@ -133,6 +133,7 @@ class @Sahli
     $('body').stop()
     $('body').scrollTop(0)
     @scroll_direction = 1
+    @scroll_speed = 5
     i = @currentpic
     filedata = @filedata
     filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
@@ -194,6 +195,17 @@ class @Sahli
     console.log "#{@scroll_speed} | #{steps}"
     scrollbox.animate { scrollTop: scrollto }, @scroll_speed * steps, 'linear'
 
+  @changespeed = (speed) ->
+    @scroll_speed = speed
+    $('body').stop()
+    @scroll_direction = - @scroll_direction
+    @setscroll()
+
+  @changescrolldirection = (direction) ->
+    @scroll_direction = direction
+    $('body').stop()
+    @setscroll()
+
   @loadkeys = ->
     $(document).on('keydown', (ev) =>
       switch ev.which
@@ -205,8 +217,26 @@ class @Sahli
           @setscroll()
         when @keycode('t')
           $('body').scrollTop(0)
-        when 8  # backspace
+        when @keycode('a')
           $('body').stop()
+          @scroll_direction = - @scroll_direction
+        when @keycode('w')
+          @changescrolldirection -1
+        when @keycode('x')
+          @changescrolldirection 1
+        when @keycode('1')
+          @changespeed 1
+        when @keycode('2')
+          @changespeed 2
+          @scroll_speed = 2
+        when @keycode('3')
+          @changespeed 3
+          @scroll_speed = 3
+        when @keycode('4')
+          @changespeed 4
+          @scroll_speed = 4
+        when @keycode('5')
+          @changespeed 5
         else
           console.log ev.which
       )
