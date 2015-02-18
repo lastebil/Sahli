@@ -67,10 +67,12 @@ class @Sahli
         if req.status == 200 or req.status == 0
           ptxt.text @responseText
           inserthere.after pdiv
+          $('body').scrollTop(0)
         else
           @loaderror inserthere, fname, req.statusText, req.status
     req.open 'GET', fname, true
     req.send null
+
 
 
   @loadansi = (picdata, inserthere) ->
@@ -128,12 +130,9 @@ class @Sahli
   @nextpic = =>
     viewbox = $('div#sahliviewer')
     viewbox.children().remove()
-    # reset scrolling;
-#    @stopscroll()
-#    @scroll_direction = 1
-
-# and we are here.
-
+    $('body').stop()
+    $('body').scrollTop(0)
+    @scroll_direction = 1
     i = @currentpic
     filedata = @filedata
     filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
@@ -162,8 +161,6 @@ class @Sahli
         docElm.webkitRequestFullScreen Element.ALLOW_KEYBOARD_INPUT
       @fullscreen = true
 
-  @cancelfullscreen = ->
-
   @toggledebug = ->
     $('h1#top').fadeToggle()
     @DEBUG = !@DEBUG
@@ -181,6 +178,22 @@ class @Sahli
       errstr = "error! #{errortext} / code #{errorcode}"
     inserthere.after $("<h1>").text("#{errstr}")
 
+  @setscroll = ->
+    scrollbox = $('body')
+    bottom = $('body').height()
+    scrollto = bottom
+    # kill animations from before
+    scrollbox.stop true
+    if @scroll_direction == 1
+      @scroll_direction = -1
+      steps = bottom - scrollbox.scrollTop()
+    else
+      @scroll_direction = 1
+      scrollto = 0
+      steps = scrollbox.scrollTop()
+    console.log "#{@scroll_speed} | #{steps}"
+    scrollbox.animate { scrollTop: scrollto }, @scroll_speed * steps, 'linear'
+
   @loadkeys = ->
     $(document).on('keydown', (ev) =>
       switch ev.which
@@ -189,7 +202,11 @@ class @Sahli
         when @keycode('f')
           @togglefullscreen()
         when @keycode('s')
-          alert("not spaaaace")
+          @setscroll()
+        when @keycode('t')
+          $('body').scrollTop(0)
+        when 8  # backspace
+          $('body').stop()
         else
           console.log ev.which
       )
