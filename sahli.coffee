@@ -24,21 +24,21 @@ class @Sahli
       when 'ansi'
         @loadhugeansi picdata, inserthere
       when 'bin'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       when 'xbin'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       when 'ice'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       when 'avatar'
         @loadavatar picdata, inserthere
       when 'pcboard'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       when 'idf'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       when 'adf'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       when 'tundra'
-        @loadansi picdata, inserthere
+        @loadhugeansi picdata, inserthere
       else
         @loadplain picdata, inserthere
 
@@ -46,7 +46,10 @@ class @Sahli
     pdiv = $('<div>')
     req = new XMLHttpRequest
     fname = @location + '/' + picdata.file
-    ptxt = $('<pre></pre>')
+    buf = $('<span>')
+    buf.css {'margin':'0 auto'}
+    buf.text '&nbsp'
+    ptxt = $('<pre>')
     color = @calccolor(picdata.color)
     bgcolor = @calccolor(picdata.bg)
     pdiv.addClass 'scrolly'
@@ -55,13 +58,16 @@ class @Sahli
       'color': color
       'background-color': bgcolor
       'margin': 'auto'
+      'display': 'inline-block'
     ptxt.width picdata.width * 8
-    pdiv.width '100%'
+    @origwidth = ptxt.width
+    pdiv.width ptxt.width
+    pdiv.prepend buf.clone()
     pdiv.append ptxt
+    pdiv.append buf
     # this is going to be interesting when dealing with ansi files in UTF-8
     # or SHIFT-JIS etc  - is it needed now?
     req.overrideMimeType 'text/plain; charset=ISO-8859-1'
-
     req.onreadystatechange = ->
       if req.readyState == req.DONE
         if req.status == 200 or req.status == 0
@@ -73,11 +79,10 @@ class @Sahli
     req.open 'GET', fname, true
     req.send null
 
-
-
   @loadansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
     pdiv = $('<div>')
+    pdiv.addClass 'scrolly'
     AnsiLove.render fname, ((canv, SAUCE) ->
       pdiv.append canv
       inserthere.after pdiv
@@ -96,7 +101,8 @@ class @Sahli
     calcheight = 0
     canvwidth = 0
     pdiv.css 'display', 'inline-block'
-    AnsiLove.splitRender fname, ((chunks, SAUCE) ->
+    pdiv.addClass 'scrolly'
+    AnsiLove.splitRender fname, ((chunks, SAUCE) =>
       chunks.forEach (canv) ->
         canv.style.verticalAlign = 'bottom'
         pdiv.append canv
@@ -206,36 +212,51 @@ class @Sahli
     $('body').stop()
     @setscroll()
 
+#    - save width upon draw
+#    - toggle zoom out to full width / normal
+#    - with a number, change width by that much
+  @zoom = (amt) ->
+    zoomee = $('div.scrolly canvas')
+    if amt > 0
+      zoomee.width zoomee.width()+amt
+    if zoomee.width() != @origwidth
+      zoomee.width @origwidth
+    else
+      zoomee.width $('body').width()
+
+
   @loadkeys = ->
     $(document).on('keydown', (ev) =>
       switch ev.which
-        when @keycode(' ')
+        when @keycode ' '
           @nextpic()
-        when @keycode('f')
+        when @keycode 'f'
           @togglefullscreen()
-        when @keycode('s')
+        when @keycode 's'
           @setscroll()
-        when @keycode('t')
+        when @keycode 't'
           $('body').scrollTop(0)
-        when @keycode('a')
+        when @keycode 'a'
           $('body').stop()
           @scroll_direction = - @scroll_direction
-        when @keycode('w')
+        when @keycode 'z'
+          @zoom()
+        when @keycode 'w'
           @changescrolldirection -1
-        when @keycode('x')
+        when @keycode 'x'
           @changescrolldirection 1
-        when @keycode('1')
+        when @keycode '1'
           @changespeed 1
-        when @keycode('2')
+        when @keycode '2'
           @changespeed 2
           @scroll_speed = 2
-        when @keycode('3')
+        when @keycode '3'
           @changespeed 3
           @scroll_speed = 3
-        when @keycode('4')
+        when @keycode '4'
           @changespeed 4
           @scroll_speed = 4
-        when @keycode('5')
+        when @keycode '5'
           @changespeed 5
         else
           console.log ev.which
