@@ -44,7 +44,8 @@ h6 {
 .help {
     position: fixed;
     top: 1em;
-    left: 50em;
+    left: '33%';
+    text-align: left;
     background-color: lightgrey;
     border: outset darkgray;
     -webkit-border-radius: 8;
@@ -52,6 +53,7 @@ h6 {
     border-radius: 8;
     font-family: topaz1200,mOsOul, Consolas, monospace;
     opacity: .85;
+    width: '33%'
 }
 
 .keylist {

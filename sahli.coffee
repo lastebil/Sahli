@@ -275,6 +275,9 @@ class @Sahli
           @scroll_speed = 4
         when @keycode '5'
           @changespeed 5
+        when @keycode 'h'
+          $('.help').css {'left':'33%'}
+          $('.help').toggle 'fast'
         else
           console.log ev.which
       )
