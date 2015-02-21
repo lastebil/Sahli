@@ -31,30 +31,6 @@
 			"text": ""
 		},
 		{
-			"file": "Blocktronics-WTF4_Megajoint.ans",
-			"name": "WTF4",
-			"amiga": false,
-			"filetype": "ansi",
-			"width": "80",
-			"author": "Blocktronics",
-			"font": "Propaz",
-			"color": [
-				0,
-				46,
-				247,
-				255
-			],
-			"bg": [
-				160,
-				160,
-				224,
-				255
-			],
-			"line1": "",
-			"line2": "",
-			"text": ""
-		},
-		{
 			"file": "h7-supergroupies.ans",
 			"name": "SuperGroupies",
 			"amiga": false,
@@ -77,6 +53,30 @@
 			"line1": "H7",
 			"line2": "Ansi",
 			"text": "Test file #1"
+		},
+		{
+			"file": "Blocktronics-WTF4_Megajoint.ans",
+			"name": "WTF4",
+			"amiga": false,
+			"filetype": "ansi",
+			"width": "80",
+			"author": "Blocktronics",
+			"font": "Propaz",
+			"color": [
+				0,
+				46,
+				247,
+				255
+			],
+			"bg": [
+				160,
+				160,
+				224,
+				255
+			],
+			"line1": "",
+			"line2": "",
+			"text": ""
 		},
 		{
 			"file": "51_DRGN.XB",

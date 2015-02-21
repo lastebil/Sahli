@@ -48,7 +48,6 @@ class @Sahli
     fname = @location + '/' + picdata.file
     buf = $('<span>')
     buf.css {'margin':'0 auto'}
-    buf.text '&nbsp'
     ptxt = $('<pre>')
     color = @calccolor(picdata.color)
     bgcolor = @calccolor(picdata.bg)
@@ -136,8 +135,6 @@ class @Sahli
   @nextpic = =>
     viewbox = $('div#sahliviewer')
     viewbox.children().remove()
-    $('body').stop()
-    $('body').scrollTop(0)
     @scroll_direction = 1
     @scroll_speed = 5
     i = @currentpic
@@ -148,6 +145,9 @@ class @Sahli
     @currentpic += 1
     if @currentpic > filedata.length - 1
       @currentpic = 0
+    $('body').stop()
+    $('body').scrollTop(0)
+
 
   @togglefullscreen = ->
     docElm = document.documentElement
@@ -215,14 +215,24 @@ class @Sahli
 #    - save width upon draw
 #    - toggle zoom out to full width / normal
 #    - with a number, change width by that much
+# if scrolling, where are we in the doc? zoom to THAT area.
   @zoom = (amt) ->
-    zoomee = $('div.scrolly canvas')
-    if amt > 0
-      zoomee.width zoomee.width()+amt
-    if zoomee.width() != @origwidth
-      zoomee.width @origwidth
+    zoomee = $('div.scrolly')
+    if amt?
+      if amt == 0
+        newwidth = @origwidth
+      else
+        newwidth = zoomee.width() + amt
+      console.log "#{zoomee.width()} #{newwidth}"
+      zoomee.width newwidth
+      $('canvas').width newwidth
     else
-      zoomee.width $('body').width()
+      if zoomee.width() != @origwidth
+        zoomee.width @origwidth
+        $('canvas').width '100%'
+      else
+        zoomee.width '100%'
+        $('canvas').width '100%'
 
 
   @loadkeys = ->
@@ -236,11 +246,18 @@ class @Sahli
           @setscroll()
         when @keycode 't'
           $('body').scrollTop(0)
+          @zoom 0
+        when @keycode 'b'
+          $('body').scrollTop($('body').height())
         when @keycode 'a'
           $('body').stop()
           @scroll_direction = - @scroll_direction
         when @keycode 'z'
           @zoom()
+        when @keycode 'e'
+          @zoom 100
+        when @keycode 'r'
+          @zoom -100
         when @keycode 'w'
           @changescrolldirection -1
         when @keycode 'x'
