@@ -1,12 +1,12 @@
 body {
     background-color: black;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     overflow: hidden;
     border: none;
 }
 
-h1#top {
+#top {
     border: 1px solid green;
     color: green;
     font-family: topaz500,monospace;
@@ -15,10 +15,10 @@ h1#top {
     left: .25ex;
 }
 
-div#sahliviewer {
+#sahliviewer {
     color: green;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     text-align: center;
     overflow: hidden;
 }
@@ -35,25 +35,25 @@ h6 {
     padding: .125em 1em;
     color: black;
     background-color: green;
-    -webkit-border-radius: 8;
-    -moz-border-radius: 8;
-    border-radius: 8;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
     display: none;
 }
 
 .help {
     position: fixed;
     top: 1em;
-    left: '33%';
+    left: 33%;
     text-align: left;
     background-color: lightgrey;
     border: outset darkgray;
-    -webkit-border-radius: 8;
-    -moz-border-radius: 8;
-    border-radius: 8;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
     font-family: topaz1200,mOsOul, Consolas, monospace;
     opacity: .85;
-    width: '33%'
+    width: 33%;
 }
 
 .keylist {
@@ -62,10 +62,9 @@ h6 {
     padding: 1em;
     margin: 0 1ex 1ex 1ex;
     list-style: square;
-    -webkit-border-radius: 4;
-    -moz-border-radius: 4;
-    border-radius: 4;
-    background-color: white;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
 }
 
 ul.keylist li {
@@ -74,7 +73,7 @@ ul.keylist li {
     list-style: square;
 }
 
-.help h1 {
+h1.help {
     text-align: center;
     margin: .15ex;
     padding: .15ex;
@@ -88,9 +87,9 @@ ul.keylist li.nodot {
 .key {
     background-color: yellow;
     border: 2px outset darkgoldenrod;
-    -webkit-border-radius: 9;
-    -moz-border-radius: 9;
-    border-radius: 9;
+    -webkit-border-radius: 9px;
+    -moz-border-radius: 9px;
+    border-radius: 9px;
     margin: .125em;
     padding: 0.25ex 1.5ex .25ex 1.5ex;
 }
@@ -100,11 +99,11 @@ div.infobox {
     position: absolute;
     top: 1ex;
     left: 1ex;
-    -webkit-border-radius: 42;
-    -moz-border-radius: 42;
-    border-radius: 42;
+    -webkit-border-radius: 42px;
+    -moz-border-radius: 42px;
+    border-radius: 42px;
     padding: 2ex;
-    pargin: 3em;
+    margin: 3em;
     background-color: aliceblue;
     opacity: .85;
 }
@@ -112,7 +111,7 @@ div.infobox {
 
 h1.infobox {
     margin: 0 0 .125ex 0;
-    padding 0px;
+    padding: 0;
     border-bottom: 1px black solid;
 }
 
@@ -132,15 +131,15 @@ p.infobox {
     background-color: lightsteelblue;
     border: 1px outset steelblue;
     margin: .25ex;
-    -webkit-border-radius: 3;
-    -moz-border-radius: 3;
-    border-radius: 3;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
     width: 30ex;
 }
 
 #panel {
     width: 100%;
-    background: white;
+    background: #0a0a0f;
     height: 100%;
     border: 0;
     font-family: microknight;
@@ -149,6 +148,20 @@ p.infobox {
     top: 0;
     padding: 0;
     margin: 0;
+    text-align: center;
+}
+
+.panelcolumn {
+    height: 100%;
+    color: #00f080;
+    width: 25%;
+    border: 2px dashed #10161a;
+    background: #0a0a0f;
+    display: inline-block;
+}
+
+.nosb {
+    overflow: hidden;
 }
 
 @font-face {

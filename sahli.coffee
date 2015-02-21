@@ -145,6 +145,8 @@ class @Sahli
     @currentpic += 1
     if @currentpic > filedata.length - 1
       @currentpic = 0
+    $('#panel').hide()
+    $('#outbox').show()
     $('body').stop()
     $('body').scrollTop(0)
 
@@ -234,6 +236,31 @@ class @Sahli
         zoomee.width '100%'
         $('canvas').width '100%'
 
+  @panelmode = ->
+    $('#panel').empty()
+    $('#panel').toggle()
+    if $('.scrolly').width() == @origwidth
+      $('.scrolly').width '100%'
+    else
+      $('.scrolly').width @origwidth
+    fw = $('body').width()
+    fh = window.innerHeight
+    canvs = $('canvas')
+    numpanels = canvs.length
+    hgt = canvs.height() * numpanels
+    numcols = Math.ceil(hgt / fw)
+    pct = 100/numcols
+    outer = $('<div>')
+    for i in [1...numcols] by 1
+      dcol = $("<div id='column#{i}'>#{i}</div>")
+      dcol.addClass 'panelcolumn'
+      outer.append dcol
+    outer.addClass 'nosb'
+    $('.panelcolumn').width("#{pct}%")
+    $('#panel').append outer
+    $('#outbox').toggle()
+
+
 
   @loadkeys = ->
     $(document).on('keydown', (ev) =>
@@ -262,6 +289,8 @@ class @Sahli
           @changescrolldirection -1
         when @keycode 'x'
           @changescrolldirection 1
+        when @keycode 'c'
+          @panelmode()
         when @keycode '1'
           @changespeed 1
         when @keycode '2'
