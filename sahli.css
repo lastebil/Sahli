@@ -138,6 +138,19 @@ p.infobox {
     width: 30ex;
 }
 
+#panel {
+    width: 100%;
+    background: white;
+    height: 100%;
+    border: 0;
+    font-family: microknight;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+}
+
 @font-face {
     font-family: 'P0t-nOodle';
     src: url('fonts/P0T-NOoDLE_v1.0.woff2') format('woff2');
@@ -158,14 +171,14 @@ p.infobox {
 
 @font-face {
     font-family: 'Topaz1200';
-    src: url('fonts/TopazPlus_a1200_v1.0.woff2') format('woff2');
-    src: url('fonts/TopazPlus_a1200_v1.0.woff') format('woff');
+    src: url('fonts/TopazPlusA1200.woff') format('woff2');
+    src: url('fonts/TopazPlusA1200.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Topaz500';
-    src: url('fonts/P0T-NOoDLE_v1.0.woff2') format('woff2');
-    src: url('fonts/P0T-NOoDLE_v1.0.woff') format('woff');
+    src: url('fonts/TopazPlusA500.woff2') format('woff2');
+    src: url('fonts/TopazPlusA500.woff') format('woff');
 }
 
 @font-face {
