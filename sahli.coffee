@@ -238,31 +238,38 @@ class @Sahli
 
 # fix this up so it sets the appropriate width for the columns.
 # and then move the canvases into it.
+# outbox toggled last to avoid losing width. (prolly need to fix.)
   @panelmode = ->
-    $('#panel').empty()
     $('#panel').toggle()
+    canvs = $('canvas')
     if $('.scrolly').width() == @origwidth
       $('.scrolly').width '100%'
+      $('#panel').empty()
+      fw = $('body').width()
+      fh = window.innerHeight
+      numpanels = canvs.length
+      hgt = canvs.height() * numpanels
+      numcols = Math.ceil(hgt / fw)
+      amt = fw/numcols
+      outer = $('<div>')
+      outer.append @createpanel(i,amt - 6) for i in [1..numcols]
+      outer.addClass 'nosb'
+      $('#panel').append outer
+      $('#outbox').toggle()
+      for pic in canvs
+        $('#column1').append pic
+
+
+
     else
       $('.scrolly').width @origwidth
-    fw = $('body').width()
-    fh = window.innerHeight
-    canvs = $('canvas')
-    numpanels = canvs.length
-    hgt = canvs.height() * numpanels
-    numcols = Math.ceil(hgt / fw)
-    amt = fw/numcols - 6
-    outer = $('<div>')
-    for i in [1..numcols] by 1
-      dcol = $("<div id='column#{i}'>#{i}</div>")
-      dcol.addClass 'panelcolumn'
-      dcol.width amt
-      outer.append dcol
-    outer.addClass 'nosb'
-    $('#panel').append outer
-    $('#outbox').toggle()
+      $('#outbox').show()
+      $('.scrolly').append pic for pic in canvs
 
-
+  @createpanel = (i,amt) ->
+    dcol = $("<div id='column#{i}'>#{i}</div>")
+    dcol.addClass 'panelcolumn'
+    dcol.width amt
 
   @loadkeys = ->
     $(document).on('keydown', (ev) =>
