@@ -17,3 +17,14 @@ x 2014-04-16 (A)  - create interface   @EDITOR
 x 2014-04-16 (C) separate to individual renderers  @16colors
 x 2014-04-16 @EDITOR edit item saves data routine
 x 2014-04-17 @EDITOR BUGFIX - ansi/ascii toggle/saving
+x 2015-02-22 fix scrolling!
+x 2015-02-22 load SAUCE into 'info' lines (should be done at prep) @SAUCE @EDITRO
+x 2015-02-22 Add fonts - Amiga 1200 (replace or compare w/16colors version) @16colors
+x 2015-02-22 Add fonts - Amiga 500 @16colors
+x 2015-02-22 Add fonts - microknight @16colors
+x 2015-02-22 Add fonts - mOsOul @Fonts @16colors
+x 2015-02-22 Add p0t - fonts-nOodle @16colors
+x 2015-02-22 Fix Amiga mode rendering via sixteencolors lib @16colors
+x 2015-02-22 check below items for neccesity
+x 2015-02-22 load to array/picture, render from picture @16colors
+x 2015-02-22 speed up rendering more? @16colors

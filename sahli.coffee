@@ -236,6 +236,8 @@ class @Sahli
         zoomee.width '100%'
         $('canvas').width '100%'
 
+# fix this up so it sets the appropriate width for the columns.
+# and then move the canvases into it.
   @panelmode = ->
     $('#panel').empty()
     $('#panel').toggle()
@@ -249,14 +251,14 @@ class @Sahli
     numpanels = canvs.length
     hgt = canvs.height() * numpanels
     numcols = Math.ceil(hgt / fw)
-    pct = 100/numcols
+    amt = fw/numcols - 6
     outer = $('<div>')
-    for i in [1...numcols] by 1
+    for i in [1..numcols] by 1
       dcol = $("<div id='column#{i}'>#{i}</div>")
       dcol.addClass 'panelcolumn'
+      dcol.width amt
       outer.append dcol
     outer.addClass 'nosb'
-    $('.panelcolumn').width("#{pct}%")
     $('#panel').append outer
     $('#outbox').toggle()
 

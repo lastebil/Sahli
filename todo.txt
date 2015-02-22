@@ -1,27 +1,14 @@
-(A) fix scrolling!
+(B) 2015-02-22 ADF  @OTHER
 (B) @EDITOR add more Amiga fonts.
-
-
-(C) check below items for neccesity
-@EDITOR redo filenames to load from list of files in directory (specfied in 'location')
+(B) @EDITOR redo filenames to load from list of files in directory (specfied in 'location')
 (A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
 (A) XBIN @OTHER
-(A) load SAUCE into 'info' lines (should be done at prep) @SAUCE @EDITRO
-(B) ADF  @OTHER
-(B) Amiga ANSI @OTHER
+(C) Amiga ANSI @OTHER
 (B) Avatar @OTHER
 (B) BIN @OTHER
 (B) IDF @OTHER
 (B) PCBOARD @OTHER
-(B) THUMBNAILS - for returning to partymeister
+(D) THUMBNAILS - for returning to partymeister @PARTYMEISTER
 (B) Tundra @OTHER
-(C) Add fonts - Amiga 1200 (replace or compare w/16colors version) @16colors
-(C) Add fonts - Amiga 500 @16colors
-(C) Add fonts - microknight @16colors
-(C) Add fonts - mOsOul @Fonts @16colors
-(C) Add p0t - fonts-nOodle @16colors
-(C) implement package import from partymeister  @PARTYMEISTER
-(C) Fix Amiga mode rendering via sixteencolors lib @16colors
-(C) hook for progress  @progress @PARTYMEISTER
-(C) load to array/picture, render from picture @16colors
-(C) speed up rendering more? @16colors
+(D) implement package import from partymeister  @PARTYMEISTER
+(D) hook for progress  @progress @PARTYMEISTER
