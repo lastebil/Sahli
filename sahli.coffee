@@ -256,10 +256,15 @@ class @Sahli
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
+      canvs.width Math.floor fw/numcols
+      level = 0
+      drawcol = 1
       for pic in canvs
-        $('#column1').append pic
-
-
+        $("#column#{drawcol}").append pic
+        level = level + pic.height
+        if level > fh
+          level = 0
+          drawcol = drawcol + 1
 
     else
       $('.scrolly').width @origwidth
