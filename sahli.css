@@ -155,9 +155,8 @@ p.infobox {
     height: 100%;
     color: #00f080;
     width: 2em;
-    border: 2px dashed #10161a;
-    background: #0a0a0f;
-    display: inline-block;
+    background: #082020;
+    display: inline-table;
 }
 
 .nosb {

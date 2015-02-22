@@ -256,13 +256,16 @@ class @Sahli
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
-      canvs.width Math.floor fw/numcols
+      newwidth = Math.floor fw/(numcols+1)
+      ratio = newwidth / @origwidth
+      canvs.width newwidth
       level = 0
       drawcol = 1
       for pic in canvs
         $("#column#{drawcol}").append pic
-        level = level + pic.height
-        if level > fh
+        newheight = pic.height * ratio
+        level = level + newheight
+        if level+newheight > fh+newheight/2
           level = 0
           drawcol = drawcol + 1
 
@@ -270,9 +273,12 @@ class @Sahli
       $('.scrolly').width @origwidth
       $('#outbox').show()
       $('.scrolly').append pic for pic in canvs
+      canvs.width @origwidth
+      $('body').scrollTop 0
+
 
   @createpanel = (i,amt) ->
-    dcol = $("<div id='column#{i}'>#{i}</div>")
+    dcol = $("<div id='column#{i}'>")
     dcol.addClass 'panelcolumn'
     dcol.width amt
 
@@ -286,10 +292,10 @@ class @Sahli
         when @keycode 's'
           @setscroll()
         when @keycode 't'
-          $('body').scrollTop(0)
+          $('body').scrollTop 0
           @zoom 0
         when @keycode 'b'
-          $('body').scrollTop($('body').height())
+          $('body').scrollTop $('body').height()
         when @keycode 'a'
           $('body').stop()
           @scroll_direction = - @scroll_direction
