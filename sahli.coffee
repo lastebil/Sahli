@@ -135,6 +135,7 @@ class @Sahli
   @nextpic = =>
     viewbox = $('div#sahliviewer')
     viewbox.children().remove()
+    $('#panel').empty()
     @scroll_direction = 1
     @scroll_speed = 5
     i = @currentpic
@@ -230,14 +231,14 @@ class @Sahli
       $('canvas').width newwidth
     else
       if zoomee.width() != @origwidth
-        zoomee.width @origwidth
+        zoomee.width @origwidthg
         $('canvas').width '100%'
       else
         zoomee.width '100%'
         $('canvas').width '100%'
 
-# fix this up so it sets the appropriate width for the columns.
-# and then move the canvases into it.
+# calculate # strips - how many times does window height go into full height
+# and then move the canvases into it. - done
 # outbox toggled last to avoid losing width. (prolly need to fix.)
   @panelmode = ->
     $('#panel').toggle()
@@ -245,27 +246,38 @@ class @Sahli
     if $('.scrolly').width() == @origwidth
       $('.scrolly').width '100%'
       $('#panel').empty()
-      fw = $('body').width()
-      fh = window.innerHeight
+      ww = window.innerWidth
+      wh = window.innerHeight
       numpanels = canvs.length
-      hgt = canvs.height() * numpanels
-      numcols = Math.ceil(hgt / fw)
-      amt = fw/numcols
+      fullpicheight = 0
+      fullpicheight = (fullpicheight + i.height) for i in canvs
+
+      stripe_width = 640
+      num_strips = Math.sqrt (ww/stripe_width)*(fullpicheight/wh)
+
+      numcols = Math.ceil num_strips
+
+      scaling_factor = num_strips * wh / fullpicheight
+
+#      newheight = canvs[0].height * scaling_factor
+#      $(canvs[0]).height newheight
+      newwidth = scaling_factor * canvs.height()
+      canvs.width newwidth
+      newheight = $(canvs[0]).height()
+
+      colwidth = ww/numcols
       outer = $('<div>')
-      outer.append @createpanel(i,amt - 6) for i in [1..numcols]
+      outer.append @createpanel(i,colwidth - 6) for i in [1..numcols]
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
-      newwidth = Math.floor fw/(numcols+1)
-      ratio = newwidth / @origwidth
-      canvs.width newwidth
+
       level = 0
       drawcol = 1
       for pic in canvs
         $("#column#{drawcol}").append pic
-        newheight = pic.height * ratio
         level = level + newheight
-        if level+newheight > fh+newheight/2
+        if level+(newheight/2) > wh
           level = 0
           drawcol = drawcol + 1
 
@@ -278,7 +290,7 @@ class @Sahli
 
 
   @createpanel = (i,amt) ->
-    dcol = $("<div id='column#{i}'>")
+    dcol = $("<div id='column#{i}'>#{i}</div>")
     dcol.addClass 'panelcolumn'
     dcol.width amt
 
