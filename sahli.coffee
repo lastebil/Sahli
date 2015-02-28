@@ -252,12 +252,12 @@ class @Sahli
       fullpicheight = 0
       fullpicheight = (fullpicheight + i.height) for i in canvs
 
-      stripe_width = 640
+      stripe_width = ww/Math.ceil(fullpicheight/ww)
       num_strips = Math.sqrt (ww/stripe_width)*(fullpicheight/wh)
 
-      numcols = Math.ceil num_strips
+      numcols = Math.floor num_strips-1
 
-      scaling_factor = num_strips * wh / fullpicheight
+      scaling_factor = num_strips * (wh / fullpicheight)
 
 #      newheight = canvs[0].height * scaling_factor
 #      $(canvs[0]).height newheight
