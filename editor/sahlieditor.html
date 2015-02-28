@@ -1,0 +1,172 @@
+<html>
+<head>
+	<title>Sahli Editor</title>
+  <!-- changed to local copies to avoid party network "dropouts" preventing the code from running
+  as it can't be pulled from afar if the network is down. Use remote if you would like, just uncomment
+	<script src="//code.jquery.com/jquery-2.1.0.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="//code.jquery.com/ui/1.10.4/jquery-ui.min.js" type="text/javascript" charset="utf-8" ></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/dot-luv/jquery-ui.css">
+-->
+  <script src="jquery-2.1.0.min.js" type="text/javascript"></script>
+  <script src="jquery-ui.min.js" type="text/javascript"></script>
+	<script src="sahliedit.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="sahliedit.css">
+  <link rel="stylesheet" href="jquery-ui-dot-luv.css">
+</head>
+<body>
+	<h1>Sahli Editor</h1>
+	<div id='editbox'>
+		<div id='buttonbox'>
+			<button id='newsahli'>New</button>
+			<button id='loadsahli'>Load</button>
+		</div>
+	</div>
+
+    <div class='hidden' id='list'>
+        <label>Location of Files:<input type="text" id='dirlocation' name="location" value=""></label>
+        <ol id='sortlist'>
+        </ol>
+        <p id='listappend'>Add</p>
+        <p id='listlist'>List</p>
+        <p id='listdisplay'>Redisplay</p>
+        <p id='listsave'>Save</p>
+    </div>
+
+	<div class='hidden' id='formica'>
+		<form accept-charset="utf-8">
+			<ul>
+				<div class='groupbox' id='basics'>
+					<p>Basics:</p>
+					<div class='drop'>
+						<li>
+							<input type="text" id="entryindex" value="" class='hidden'>
+							<label for="file">File name:</label>
+                            <input id='entryfile' type="text" name="file" value="" placeholder="">
+                            <input id='entryfilepick' type="file" class='hidden' name="pickfile" value="" placeholder="">
+						</li>
+						<li>
+							<label for="file">Title:</label>
+							<input id='entryname' type="text" name="name" value="" placeholder="">
+						</li>
+						<li>
+							<label for="author">Author's name:</label>
+							<input id='entryauthor' type="text" name="author" value="" placeholder="">
+						</li>
+					</div>
+				</div>
+				<div class='groupbox' id='displaydata'>
+					<p>Display:</p>
+					<div class='drop' id='fl'>
+						<li>
+							<label for="file">Ascii or Ansi?</label>
+							<button id='entryamiga' name="amiga" id='amiga' type='button' value='1'>Ascii</button>
+						</li>
+            <li>
+              <label for='filetype'>File Type:</label>
+              <select name='filetype' id='entryfiletype'>
+                <option value="plain">plain</option>
+                <option value="ansi">ansi</option>
+                <option value="xbin">xbin</option>
+                <option value="ice">ice</option>
+                <option value="adf">adf</option>
+                <option value="avatar">avatar</option>
+                <option value="bin">bin</option>
+                <option value="idf">idf</option>
+                <option value="pcboard">pcboard</option>
+                <option value="tundra">tundra</option>
+              </select>
+            </li>
+						<li>
+							<label for="width">Width of file:</label>
+							<input id='entrywidth' type="number" name="width" value="80" placeholder="">
+						</li>
+						<li>
+							<label for="font">Font:</label>
+							<select id='entryfont' name="font">
+								<option value="Propaz">Propaz</option>
+<!--								<option value="Topaz13">Topaz13</option> -->
+<!--								<option value="mOsOli">mOsOli</option> -->
+<!--								<option value="MicroKnight">Microknight</option> -->
+								<option value="ansifont">Ansifont</option>
+							</select>
+						</li>
+						<div class='45box'>
+							<li>
+								<label for="color">Text Color:</label>
+                                <select name="color" id='entrycolor' class='colorbox'>
+                                    <option value="#E0E0E0">Light Grey</option>
+                                    <option value="#A0A0E0">Light Blue</option>
+                                    <option value="#9AFE2E">Light Green</option>
+                                    <option value="#FF0000">Red</option>
+                                    <option value="#FF8000">Orange</option>
+                                    <option value="#FFFF00">Yellow</option>
+                                    <option value="#00F000">Green</option>
+                                    <option value="#2EFEF7">Cyan</option>
+                                    <option value="#002EF7">Blue</option>
+                                    <option value="#0B0B3B">Navy</option>
+                                    <option value="#FF00FF">Magenta</option>
+                                    <option value="#8000FF">Purple</option>
+                                    <option value="#0A2A0A">Dark Green</option>
+                                    <option value="#3B3B3B">Dark Grey</option>
+                                    <option value="#FFFFFF">White</option>
+                                    <option value="#000000">Black</option>
+                                </select>
+							</li>
+							<li>
+								<label for="bg">Background color:</label>
+                                <select name="bg" id='entrybg' class='colorbox'>
+                                    <option value="#E0E0E0">Light Grey</option>
+                                    <option value="#A0A0E0">Light Blue</option>
+                                    <option value="#9AFE2E">Light Green</option>
+                                    <option value="#FF0000">Red</option>
+                                    <option value="#FF8000">Orange</option>
+                                    <option value="#FFFF00">Yellow</option>
+                                    <option value="#00F000">Green</option>
+                                    <option value="#2EFEF7">Cyan</option>
+                                    <option value="#002EF7">Blue</option>
+                                    <option value="#0B0B3B">Navy</option>
+                                    <option value="#FF00FF">Magenta</option>
+                                    <option value="#8000FF">Purple</option>
+                                    <option value="#0A2A0A">Dark Green</option>
+                                    <option value="#3B3B3B">Dark Grey</option>
+                                    <option value="#FFFFFF">White</option>
+                                    <option value="#000000">Black</option>
+                                </select>
+							</li>
+						</div>
+						<div class='45box'>
+							<pre id='sahliascii'>
+   ________________________,  ._____,
+  |  ___|___    |  |   |   |  |_____|
+  |_____  |  _  |      |   |__|   |
+    |_____|_____|___|__|______|___|
+							</pre>
+						</div>
+					</div>
+				</div>
+				<div class='groupbox' id='optionals'>
+				<p>Optional text:</p>
+				<div class='drop'>
+					<li>
+						<label for="line1">Optional Info line 1:</label>
+						<input id='entryline1' type="text" name="line1" value="" placeholder="">
+					</li>
+					<li>
+						<label for="line2">Optional Info line 2:</label>
+						<input id='entryline2' type="text" name="line2" value="" placeholder="">
+					</li>
+					<li>
+						<label for="text">Optional Text (notes, comments, etc):</label>
+						<textarea id='entrytext' name='text'></textarea>
+					</li>
+				</div>
+			</ul>
+		</form>
+	</div>
+
+  <div class='hidden' id='dumparea' >
+    <p>Copy and save all this textual data as list.sahli in your Sahli directory <span id='closespan'>[X]</span></p>
+    <textarea name="sahlioutput" id='sahlioutput'></textarea>
+  </div>
+</body>
+</html>

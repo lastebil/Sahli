@@ -1,0 +1,30 @@
+x 2015-02-16 cleanup (remove 16colorslib)
+x 2014-08-06 @EDITOR delete an entry CORRECTLY
+x 2014-08-06 @EDITOR button to reload filename list from directory
+x 2014-08-07 @EDITOR button to insert an entry - make it insert a blank
+x 2014-08-06 @EDITOR dump to screen or file, not to console when saving
+x 2014-08-06 @EDITOR save (print) routine
+x 2014-08-07 @EDITOR text/bg colors change 'SAHLI' thing
+x 2014-08-07 @EDITOR update the line item when saving - what the heck is 'line item?' (meant update the listing to show edits)
+x 2014-08-07 (A) fix color functions to use alpha (so they show up!)
+x 2014-08-06 (A) Add "type" of file(format) - plain, xbin, etc.(
+x 2014-08-06 (A) Create Editor - Standalone @EDITOR
+x (A) Error handler for file not found
+x 2014-03-24 (B) Get with dfox on the partymeister package version
+x 2014-04-05 (A) Split coffeescript into files, use cake.
+x 2014-04-05 (A) Study 16colors site - how does IT remove sauce info? It DOESN'T. FUCK.
+x 2014-04-16 (A)  - create interface   @EDITOR
+x 2014-04-16 (C) separate to individual renderers  @16colors
+x 2014-04-16 @EDITOR edit item saves data routine
+x 2014-04-17 @EDITOR BUGFIX - ansi/ascii toggle/saving
+x 2015-02-22 fix scrolling!
+x 2015-02-22 load SAUCE into 'info' lines (should be done at prep) @SAUCE @EDITRO
+x 2015-02-22 Add fonts - Amiga 1200 (replace or compare w/16colors version) @16colors
+x 2015-02-22 Add fonts - Amiga 500 @16colors
+x 2015-02-22 Add fonts - microknight @16colors
+x 2015-02-22 Add fonts - mOsOul @Fonts @16colors
+x 2015-02-22 Add p0t - fonts-nOodle @16colors
+x 2015-02-22 Fix Amiga mode rendering via sixteencolors lib @16colors
+x 2015-02-22 check below items for neccesity
+x 2015-02-22 load to array/picture, render from picture @16colors
+x 2015-02-22 speed up rendering more? @16colors

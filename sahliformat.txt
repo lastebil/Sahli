@@ -1,0 +1,114 @@
+== Sahli file format docuentation ==
+
+A Sahli file is JSON, so all JSON formatting and rule processing applies.
+
+Version A:
+There were 2 primary sections within the file: The slide section and the
+filedata section.
+Version B:
+3 primary sections, slide / filedata and now location.
+
+=== location ===
+  The directory in which the slide and filedata files sit.
+
+=== slides ===
+
+  This, if implemented (which it isn't) would allow you to generate slides-
+  such as if you weren't using partymeister for slides.
+
+EXAMPLE:
+    "slides": {
+        "background": "screen.png",
+        "template": "template.html",
+        "css": "template.css"
+    },
+
+    background: a file that would be put in the background when showing
+     the slides.
+    template: a html template, which would be used to display the 'info'
+    on the slide. (Author, line1, line2, text, etc.)  Not implemented, but
+    when it is, it probably will allow you to have blank spots for each of
+    the variables in 'filedata.'
+    css: This would let you define the css for the slide; thus allowing
+    font changes for each line, size changes, color changes, etc.
+
+=== filedata ===
+
+  This _is_ implemented and holds the data for each ansi or ascii "slide" in
+  the "slideshow" (if using a 'slideshow' paradigm.)
+
+EXAMPLE:
+    "filedata": [{
+        "file": "spaceflight.asc",
+        "name": "Spaceflight",
+        "filetype":"plain",
+        "amiga": true,
+        "width": "80",
+        "author": "Urs",
+        "font": "Propaz",
+        "color": [
+            200,
+            200,
+            200,
+            255
+        ],
+        "bg": [
+            0,
+            0,
+            0,
+            0
+        ],
+        "line1": "Revision 2013",
+        "line2": "Mercury",
+        "text": "No tools, just a text editor"
+    },
+
+    file: the name of the file on disk / in the directory.
+    name: the name of the piece - shown in the editor and in the info panel.
+    filetype: * NEW IN VERSION B*
+      The type of file - i.e. use the parsing method for file type X.
+      Possible legal types:
+      "plain" - for 'standard' ascii (Amiga or pc.) ISO-8859-1
+      "ansi" - 'normal' ansi, can have or not have SAUCE data.
+      "xbin" - saved as xbin
+      "ice" - saved in the ICE format
+      "adf" - saved as ADF (NOT amiga disk file, some ansi format that is not
+         an amiga format. sk!n, please don't save to an amiga disk file (adf)
+         and then put an adf formatted amiga ascii inside, I'll explode (:  )
+      "avatar" - avatar format
+      "bin" - bin format. Not "any binary" format, but the ansi 'bin' format.
+       * no I don't know the difference, but someone does and they wrote the
+         original code for it.
+      "idf" - idf format.
+      "pcboard" - pcboard ansi format.
+      "tundra" - tundra format. (from tundradraw, I assume.)
+
+    * NOTE: It is ENTIRELY possible to have an Amiga ascii in xbin format.
+    * So the file format does NOT dictate the font. It just says "parse this
+      way."
+
+    amiga: Ascii, or Ansi ? (the "original" either/or parsing used 'ansi' to
+      mean pc ansi, and all ascii would be 'amiga.' This wasn't nearly enough
+      to cover all the bases.)
+      Essentially, if it's a "plain" file, if you choose 'Amiga' the ASCII
+      rendering will be used - and you can flip 'text rendering' on and off
+      (which means 'use the standard webpage' and 'draw glyphs for each of
+      the characters.')
+    width: How wide is this piece? (80 is standard, I've tested 132 colomns,
+      Iks is doing a wide piece which is something like 10,000 so...)
+      Some formats will truncate a line to save space, so it's important for
+      some renderings to have this correct or the 'linefeed' will be off.
+    author: the author of the piece. (Sk!n, H7, Enzo, dmg, etc.)
+    font: the font used to render. Mostly for ascii and especially amiga
+      as Amiga fonts and PC fonts are VERY different in terms of / and \ slant
+      and several other noticable differences.
+      Possible legal types:
+      'Propaz' 'ansifont' 'mOsOul' 'Microknight' 'p0t-nOodle'
+       * Propaz and ansifont are in Version A, B will have the others.
+       * p0t-nOodle should be double checked for spelling, Truck.
+    color: when using ascii, display the rendered glyphs in this color.
+      If using the alternate display (faster) mode, this has no effect.
+      - unless I implement it via fiddling with the css.
+    bg: similarly, this is the background color for ascii. I believe this may
+      work whichever rendering mode you use.
+    line1 / line2 / text:  Stuff for the info panel.

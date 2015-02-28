@@ -1,23 +1,14 @@
-Sahli todo (programmer's day 2013 - Churchy La Femme reminds us that Friday
-the 13th comes on Friday this month)
-
-(A) Fix Amiga mode rendering via sixteencolors lib
-(B) Add fonts - mOsOul
-(B) Add fonts - microknight
-(B) Add p0t - fonts-nOodle
-(B) Add fonts - Amiga 500
-(B) Add fonts - Amiga 1200 (replace or compare w/16colors version)
-
-SAUCE file parsing -
-(A) remove the SAUCE lines at bottom, return ANSI object for render
-(B) load SAUCE into 'info' lines (should be done at prep)
-
-OTHER file parsing -
-(A) remove their lines like SAUCE, return ANSI object for render
-(B) load other-info into 'info' (done at prep)
-
-(A) Create Editor - Standalone
-(A)  - create interface
-(A)  - parse files for 'info'
-
-(B) Get with dfox on the partymeister package version
+(B) 2015-02-22 ADF  @OTHER
+(B) @EDITOR add more Amiga fonts.
+(B) @EDITOR redo filenames to load from list of files in directory (specfied in 'location')
+(A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
+(A) XBIN @OTHER
+(C) Amiga ANSI @OTHER
+(B) Avatar @OTHER
+(B) BIN @OTHER
+(B) IDF @OTHER
+(B) PCBOARD @OTHER
+(D) THUMBNAILS - for returning to partymeister @PARTYMEISTER
+(B) Tundra @OTHER
+(D) implement package import from partymeister  @PARTYMEISTER
+(D) hook for progress  @progress @PARTYMEISTER
