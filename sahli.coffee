@@ -249,25 +249,22 @@ class @Sahli
       ww = window.innerWidth
       wh = window.innerHeight
       numpanels = canvs.length
-      fullpicheight = 0
-      fullpicheight = (fullpicheight + i.height) for i in canvs
+      screenratio = ww/wh
+      panelratio = canvs[0].height/canvs[0].width
 
-      stripe_width = ww/Math.ceil(fullpicheight/ww)
-      num_strips = Math.sqrt (ww/stripe_width)*(fullpicheight/wh)
+      x = Math.sqrt numpanels/screenratio
+      numcols = Math.round(screenratio*x)
+      picdpercol = Math.round(numpanels/numcols)
 
-      numcols = Math.floor num_strips-1
+      newwidth = ww/numcols
 
-      scaling_factor = num_strips * (wh / fullpicheight)
-
-#      newheight = canvs[0].height * scaling_factor
-#      $(canvs[0]).height newheight
-      newwidth = scaling_factor * canvs.height()
       canvs.width newwidth
       newheight = $(canvs[0]).height()
 
       colwidth = ww/numcols
+
       outer = $('<div>')
-      outer.append @createpanel(i,colwidth - 6) for i in [1..numcols]
+      outer.append @createpanel(i,colwidth - 6) for i in [1..numcols-1]
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
@@ -276,10 +273,13 @@ class @Sahli
       drawcol = 1
       for pic in canvs
         $("#column#{drawcol}").append pic
-        level = level + newheight
-        if level+(newheight/2) > wh
+        level += 1
+        if level > picdpercol
           level = 0
           drawcol = drawcol + 1
+
+      console.log "ww: #{ww} wh: #{wh} numpanels: #{numpanels} x: #{x}"
+      console.log "numcols: #{numcols} picdpercol: #{picdpercol}"
 
     else
       $('.scrolly').width @origwidth
@@ -322,7 +322,7 @@ class @Sahli
         when @keycode 'x'
           @changescrolldirection 1
         when @keycode 'c'
-          @panelmode()
+          @panelmode(1)
         when @keycode '1'
           @changespeed 1
         when @keycode '2'

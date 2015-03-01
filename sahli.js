@@ -281,7 +281,7 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.panelmode = function() {
-      var canvs, colwidth, drawcol, fullpicheight, i, level, newheight, newwidth, num_strips, numcols, numpanels, outer, pic, scaling_factor, stripe_width, wh, ww, _i, _j, _k, _l, _len, _len1, _len2, _results;
+      var canvs, colwidth, drawcol, i, level, newheight, newwidth, numcols, numpanels, outer, panelratio, pic, picdpercol, screenratio, wh, ww, x, _i, _j, _k, _len, _len1, _ref;
       $('#panel').toggle();
       canvs = $('canvas');
       if ($('.scrolly').width() === this.origwidth) {
@@ -290,21 +290,17 @@ l__________/__________|___|______l__________j_____j
         ww = window.innerWidth;
         wh = window.innerHeight;
         numpanels = canvs.length;
-        fullpicheight = 0;
-        for (_i = 0, _len = canvs.length; _i < _len; _i++) {
-          i = canvs[_i];
-          fullpicheight = fullpicheight + i.height;
-        }
-        stripe_width = ww / Math.ceil(fullpicheight / ww);
-        num_strips = Math.sqrt((ww / stripe_width) * (fullpicheight / wh));
-        numcols = Math.floor(num_strips - 1);
-        scaling_factor = num_strips * (wh / fullpicheight);
-        newwidth = scaling_factor * canvs.height();
+        screenratio = ww / wh;
+        panelratio = canvs[0].height / canvs[0].width;
+        x = Math.sqrt(numpanels / screenratio);
+        numcols = Math.round(screenratio * x);
+        picdpercol = Math.round(numpanels / numcols);
+        newwidth = ww / numcols;
         canvs.width(newwidth);
         newheight = $(canvs[0]).height();
         colwidth = ww / numcols;
         outer = $('<div>');
-        for (i = _j = 1; 1 <= numcols ? _j <= numcols : _j >= numcols; i = 1 <= numcols ? ++_j : --_j) {
+        for (i = _i = 1, _ref = numcols - 1; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
           outer.append(this.createpanel(i, colwidth - 6));
         }
         outer.addClass('nosb');
@@ -312,24 +308,22 @@ l__________/__________|___|______l__________j_____j
         $('#outbox').toggle();
         level = 0;
         drawcol = 1;
-        _results = [];
-        for (_k = 0, _len1 = canvs.length; _k < _len1; _k++) {
-          pic = canvs[_k];
+        for (_j = 0, _len = canvs.length; _j < _len; _j++) {
+          pic = canvs[_j];
           $("#column" + drawcol).append(pic);
-          level = level + newheight;
-          if (level + (newheight / 2) > wh) {
+          level += 1;
+          if (level > picdpercol) {
             level = 0;
-            _results.push(drawcol = drawcol + 1);
-          } else {
-            _results.push(void 0);
+            drawcol = drawcol + 1;
           }
         }
-        return _results;
+        console.log("ww: " + ww + " wh: " + wh + " numpanels: " + numpanels + " x: " + x);
+        return console.log("numcols: " + numcols + " picdpercol: " + picdpercol);
       } else {
         $('.scrolly').width(this.origwidth);
         $('#outbox').show();
-        for (_l = 0, _len2 = canvs.length; _l < _len2; _l++) {
-          pic = canvs[_l];
+        for (_k = 0, _len1 = canvs.length; _k < _len1; _k++) {
+          pic = canvs[_k];
           $('.scrolly').append(pic);
         }
         canvs.width(this.origwidth);
@@ -373,7 +367,7 @@ l__________/__________|___|______l__________j_____j
             case _this.keycode('x'):
               return _this.changescrolldirection(1);
             case _this.keycode('c'):
-              return _this.panelmode();
+              return _this.panelmode(1);
             case _this.keycode('1'):
               return _this.changespeed(1);
             case _this.keycode('2'):
