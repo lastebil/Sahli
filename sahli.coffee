@@ -237,9 +237,9 @@ class @Sahli
         zoomee.width '100%'
         $('canvas').width '100%'
 
-# calculate # strips - how many times does window height go into full height
-# and then move the canvases into it. - done
-# outbox toggled last to avoid losing width. (prolly need to fix.)
+# create a panel of 'strips' so as to show a very long vertical piece on one
+# big 'plate'
+
   @panelmode = ->
     $('#panel').toggle()
     canvs = $('canvas')
@@ -267,7 +267,6 @@ class @Sahli
 
       outer = $('<div>')
       console.log numcols
-#      outer.append @createpanel(i,newwidth - 6) for i in [1..numcols-1]
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
@@ -286,10 +285,10 @@ class @Sahli
           if ct < numpanels
             outer.append @createpanel(drawcol,newwidth - 6)
 
-      console.log "ww: #{ww} wh: #{wh} numpanels: #{numpanels} x: #{x}"
-      console.log "numcols: #{numcols} picdpercol: #{picdpercol}"
-      console.log "psh: #{panelslotheight} pps: #{panelsperslot}"
-      console.log "a*b: #{panelsperslot*(numcols-1)}"
+#      console.log "ww: #{ww} wh: #{wh} numpanels: #{numpanels} x: #{x}"
+#      console.log "numcols: #{numcols} picdpercol: #{picdpercol}"
+#      console.log "psh: #{panelslotheight} pps: #{panelsperslot}"
+#      console.log "a*b: #{panelsperslot*(numcols-1)}"
 
     else
       $('.scrolly').width @origwidth
@@ -300,8 +299,7 @@ class @Sahli
 
 
   @createpanel = (i,amt) ->
-    dcol = $("<div id='column#{i}'>#{i}</div>")
-    dcol.addClass 'panelcolumn'
+    dcol = $("<div id='column#{i}' class='panelcolumn'>#{i}</div>")
     dcol.width amt
 
   @loadkeys = ->

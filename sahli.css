@@ -1,3 +1,7 @@
+/*
+  Sahli css
+*/
+
 body {
     background-color: black;
     margin: 0;
@@ -152,8 +156,8 @@ p.infobox {
 }
 
 .panelcolumn {
-    height: 100%;
-    color: #00f080;
+
+    color: transparent;
     width: 2em;
     background: #082020;
     display: inline-table;

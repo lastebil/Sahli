@@ -281,7 +281,7 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.panelmode = function() {
-      var canvs, colwidth, drawcol, i, level, newheight, newwidth, numcols, numpanels, outer, panelratio, pic, picdpercol, screenratio, wh, ww, x, _i, _j, _k, _len, _len1, _ref;
+      var canvs, ct, drawcol, level, newheight, newwidth, numcols, numpanels, outer, panelratio, panelslotheight, panelsperslot, pic, picdpercol, screenratio, wh, ww, x, _i, _j, _len, _len1, _results;
       $('#panel').toggle();
       canvs = $('canvas');
       if ($('.scrolly').width() === this.origwidth) {
@@ -297,33 +297,42 @@ l__________/__________|___|______l__________j_____j
         picdpercol = Math.round(numpanels / numcols);
         newwidth = ww / numcols;
         canvs.width(newwidth);
-        newheight = $(canvs[0]).height();
-        colwidth = ww / numcols;
+        newheight = canvs.height();
+        panelsperslot = Math.floor(wh / newheight);
+        panelslotheight = panelsperslot * newheight;
         outer = $('<div>');
-        for (i = _i = 1, _ref = numcols - 1; 1 <= _ref ? _i <= _ref : _i >= _ref; i = 1 <= _ref ? ++_i : --_i) {
-          outer.append(this.createpanel(i, colwidth - 6));
-        }
+        console.log(numcols);
         outer.addClass('nosb');
         $('#panel').append(outer);
         $('#outbox').toggle();
         level = 0;
         drawcol = 1;
-        for (_j = 0, _len = canvs.length; _j < _len; _j++) {
-          pic = canvs[_j];
+        ct = 0;
+        outer.append(this.createpanel(1, newwidth - 6));
+        _results = [];
+        for (_i = 0, _len = canvs.length; _i < _len; _i++) {
+          pic = canvs[_i];
           $("#column" + drawcol).append(pic);
           level += 1;
-          if (level > picdpercol) {
+          ct += 1;
+          if (level === panelsperslot) {
             level = 0;
             drawcol = drawcol + 1;
+            if (ct < numpanels) {
+              _results.push(outer.append(this.createpanel(drawcol, newwidth - 6)));
+            } else {
+              _results.push(void 0);
+            }
+          } else {
+            _results.push(void 0);
           }
         }
-        console.log("ww: " + ww + " wh: " + wh + " numpanels: " + numpanels + " x: " + x);
-        return console.log("numcols: " + numcols + " picdpercol: " + picdpercol);
+        return _results;
       } else {
         $('.scrolly').width(this.origwidth);
         $('#outbox').show();
-        for (_k = 0, _len1 = canvs.length; _k < _len1; _k++) {
-          pic = canvs[_k];
+        for (_j = 0, _len1 = canvs.length; _j < _len1; _j++) {
+          pic = canvs[_j];
           $('.scrolly').append(pic);
         }
         canvs.width(this.origwidth);
@@ -333,8 +342,7 @@ l__________/__________|___|______l__________j_____j
 
     Sahli.createpanel = function(i, amt) {
       var dcol;
-      dcol = $("<div id='column" + i + "'>" + i + "</div>");
-      dcol.addClass('panelcolumn');
+      dcol = $("<div id='column" + i + "' class='panelcolumn'>" + i + "</div>");
       return dcol.width(amt);
     };
 
