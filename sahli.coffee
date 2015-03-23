@@ -250,6 +250,7 @@ class @Sahli
       wh = window.innerHeight
       numpanels = canvs.length
       screenratio = ww/wh
+
       panelratio = canvs[0].height/canvs[0].width
 
       x = Math.sqrt numpanels/screenratio
@@ -259,27 +260,36 @@ class @Sahli
       newwidth = ww/numcols
 
       canvs.width newwidth
-      newheight = $(canvs[0]).height()
 
-      colwidth = ww/numcols
+      newheight = canvs.height()
+      panelsperslot = Math.floor wh/newheight
+      panelslotheight = panelsperslot * newheight
 
       outer = $('<div>')
-      outer.append @createpanel(i,colwidth - 6) for i in [1..numcols-1]
+      console.log numcols
+#      outer.append @createpanel(i,newwidth - 6) for i in [1..numcols-1]
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
 
       level = 0
       drawcol = 1
+      ct = 0
+      outer.append @createpanel(1,newwidth - 6)
       for pic in canvs
         $("#column#{drawcol}").append pic
         level += 1
-        if level > picdpercol
+        ct += 1
+        if level == panelsperslot
           level = 0
           drawcol = drawcol + 1
+          if ct < numpanels
+            outer.append @createpanel(drawcol,newwidth - 6)
 
       console.log "ww: #{ww} wh: #{wh} numpanels: #{numpanels} x: #{x}"
       console.log "numcols: #{numcols} picdpercol: #{picdpercol}"
+      console.log "psh: #{panelslotheight} pps: #{panelsperslot}"
+      console.log "a*b: #{panelsperslot*(numcols-1)}"
 
     else
       $('.scrolly').width @origwidth
