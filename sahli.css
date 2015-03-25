@@ -83,7 +83,7 @@ h1.help {
     padding: .15ex;
 }
 
-ul.keylist li.nodot {
+ul.keylist nodot {
     list-style: none;
     padding-left: 2em;
 }
@@ -144,28 +144,26 @@ p.infobox {
 
 #panel {
     width: 100%;
-    background: #0a0a0f;
     height: 100%;
     border: 0;
     font-family: microknight;
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 0;
+    top: 50%;
     padding: 0;
     margin: 0;
     text-align: center;
 }
 
 .panelcolumn {
-
     color: transparent;
     width: 2em;
-    background: #082020;
     display: inline-table;
 }
 
 .nosb {
     overflow: hidden;
+    transform: translateY(-50%);
 }
 
 @font-face {

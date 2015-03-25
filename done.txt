@@ -38,3 +38,4 @@ x 2015-03-25 XBIN @OTHER
 x 2015-03-25 remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
 x 2015-03-25 help on top of panel mode (always top)
 x 2015-03-25 info page
+x 2015-03-25 center panel mode vertically

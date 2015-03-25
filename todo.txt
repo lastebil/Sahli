@@ -4,7 +4,6 @@
 (D) THUMBNAILS - for returning to partymeister @PARTYMEISTER
 (D) implement package import from partymeister  @PARTYMEISTER
 (D) hook for progress  @progress @PARTYMEISTER
-(A) center panel mode vertically
 (C) SAHLI ansi & ascii for load page
 (C) redo load page (not popup, info)
 (B) Preload
