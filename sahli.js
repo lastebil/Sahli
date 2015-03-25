@@ -86,25 +86,6 @@ l__________/__________|___|______l__________j_____j
       return req.send(null);
     };
 
-    Sahli.loadansi = function(picdata, inserthere) {
-      var fname, pdiv;
-      fname = this.location + '/' + picdata.file;
-      pdiv = $('<div>');
-      pdiv.addClass('scrolly');
-      return AnsiLove.render(fname, (function(canv, SAUCE) {
-        pdiv.append(canv);
-        inserthere.after(pdiv);
-        this.origwidth = canv.width;
-        this.origheight = canv.height;
-        return this.SAUCE = SAUCE;
-      }), {
-        'font': '80x25',
-        'bits': '8',
-        'columns': 160,
-        'thumbnail': 0
-      });
-    };
-
     Sahli.loadhugeansi = function(picdata, inserthere) {
       var calcheight, canvwidth, fname, pdiv;
       fname = this.location + '/' + picdata.file;
@@ -122,6 +103,7 @@ l__________/__________|___|______l__________j_____j
             return canvwidth = canv.width;
           });
           inserthere.after(pdiv);
+          $('body').scrollTop(0);
           _this.SAUCE = SAUCE;
           _this.origwidth = canvwidth;
           _this.origheight = calcheight;
@@ -133,7 +115,7 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.loadavatar = function(picdata, inserthere) {
-      return alert('avatar', picdata, inserthere);
+      return console.log('avatar', picdata, inserthere);
     };
 
     Sahli.requestsahlifile = function(url) {
@@ -186,8 +168,7 @@ l__________/__________|___|______l__________j_____j
       $('#panel').hide();
       $('#outbox').show();
       $('body').stop();
-      Sahli.loadinfopanel(i);
-      return $('body').scrollTop(0);
+      return Sahli.loadinfopanel(i);
     };
 
     Sahli.togglefullscreen = function() {

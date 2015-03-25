@@ -64,35 +64,16 @@ class @Sahli
     pdiv.prepend buf.clone()
     pdiv.append ptxt
     pdiv.append buf
-    # this is going to be interesting when dealing with ansi files in UTF-8
-    # or SHIFT-JIS etc  - is it needed now? no. it is not.
-#    req.overrideMimeType 'text/plain; charset=ISO-8859-1'
     req.onreadystatechange = ->
       if req.readyState == req.DONE
         if req.status == 200 or req.status == 0
           ptxt.text @responseText
           inserthere.after pdiv
-          $('body').scrollTop(0)
+          $('body').scrollTop 0
         else
           @loaderror inserthere, fname, req.statusText, req.status
     req.open 'GET', fname, true
     req.send null
-
-  @loadansi = (picdata, inserthere) ->
-    fname = @location + '/' + picdata.file
-    pdiv = $('<div>')
-    pdiv.addClass 'scrolly'
-    AnsiLove.render fname, ((canv, SAUCE) ->
-      pdiv.append canv
-      inserthere.after pdiv
-      @origwidth = canv.width
-      @origheight = canv.height
-      @SAUCE = SAUCE
-    ),
-      'font': '80x25'
-      'bits': '8'
-      'columns': 160
-      'thumbnail': 0
 
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
@@ -108,6 +89,7 @@ class @Sahli
         calcheight = calcheight + canv.height
         canvwidth = canv.width
       inserthere.after pdiv
+      $('body').scrollTop 0
       @SAUCE = SAUCE
       @origwidth = canvwidth
       @origheight = calcheight
@@ -115,7 +97,7 @@ class @Sahli
     ), 30, 'bits': '8'
 
   @loadavatar = (picdata, inserthere) ->
-    alert 'avatar', picdata, inserthere
+    console.log 'avatar', picdata, inserthere
 
   @requestsahlifile = (url) ->
     @loadkeys()
@@ -159,8 +141,7 @@ class @Sahli
     $('#panel').hide()
     $('#outbox').show()
     $('body').stop()
-    @loadinfopanel(i)
-    $('body').scrollTop(0)
+    @loadinfopanel i
 
 
   @togglefullscreen = ->
