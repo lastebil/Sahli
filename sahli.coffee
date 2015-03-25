@@ -129,8 +129,18 @@ class @Sahli
       @filedata = json.filedata
       @slides = json.slides
       @location = json.location
-
       alert "SAHLI READY TO GO\n#{@filedata.length} Entries"
+
+  @loadinfopanel = (index) ->
+    data = @filedata[index]
+    $('.infobox h1').text  data.name
+    $('.infobox h2').text  data.author
+    $('h3.infobox')[0].textContent = data.line1
+    $('h3.infobox')[1].textContent = data.line2
+    $('p.bigtext').text data.text
+    $('.infobox span')[0].textContent = data.filename
+    $('.infobox span')[1].textContent = data.width
+    $('.infobox span')[2].textContent = data.font
 
   @nextpic = =>
     viewbox = $('div#sahliviewer')
@@ -149,6 +159,7 @@ class @Sahli
     $('#panel').hide()
     $('#outbox').show()
     $('body').stop()
+    @loadinfopanel(i)
     $('body').scrollTop(0)
 
 
@@ -244,9 +255,6 @@ class @Sahli
         zoomee.width '100%'
         $('canvas').width '100%'
 
-  @infobar = ->
-    $('.infobox').toggle()
-
 # create a panel of 'strips' so as to show a very long vertical piece on one
 # big 'plate'
 
@@ -334,7 +342,7 @@ class @Sahli
         when @keycode 'c'
           @panelmode(1)
         when @keycode 'i'
-          @infobar()
+          $('div.infobox').toggle()
         when @keycode '1'
           @changespeed 1
         when @keycode '2'

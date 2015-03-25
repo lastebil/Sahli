@@ -71,7 +71,6 @@ l__________/__________|___|______l__________j_____j
       pdiv.prepend(buf.clone());
       pdiv.append(ptxt);
       pdiv.append(buf);
-      req.overrideMimeType('text/plain; charset=ISO-8859-1');
       req.onreadystatechange = function() {
         if (req.readyState === req.DONE) {
           if (req.status === 200 || req.status === 0) {
@@ -155,6 +154,19 @@ l__________/__________|___|______l__________j_____j
       })(this));
     };
 
+    Sahli.loadinfopanel = function(index) {
+      var data;
+      data = this.filedata[index];
+      $('.infobox h1').text(data.name);
+      $('.infobox h2').text(data.author);
+      $('h3.infobox')[0].textContent = data.line1;
+      $('h3.infobox')[1].textContent = data.line2;
+      $('p.bigtext').text(data.text);
+      $('.infobox span')[0].textContent = data.filename;
+      $('.infobox span')[1].textContent = data.width;
+      return $('.infobox span')[2].textContent = data.font;
+    };
+
     Sahli.nextpic = function() {
       var filedata, i, viewbox;
       viewbox = $('div#sahliviewer');
@@ -174,6 +186,7 @@ l__________/__________|___|______l__________j_____j
       $('#panel').hide();
       $('#outbox').show();
       $('body').stop();
+      Sahli.loadinfopanel(i);
       return $('body').scrollTop(0);
     };
 
@@ -251,6 +264,12 @@ l__________/__________|___|______l__________j_____j
       return this.setscroll();
     };
 
+    Sahli.moveline = function(direction) {
+      var curpos;
+      curpos = $('body').scrollTop();
+      return $('body').scrollTop(curpos + (16 * direction));
+    };
+
     Sahli.changescrolldirection = function(direction) {
       this.scroll_direction = direction;
       $('body').stop();
@@ -271,7 +290,7 @@ l__________/__________|___|______l__________j_____j
         return $('canvas').width(newwidth);
       } else {
         if (zoomee.width() !== this.origwidth) {
-          zoomee.width(this.origwidthg);
+          zoomee.width(this.origwidth);
           return $('canvas').width('100%');
         } else {
           zoomee.width('100%');
@@ -284,8 +303,8 @@ l__________/__________|___|______l__________j_____j
       var canvs, ct, drawcol, level, newheight, newwidth, numcols, numpanels, outer, panelratio, panelslotheight, panelsperslot, pic, picdpercol, screenratio, wh, ww, x, _i, _j, _len, _len1, _results;
       $('#panel').toggle();
       canvs = $('canvas');
-      if ($('.scrolly').width() === this.origwidth) {
-        $('.scrolly').width('100%');
+      $('.scrolly').width(this.origwidth);
+      if ($('#panel').css('display') !== 'none') {
         $('#panel').empty();
         ww = window.innerWidth;
         wh = window.innerHeight;
@@ -329,7 +348,6 @@ l__________/__________|___|______l__________j_____j
         }
         return _results;
       } else {
-        $('.scrolly').width(this.origwidth);
         $('#outbox').show();
         for (_j = 0, _len1 = canvs.length; _j < _len1; _j++) {
           pic = canvs[_j];
@@ -376,6 +394,8 @@ l__________/__________|___|______l__________j_____j
               return _this.changescrolldirection(1);
             case _this.keycode('c'):
               return _this.panelmode(1);
+            case _this.keycode('i'):
+              return $('div.infobox').toggle();
             case _this.keycode('1'):
               return _this.changespeed(1);
             case _this.keycode('2'):
@@ -389,6 +409,14 @@ l__________/__________|___|______l__________j_____j
               return _this.scroll_speed = 4;
             case _this.keycode('5'):
               return _this.changespeed(5);
+            case 40:
+              return _this.moveline(1);
+            case 38:
+              return _this.moveline(-1);
+            case 34:
+              return _this.moveline(40);
+            case 33:
+              return _this.moveline(-40);
             case _this.keycode('h'):
               $('.help').css({
                 'left': '33%'

@@ -100,12 +100,12 @@ ul.keylist li.nodot {
 
 div.infobox {
     font-family: mosoul,topaz1200,microknight, Consolas, monospace;
-    position: absolute;
+    position: fixed;
     top: 1ex;
     left: 1ex;
-    -webkit-border-radius: 42px;
-    -moz-border-radius: 42px;
-    border-radius: 42px;
+    -webkit-border-radius: 1ex;
+    -moz-border-radius: 1ex;
+    border-radius: 1ex;
     padding: 2ex;
     margin: 3em;
     background-color: aliceblue;
@@ -135,9 +135,10 @@ p.infobox {
     background-color: lightsteelblue;
     border: 1px outset steelblue;
     margin: .25ex;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    padding: .5ex;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
     width: 30ex;
 }
 
