@@ -64,6 +64,9 @@ class @Sahli
     pdiv.prepend buf.clone()
     pdiv.append ptxt
     pdiv.append buf
+# this is still needed for some Amiga stuff done on Amiga.
+# probably should allow other overrides for UTF-8 and so on.
+    req.overrideMimeType 'text/plain; charset=ISO-8859-1'
     req.onreadystatechange = ->
       if req.readyState == req.DONE
         if req.status == 200 or req.status == 0
@@ -143,7 +146,6 @@ class @Sahli
     $('body').stop()
     @loadinfopanel i
 
-
   @togglefullscreen = ->
     docElm = document.documentElement
     if @fullscreen
@@ -217,7 +219,7 @@ class @Sahli
 #    - save width upon draw
 #    - toggle zoom out to full width / normal
 #    - with a number, change width by that much
-# if scrolling, where are we in the doc? zoom to THAT area.
+# if scrolling, where are we in the doc? zoom to THAT area. - not implemented
   @zoom = (amt) ->
     zoomee = $('div.scrolly')
     if amt?
@@ -225,7 +227,6 @@ class @Sahli
         newwidth = @origwidth
       else
         newwidth = zoomee.width() + amt
-      console.log "#{zoomee.width()} #{newwidth}"
       zoomee.width newwidth
       $('canvas').width newwidth
     else
@@ -324,6 +325,8 @@ class @Sahli
           @panelmode(1)
         when @keycode 'i'
           $('div.infobox').toggle()
+        when @keycode 'v'
+          $('h6').height( (window.innerHeight - $('.scrolly').height()) / 2 )
         when @keycode '1'
           @changespeed 1
         when @keycode '2'

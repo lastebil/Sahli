@@ -71,6 +71,7 @@ l__________/__________|___|______l__________j_____j
       pdiv.prepend(buf.clone());
       pdiv.append(ptxt);
       pdiv.append(buf);
+      req.overrideMimeType('text/plain; charset=ISO-8859-1');
       req.onreadystatechange = function() {
         if (req.readyState === req.DONE) {
           if (req.status === 200 || req.status === 0) {
@@ -266,7 +267,6 @@ l__________/__________|___|______l__________j_____j
         } else {
           newwidth = zoomee.width() + amt;
         }
-        console.log((zoomee.width()) + " " + newwidth);
         zoomee.width(newwidth);
         return $('canvas').width(newwidth);
       } else {
@@ -377,6 +377,8 @@ l__________/__________|___|______l__________j_____j
               return _this.panelmode(1);
             case _this.keycode('i'):
               return $('div.infobox').toggle();
+            case _this.keycode('v'):
+              return $('h6').height((window.innerHeight - $('.scrolly').height()) / 2);
             case _this.keycode('1'):
               return _this.changespeed(1);
             case _this.keycode('2'):

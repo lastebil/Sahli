@@ -32,17 +32,8 @@ body {
 }
 
 h6 {
-    position: fixed;
-    top: 1ex;
-    left: 1ex;
-    border: 1px green ridge;
-    padding: .125em 1em;
-    color: black;
-    background-color: green;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    display: none;
+    color: transparent;
+    background-color: transparent;
 }
 
 .help {
@@ -129,6 +120,10 @@ h3.infobox {
 
 p.infobox {
     margin: .25ex;
+}
+
+.ty50 {
+    transform: translateY(-50%);
 }
 
 .bigtext {
