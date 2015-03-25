@@ -65,8 +65,8 @@ class @Sahli
     pdiv.append ptxt
     pdiv.append buf
     # this is going to be interesting when dealing with ansi files in UTF-8
-    # or SHIFT-JIS etc  - is it needed now?
-    req.overrideMimeType 'text/plain; charset=ISO-8859-1'
+    # or SHIFT-JIS etc  - is it needed now? no. it is not.
+#    req.overrideMimeType 'text/plain; charset=ISO-8859-1'
     req.onreadystatechange = ->
       if req.readyState == req.DONE
         if req.status == 200 or req.status == 0
@@ -238,11 +238,14 @@ class @Sahli
       $('canvas').width newwidth
     else
       if zoomee.width() != @origwidth
-        zoomee.width @origwidthg
+        zoomee.width @origwidth
         $('canvas').width '100%'
       else
         zoomee.width '100%'
         $('canvas').width '100%'
+
+  @infobar = ->
+    $('.infobox').toggle()
 
 # create a panel of 'strips' so as to show a very long vertical piece on one
 # big 'plate'
@@ -250,8 +253,8 @@ class @Sahli
   @panelmode = ->
     $('#panel').toggle()
     canvs = $('canvas')
-    if $('.scrolly').width() == @origwidth
-      $('.scrolly').width '100%'
+    $('.scrolly').width @origwidth
+    if $('#panel').css('display') != 'none'
       $('#panel').empty()
       ww = window.innerWidth
       wh = window.innerHeight
@@ -291,14 +294,7 @@ class @Sahli
           drawcol = drawcol + 1
           if ct < numpanels
             outer.append @createpanel(drawcol,newwidth - 6)
-
-#      console.log "ww: #{ww} wh: #{wh} numpanels: #{numpanels} x: #{x}"
-#      console.log "numcols: #{numcols} picdpercol: #{picdpercol}"
-#      console.log "psh: #{panelslotheight} pps: #{panelsperslot}"
-#      console.log "a*b: #{panelsperslot*(numcols-1)}"
-
     else
-      $('.scrolly').width @origwidth
       $('#outbox').show()
       $('.scrolly').append pic for pic in canvs
       canvs.width @origwidth
@@ -337,6 +333,8 @@ class @Sahli
           @changescrolldirection 1
         when @keycode 'c'
           @panelmode(1)
+        when @keycode 'i'
+          @infobar()
         when @keycode '1'
           @changespeed 1
         when @keycode '2'
