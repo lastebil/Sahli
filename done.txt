@@ -28,3 +28,11 @@ x 2015-02-22 Fix Amiga mode rendering via sixteencolors lib @16colors
 x 2015-02-22 check below items for neccesity
 x 2015-02-22 load to array/picture, render from picture @16colors
 x 2015-02-22 speed up rendering more? @16colors
+x 2015-03-25 BIN @OTHER
+x 2015-03-25 IDF @OTHER
+x 2015-03-25 Tundra @OTHER
+x 2015-03-25 PCBOARD @OTHER
+x 2015-03-25 Avatar @OTHER
+x 2015-03-25 2015-02-22 ADF  @OTHER
+x 2015-03-25 XBIN @OTHER
+x 2015-03-25 remove the SAUCE lines at bottom, return ANSI object for render @SAUCE

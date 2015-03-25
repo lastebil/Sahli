@@ -210,6 +210,13 @@ class @Sahli
     @scroll_direction = - @scroll_direction
     @setscroll()
 
+# chromium wasn't working with up/down/pageup/pagedown, firefox was. This makes
+# both work the same way.
+
+  @moveline = (direction) ->
+    curpos = $('body').scrollTop()
+    $('body').scrollTop(curpos + (16*direction))
+
   @changescrolldirection = (direction) ->
     @scroll_direction = direction
     $('body').stop()
@@ -297,7 +304,6 @@ class @Sahli
       canvs.width @origwidth
       $('body').scrollTop 0
 
-
   @createpanel = (i,amt) ->
     dcol = $("<div id='column#{i}' class='panelcolumn'>#{i}</div>")
     dcol.width amt
@@ -344,6 +350,14 @@ class @Sahli
           @scroll_speed = 4
         when @keycode '5'
           @changespeed 5
+        when 40 # down
+          @moveline 1
+        when 38 # up
+          @moveline -1
+        when 34 # pagedown
+          @moveline 40
+        when 33 # pageup
+          @moveline -40
         when @keycode 'h'
           $('.help').css {'left':'33%'}
           $('.help').toggle 'fast'

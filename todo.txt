@@ -1,14 +1,6 @@
-(B) 2015-02-22 ADF  @OTHER
 (B) @EDITOR add more Amiga fonts.
 (B) @EDITOR redo filenames to load from list of files in directory (specfied in 'location')
-(A) remove the SAUCE lines at bottom, return ANSI object for render @SAUCE
-(A) XBIN @OTHER
 (C) Amiga ANSI @OTHER
-(B) Avatar @OTHER
-(B) BIN @OTHER
-(B) IDF @OTHER
-(B) PCBOARD @OTHER
 (D) THUMBNAILS - for returning to partymeister @PARTYMEISTER
-(B) Tundra @OTHER
 (D) implement package import from partymeister  @PARTYMEISTER
 (D) hook for progress  @progress @PARTYMEISTER
