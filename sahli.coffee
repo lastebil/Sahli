@@ -64,35 +64,19 @@ class @Sahli
     pdiv.prepend buf.clone()
     pdiv.append ptxt
     pdiv.append buf
-    # this is going to be interesting when dealing with ansi files in UTF-8
-    # or SHIFT-JIS etc  - is it needed now?
+# this is still needed for some Amiga stuff done on Amiga.
+# probably should allow other overrides for UTF-8 and so on.
     req.overrideMimeType 'text/plain; charset=ISO-8859-1'
     req.onreadystatechange = ->
       if req.readyState == req.DONE
         if req.status == 200 or req.status == 0
           ptxt.text @responseText
           inserthere.after pdiv
-          $('body').scrollTop(0)
+          $('body').scrollTop 0
         else
           @loaderror inserthere, fname, req.statusText, req.status
     req.open 'GET', fname, true
     req.send null
-
-  @loadansi = (picdata, inserthere) ->
-    fname = @location + '/' + picdata.file
-    pdiv = $('<div>')
-    pdiv.addClass 'scrolly'
-    AnsiLove.render fname, ((canv, SAUCE) ->
-      pdiv.append canv
-      inserthere.after pdiv
-      @origwidth = canv.width
-      @origheight = canv.height
-      @SAUCE = SAUCE
-    ),
-      'font': '80x25'
-      'bits': '8'
-      'columns': 160
-      'thumbnail': 0
 
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
@@ -108,6 +92,7 @@ class @Sahli
         calcheight = calcheight + canv.height
         canvwidth = canv.width
       inserthere.after pdiv
+      $('body').scrollTop 0
       @SAUCE = SAUCE
       @origwidth = canvwidth
       @origheight = calcheight
@@ -115,7 +100,7 @@ class @Sahli
     ), 30, 'bits': '8'
 
   @loadavatar = (picdata, inserthere) ->
-    alert 'avatar', picdata, inserthere
+    console.log 'avatar', picdata, inserthere
 
   @requestsahlifile = (url) ->
     @loadkeys()
@@ -129,8 +114,18 @@ class @Sahli
       @filedata = json.filedata
       @slides = json.slides
       @location = json.location
-
       alert "SAHLI READY TO GO\n#{@filedata.length} Entries"
+
+  @loadinfopanel = (index) ->
+    data = @filedata[index]
+    $('.infobox h1').text  data.name
+    $('.infobox h2').text  data.author
+    $('h3.infobox')[0].textContent = data.line1
+    $('h3.infobox')[1].textContent = data.line2
+    $('p.bigtext').text data.text
+    $('.infobox span')[0].textContent = data.filename
+    $('.infobox span')[1].textContent = data.width
+    $('.infobox span')[2].textContent = data.font
 
   @nextpic = =>
     viewbox = $('div#sahliviewer')
@@ -149,8 +144,7 @@ class @Sahli
     $('#panel').hide()
     $('#outbox').show()
     $('body').stop()
-    $('body').scrollTop(0)
-
+    @loadinfopanel i
 
   @togglefullscreen = ->
     docElm = document.documentElement
@@ -210,6 +204,13 @@ class @Sahli
     @scroll_direction = - @scroll_direction
     @setscroll()
 
+# chromium wasn't working with up/down/pageup/pagedown, firefox was. This makes
+# both work the same way.
+
+  @moveline = (direction) ->
+    curpos = $('body').scrollTop()
+    $('body').scrollTop(curpos + (16*direction))
+
   @changescrolldirection = (direction) ->
     @scroll_direction = direction
     $('body').stop()
@@ -218,7 +219,7 @@ class @Sahli
 #    - save width upon draw
 #    - toggle zoom out to full width / normal
 #    - with a number, change width by that much
-# if scrolling, where are we in the doc? zoom to THAT area.
+# if scrolling, where are we in the doc? zoom to THAT area. - not implemented
   @zoom = (amt) ->
     zoomee = $('div.scrolly')
     if amt?
@@ -226,72 +227,71 @@ class @Sahli
         newwidth = @origwidth
       else
         newwidth = zoomee.width() + amt
-      console.log "#{zoomee.width()} #{newwidth}"
       zoomee.width newwidth
       $('canvas').width newwidth
     else
       if zoomee.width() != @origwidth
-        zoomee.width @origwidthg
+        zoomee.width @origwidth
         $('canvas').width '100%'
       else
         zoomee.width '100%'
         $('canvas').width '100%'
 
-# calculate # strips - how many times does window height go into full height
-# and then move the canvases into it. - done
-# outbox toggled last to avoid losing width. (prolly need to fix.)
+# create a panel of 'strips' so as to show a very long vertical piece on one
+# big 'plate'
+
   @panelmode = ->
     $('#panel').toggle()
     canvs = $('canvas')
-    if $('.scrolly').width() == @origwidth
-      $('.scrolly').width '100%'
+    $('.scrolly').width @origwidth
+    if $('#panel').css('display') != 'none'
       $('#panel').empty()
       ww = window.innerWidth
       wh = window.innerHeight
       numpanels = canvs.length
-      fullpicheight = 0
-      fullpicheight = (fullpicheight + i.height) for i in canvs
+      screenratio = ww/wh
 
-      stripe_width = ww/Math.ceil(fullpicheight/ww)
-      num_strips = Math.sqrt (ww/stripe_width)*(fullpicheight/wh)
+      panelratio = canvs[0].height/canvs[0].width
 
-      numcols = Math.floor num_strips-1
+      x = Math.sqrt numpanels/screenratio
+      numcols = Math.round(screenratio*x)
+      picdpercol = Math.round(numpanels/numcols)
 
-      scaling_factor = num_strips * (wh / fullpicheight)
+      newwidth = ww/numcols
 
-#      newheight = canvs[0].height * scaling_factor
-#      $(canvs[0]).height newheight
-      newwidth = scaling_factor * canvs.height()
       canvs.width newwidth
-      newheight = $(canvs[0]).height()
 
-      colwidth = ww/numcols
+      newheight = canvs.height()
+      panelsperslot = Math.floor wh/newheight
+      panelslotheight = panelsperslot * newheight
+
       outer = $('<div>')
-      outer.append @createpanel(i,colwidth - 6) for i in [1..numcols]
+      console.log numcols
       outer.addClass 'nosb'
       $('#panel').append outer
       $('#outbox').toggle()
 
       level = 0
       drawcol = 1
+      ct = 0
+      outer.append @createpanel(1,newwidth - 6)
       for pic in canvs
         $("#column#{drawcol}").append pic
-        level = level + newheight
-        if level+(newheight/2) > wh
+        level += 1
+        ct += 1
+        if level == panelsperslot
           level = 0
           drawcol = drawcol + 1
-
+          if ct < numpanels
+            outer.append @createpanel(drawcol,newwidth - 6)
     else
-      $('.scrolly').width @origwidth
       $('#outbox').show()
       $('.scrolly').append pic for pic in canvs
       canvs.width @origwidth
       $('body').scrollTop 0
 
-
   @createpanel = (i,amt) ->
-    dcol = $("<div id='column#{i}'>#{i}</div>")
-    dcol.addClass 'panelcolumn'
+    dcol = $("<div id='column#{i}' class='panelcolumn'>#{i}</div>")
     dcol.width amt
 
   @loadkeys = ->
@@ -322,7 +322,11 @@ class @Sahli
         when @keycode 'x'
           @changescrolldirection 1
         when @keycode 'c'
-          @panelmode()
+          @panelmode(1)
+        when @keycode 'i'
+          $('div.infobox').toggle()
+        when @keycode 'v'
+          $('h6').height( (window.innerHeight - $('.scrolly').height()) / 2 )
         when @keycode '1'
           @changespeed 1
         when @keycode '2'
@@ -336,6 +340,14 @@ class @Sahli
           @scroll_speed = 4
         when @keycode '5'
           @changespeed 5
+        when 40 # down
+          @moveline 1
+        when 38 # up
+          @moveline -1
+        when 34 # pagedown
+          @moveline 40
+        when 33 # pageup
+          @moveline -40
         when @keycode 'h'
           $('.help').css {'left':'33%'}
           $('.help').toggle 'fast'

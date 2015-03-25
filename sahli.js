@@ -87,25 +87,6 @@ l__________/__________|___|______l__________j_____j
       return req.send(null);
     };
 
-    Sahli.loadansi = function(picdata, inserthere) {
-      var fname, pdiv;
-      fname = this.location + '/' + picdata.file;
-      pdiv = $('<div>');
-      pdiv.addClass('scrolly');
-      return AnsiLove.render(fname, (function(canv, SAUCE) {
-        pdiv.append(canv);
-        inserthere.after(pdiv);
-        this.origwidth = canv.width;
-        this.origheight = canv.height;
-        return this.SAUCE = SAUCE;
-      }), {
-        'font': '80x25',
-        'bits': '8',
-        'columns': 160,
-        'thumbnail': 0
-      });
-    };
-
     Sahli.loadhugeansi = function(picdata, inserthere) {
       var calcheight, canvwidth, fname, pdiv;
       fname = this.location + '/' + picdata.file;
@@ -123,6 +104,7 @@ l__________/__________|___|______l__________j_____j
             return canvwidth = canv.width;
           });
           inserthere.after(pdiv);
+          $('body').scrollTop(0);
           _this.SAUCE = SAUCE;
           _this.origwidth = canvwidth;
           _this.origheight = calcheight;
@@ -134,7 +116,7 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.loadavatar = function(picdata, inserthere) {
-      return alert('avatar', picdata, inserthere);
+      return console.log('avatar', picdata, inserthere);
     };
 
     Sahli.requestsahlifile = function(url) {
@@ -153,6 +135,19 @@ l__________/__________|___|______l__________j_____j
           return alert("SAHLI READY TO GO\n" + _this.filedata.length + " Entries");
         };
       })(this));
+    };
+
+    Sahli.loadinfopanel = function(index) {
+      var data;
+      data = this.filedata[index];
+      $('.infobox h1').text(data.name);
+      $('.infobox h2').text(data.author);
+      $('h3.infobox')[0].textContent = data.line1;
+      $('h3.infobox')[1].textContent = data.line2;
+      $('p.bigtext').text(data.text);
+      $('.infobox span')[0].textContent = data.filename;
+      $('.infobox span')[1].textContent = data.width;
+      return $('.infobox span')[2].textContent = data.font;
     };
 
     Sahli.nextpic = function() {
@@ -174,7 +169,7 @@ l__________/__________|___|______l__________j_____j
       $('#panel').hide();
       $('#outbox').show();
       $('body').stop();
-      return $('body').scrollTop(0);
+      return Sahli.loadinfopanel(i);
     };
 
     Sahli.togglefullscreen = function() {
@@ -251,6 +246,12 @@ l__________/__________|___|______l__________j_____j
       return this.setscroll();
     };
 
+    Sahli.moveline = function(direction) {
+      var curpos;
+      curpos = $('body').scrollTop();
+      return $('body').scrollTop(curpos + (16 * direction));
+    };
+
     Sahli.changescrolldirection = function(direction) {
       this.scroll_direction = direction;
       $('body').stop();
@@ -266,12 +267,11 @@ l__________/__________|___|______l__________j_____j
         } else {
           newwidth = zoomee.width() + amt;
         }
-        console.log((zoomee.width()) + " " + newwidth);
         zoomee.width(newwidth);
         return $('canvas').width(newwidth);
       } else {
         if (zoomee.width() !== this.origwidth) {
-          zoomee.width(this.origwidthg);
+          zoomee.width(this.origwidth);
           return $('canvas').width('100%');
         } else {
           zoomee.width('100%');
@@ -281,55 +281,57 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.panelmode = function() {
-      var canvs, colwidth, drawcol, fullpicheight, i, level, newheight, newwidth, num_strips, numcols, numpanels, outer, pic, scaling_factor, stripe_width, wh, ww, _i, _j, _k, _l, _len, _len1, _len2, _results;
+      var canvs, ct, drawcol, level, newheight, newwidth, numcols, numpanels, outer, panelratio, panelslotheight, panelsperslot, pic, picdpercol, screenratio, wh, ww, x, _i, _j, _len, _len1, _results;
       $('#panel').toggle();
       canvs = $('canvas');
-      if ($('.scrolly').width() === this.origwidth) {
-        $('.scrolly').width('100%');
+      $('.scrolly').width(this.origwidth);
+      if ($('#panel').css('display') !== 'none') {
         $('#panel').empty();
         ww = window.innerWidth;
         wh = window.innerHeight;
         numpanels = canvs.length;
-        fullpicheight = 0;
-        for (_i = 0, _len = canvs.length; _i < _len; _i++) {
-          i = canvs[_i];
-          fullpicheight = fullpicheight + i.height;
-        }
-        stripe_width = ww / Math.ceil(fullpicheight / ww);
-        num_strips = Math.sqrt((ww / stripe_width) * (fullpicheight / wh));
-        numcols = Math.floor(num_strips - 1);
-        scaling_factor = num_strips * (wh / fullpicheight);
-        newwidth = scaling_factor * canvs.height();
+        screenratio = ww / wh;
+        panelratio = canvs[0].height / canvs[0].width;
+        x = Math.sqrt(numpanels / screenratio);
+        numcols = Math.round(screenratio * x);
+        picdpercol = Math.round(numpanels / numcols);
+        newwidth = ww / numcols;
         canvs.width(newwidth);
-        newheight = $(canvs[0]).height();
-        colwidth = ww / numcols;
+        newheight = canvs.height();
+        panelsperslot = Math.floor(wh / newheight);
+        panelslotheight = panelsperslot * newheight;
         outer = $('<div>');
-        for (i = _j = 1; 1 <= numcols ? _j <= numcols : _j >= numcols; i = 1 <= numcols ? ++_j : --_j) {
-          outer.append(this.createpanel(i, colwidth - 6));
-        }
+        console.log(numcols);
         outer.addClass('nosb');
         $('#panel').append(outer);
         $('#outbox').toggle();
         level = 0;
         drawcol = 1;
+        ct = 0;
+        outer.append(this.createpanel(1, newwidth - 6));
         _results = [];
-        for (_k = 0, _len1 = canvs.length; _k < _len1; _k++) {
-          pic = canvs[_k];
+        for (_i = 0, _len = canvs.length; _i < _len; _i++) {
+          pic = canvs[_i];
           $("#column" + drawcol).append(pic);
-          level = level + newheight;
-          if (level + (newheight / 2) > wh) {
+          level += 1;
+          ct += 1;
+          if (level === panelsperslot) {
             level = 0;
-            _results.push(drawcol = drawcol + 1);
+            drawcol = drawcol + 1;
+            if (ct < numpanels) {
+              _results.push(outer.append(this.createpanel(drawcol, newwidth - 6)));
+            } else {
+              _results.push(void 0);
+            }
           } else {
             _results.push(void 0);
           }
         }
         return _results;
       } else {
-        $('.scrolly').width(this.origwidth);
         $('#outbox').show();
-        for (_l = 0, _len2 = canvs.length; _l < _len2; _l++) {
-          pic = canvs[_l];
+        for (_j = 0, _len1 = canvs.length; _j < _len1; _j++) {
+          pic = canvs[_j];
           $('.scrolly').append(pic);
         }
         canvs.width(this.origwidth);
@@ -339,8 +341,7 @@ l__________/__________|___|______l__________j_____j
 
     Sahli.createpanel = function(i, amt) {
       var dcol;
-      dcol = $("<div id='column" + i + "'>" + i + "</div>");
-      dcol.addClass('panelcolumn');
+      dcol = $("<div id='column" + i + "' class='panelcolumn'>" + i + "</div>");
       return dcol.width(amt);
     };
 
@@ -373,7 +374,11 @@ l__________/__________|___|______l__________j_____j
             case _this.keycode('x'):
               return _this.changescrolldirection(1);
             case _this.keycode('c'):
-              return _this.panelmode();
+              return _this.panelmode(1);
+            case _this.keycode('i'):
+              return $('div.infobox').toggle();
+            case _this.keycode('v'):
+              return $('h6').height((window.innerHeight - $('.scrolly').height()) / 2);
             case _this.keycode('1'):
               return _this.changespeed(1);
             case _this.keycode('2'):
@@ -387,6 +392,14 @@ l__________/__________|___|______l__________j_____j
               return _this.scroll_speed = 4;
             case _this.keycode('5'):
               return _this.changespeed(5);
+            case 40:
+              return _this.moveline(1);
+            case 38:
+              return _this.moveline(-1);
+            case 34:
+              return _this.moveline(40);
+            case 33:
+              return _this.moveline(-40);
             case _this.keycode('h'):
               $('.help').css({
                 'left': '33%'

@@ -1,3 +1,7 @@
+/*
+  Sahli css
+*/
+
 body {
     background-color: black;
     margin: 0;
@@ -28,17 +32,8 @@ body {
 }
 
 h6 {
-    position: fixed;
-    top: 1ex;
-    left: 1ex;
-    border: 1px green ridge;
-    padding: .125em 1em;
-    color: black;
-    background-color: green;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    border-radius: 8px;
-    display: none;
+    color: transparent;
+    background-color: transparent;
 }
 
 .help {
@@ -79,7 +74,7 @@ h1.help {
     padding: .15ex;
 }
 
-ul.keylist li.nodot {
+ul.keylist nodot {
     list-style: none;
     padding-left: 2em;
 }
@@ -96,12 +91,12 @@ ul.keylist li.nodot {
 
 div.infobox {
     font-family: mosoul,topaz1200,microknight, Consolas, monospace;
-    position: absolute;
+    position: fixed;
     top: 1ex;
     left: 1ex;
-    -webkit-border-radius: 42px;
-    -moz-border-radius: 42px;
-    border-radius: 42px;
+    -webkit-border-radius: 1ex;
+    -moz-border-radius: 1ex;
+    border-radius: 1ex;
     padding: 2ex;
     margin: 3em;
     background-color: aliceblue;
@@ -127,40 +122,43 @@ p.infobox {
     margin: .25ex;
 }
 
+.ty50 {
+    transform: translateY(-50%);
+}
+
 .bigtext {
     background-color: lightsteelblue;
     border: 1px outset steelblue;
     margin: .25ex;
-    -webkit-border-radius: 15px;
-    -moz-border-radius: 15px;
-    border-radius: 15px;
+    padding: .5ex;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
     width: 30ex;
 }
 
 #panel {
     width: 100%;
-    background: #0a0a0f;
     height: 100%;
     border: 0;
     font-family: microknight;
-    position: absolute;
+    position: fixed;
     left: 0;
-    top: 0;
+    top: 50%;
     padding: 0;
     margin: 0;
     text-align: center;
 }
 
 .panelcolumn {
-    height: 100%;
-    color: #00f080;
+    color: transparent;
     width: 2em;
-    background: #082020;
     display: inline-table;
 }
 
 .nosb {
     overflow: hidden;
+    transform: translateY(-50%);
 }
 
 @font-face {

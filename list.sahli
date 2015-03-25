@@ -1,202 +1,499 @@
 {
+
 	"location": "testshow",
+
 	"slides": {
+
 		"background": "",
+
 		"template": "",
+
 		"css": ""
+
 	},
+
 	"filedata": [
+
 		{
+
 			"file": "spaceflight.asc",
+
 			"name": "Spaceflight",
+
 			"amiga": true,
+
 			"filetype": "plain",
+
 			"width": "80",
+
 			"author": "Urs",
+
 			"font": "pot-noodle",
+
 			"color": [
+
 				255,
+
 				128,
+
 				0,
+
 				255
+
 			],
+
 			"bg": [
+
 				0,
+
 				0,
+
 				0,
+
 				255
+
 			],
+
 			"line1": "Orange on Dark Grey",
+
 			"line2": "Test for plain files",
+
 			"text": ""
+
 		},
+
 		{
+
+			"file": "az0!-revi510n.txt",
+
+			"name": "Revision",
+
+			"amiga": true,
+
+			"filetype": "plain",
+
+			"width": "80",
+
+			"author": "Azzarro/Madwizards",
+
+			"font": "Propaz",
+
+			"color": [
+
+				0,
+
+				240,
+
+				0,
+
+				255
+
+			],
+
+			"bg": [
+
+				255,
+
+				0,
+
+				0,
+
+				255
+
+			],
+
+			"line1": "Azzaro Returns",
+
+			"line2": "Revision ansi/ascii compo 2013",
+
+			"text": "Color test as well as Microknight test."
+
+		},
+
+		{
+
+			"file": "Glitch_8bit_ANSi_Compo_Entry_by_Luciano_Ayres.ans",
+
+			"name": "Glitch 8-bit",
+
+			"amiga": false,
+
+			"filetype": "ansi",
+
+			"width": "80",
+
+			"author": "Luciano Ayres",
+
+			"font": "Propaz",
+
+			"color": [
+
+				255,
+
+				255,
+
+				255,
+
+				255
+
+			],
+
+			"bg": [
+
+				0,
+
+				0,
+
+				0,
+
+				255
+
+			],
+
+			"line1": "NVscene 2015",
+
+			"line2": "Blocktronics",
+
+			"text": "f*n brilliant"
+
+		},
+
+		{
+
 			"file": "h7-supergroupies.ans",
+
 			"name": "SuperGroupies",
+
 			"amiga": false,
+
 			"filetype": "ansi",
+
 			"width": "80",
+
 			"author": "H7",
+
 			"font": "Propaz",
+
 			"color": [
+
 				154,
+
 				254,
+
 				46,
+
 				255
+
 			],
+
 			"bg": [
+
 				11,
+
 				11,
+
 				59,
+
 				255
+
 			],
+
 			"line1": "H7",
+
 			"line2": "Ansi",
+
 			"text": "Test file #1"
+
 		},
+
 		{
+
 			"file": "Blocktronics-WTF4_Megajoint.ans",
+
 			"name": "WTF4",
+
 			"amiga": false,
+
 			"filetype": "ansi",
+
 			"width": "80",
+
 			"author": "Blocktronics",
+
 			"font": "Propaz",
+
 			"color": [
+
 				0,
+
 				46,
+
 				247,
+
 				255
+
 			],
+
 			"bg": [
+
 				160,
+
 				160,
+
 				224,
+
 				255
+
 			],
+
 			"line1": "",
+
 			"line2": "",
+
 			"text": ""
+
 		},
+
 		{
+
 			"file": "51_DRGN.XB",
+
 			"name": "Dragon",
+
 			"amiga": false,
+
 			"filetype": "xbin",
+
 			"width": "80",
+
 			"author": "Someone",
+
 			"font": "Propaz",
+
 			"color": [
+
 				255,
+
 				128,
+
 				0,
+
 				255
+
 			],
+
 			"bg": [
+
 				46,
+
 				254,
+
 				247,
+
 				255
+
 			],
+
 			"line1": "Test #2",
+
 			"line2": "Test #2",
+
 			"text": ""
+
 		},
+
 		{
+
 			"file": "ARTX-LGO.ADF",
+
 			"name": "ADF test",
+
 			"amiga": false,
+
 			"filetype": "adf",
+
 			"width": "80",
+
 			"author": "",
+
 			"font": "Propaz",
+
 			"color": [
+
 				255,
+
 				255,
+
 				255,
+
 				255
+
 			],
+
 			"bg": [
+
 				0,
+
 				0,
+
 				0,
+
 				255
+
 			],
+
 			"line1": "",
+
 			"line2": "",
+
 			"text": ""
+
 		},
+
 		{
+
 			"file": "MD-XMAS.IDF",
+
 			"name": "IDF test",
+
 			"amiga": false,
+
 			"filetype": "idf",
+
 			"width": "80",
+
 			"author": "",
+
 			"font": "Propaz",
+
 			"color": [
+
 				255,
+
 				255,
+
 				255,
+
 				255
+
 			],
+
 			"bg": [
+
 				0,
+
 				0,
+
 				0,
+
 				255
+
 			],
+
 			"line1": "",
+
 			"line2": "",
+
 			"text": ""
+
 		},
+
 		{
+
 			"file": "US-SADIS.BIN",
+
 			"name": "BIN test",
+
 			"amiga": false,
+
 			"filetype": "bin",
+
 			"width": "160",
+
 			"author": "",
+
 			"font": "Propaz",
+
 			"color": [
+
 				255,
+
 				255,
+
 				255,
+
 				255
+
 			],
+
 			"bg": [
+
 				0,
+
 				0,
+
 				0,
+
 				255
+
 			],
+
 			"line1": "",
+
 			"line2": "",
+
 			"text": ""
+
 		},
+
 		{
+
 			"file": "zv_iniq.tnd",
+
 			"name": "Tundra test",
+
 			"amiga": false,
+
 			"filetype": "tundra",
+
 			"width": "80",
+
 			"author": "",
+
 			"font": "Propaz",
+
 			"color": [
+
 				255,
+
 				255,
+
 				255,
+
 				255
+
 			],
+
 			"bg": [
+
 				0,
+
 				0,
+
 				0,
+
 				255
+
 			],
+
 			"line1": "",
+
 			"line2": "",
+
 			"text": ""
+
 		}
+
 	]
+
 }
