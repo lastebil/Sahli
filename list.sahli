@@ -109,7 +109,30 @@
 			"text": "Color test as well as Microknight test."
 
 		},
-
+{
+			"file": "dS!-JUFV.txt",
+			"name": "Jungle Fever",
+			"amiga": true,
+			"filetype": "plain",
+			"width": "80",
+			"author": "H7",
+			"font": "Propaz",
+			"color": [
+				59,
+				59,
+				59,
+				255
+			],
+			"bg": [
+				224,
+				224,
+				224,
+				255
+			],
+			"line1": "Divine Stylers",
+			"line2": "March 25, 2015",
+			"text": "Longer Amiga Ascii (scrolling test)"
+		},
 		{
 
 			"file": "Glitch_8bit_ANSi_Compo_Entry_by_Luciano_Ayres.ans",

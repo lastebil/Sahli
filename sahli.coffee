@@ -295,6 +295,12 @@ class @Sahli
     dcol.width amt
 
   @loadkeys = ->
+    $(document).on('dblclick', (ev) =>
+      @nextpic()
+      )
+    $(document).on('click', (ev) =>
+      @setscroll()
+      )
     $(document).on('keydown', (ev) =>
       switch ev.which
         when @keycode ' '

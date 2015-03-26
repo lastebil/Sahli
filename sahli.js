@@ -346,6 +346,16 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.loadkeys = function() {
+      $(document).on('dblclick', (function(_this) {
+        return function(ev) {
+          return _this.nextpic();
+        };
+      })(this));
+      $(document).on('click', (function(_this) {
+        return function(ev) {
+          return _this.setscroll();
+        };
+      })(this));
       return $(document).on('keydown', (function(_this) {
         return function(ev) {
           switch (ev.which) {
