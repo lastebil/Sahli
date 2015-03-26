@@ -114,7 +114,7 @@ class @Sahli
       @filedata = json.filedata
       @slides = json.slides
       @location = json.location
-      alert "SAHLI READY TO GO\n#{@filedata.length} Entries"
+      alert "SAHLI READY TO GO\n#{@filedata.length} Entries\nH for Help\nSpace to Start"
 
   @loadinfopanel = (index) ->
     data = @filedata[index]
@@ -295,11 +295,21 @@ class @Sahli
     dcol.width amt
 
   @loadkeys = ->
-    $(document).on('dblclick', (ev) =>
-      @nextpic()
-      )
+
     $(document).on('click', (ev) =>
-      @setscroll()
+      clickx = ev.clientX
+      clicky = ev.clientY
+      wh = window.innerHeight
+      ww = window.innerWidth
+      if clicky > wh-100
+        @nextpic()
+      if clicky < 100
+        @setscroll()
+      if (clicky > 100 && clicky < wh-100 )
+        if clickx < 100
+          @togglefullscreen()
+        if clickx > ww-100
+          @panelmode()
       )
     $(document).on('keydown', (ev) =>
       switch ev.which
@@ -328,7 +338,7 @@ class @Sahli
         when @keycode 'x'
           @changescrolldirection 1
         when @keycode 'c'
-          @panelmode(1)
+          @panelmode()
         when @keycode 'i'
           $('div.infobox').toggle()
         when @keycode 'v'
