@@ -17,7 +17,7 @@ textarea {
 }
 
 pre {
-    font-family: 'TopazPlus a500a1000a2000','mOsOul',Monaco,monospace;
+    font-family: 'topaz500','mosoul',Monaco,monospace;
     font-size: 16;
     border: 2px inset #808080;
 }
@@ -56,12 +56,14 @@ div ul li{
     display: inline-block;
 }
 
-# this does not actually change anything because the design is set by
-# the jquery-ui bit. Altering in the script does work. Here for reference.
+/* this does not actually change anything because the design is set by      */
+/* the jquery-ui bit. Altering in the script does work. Here for reference. */
+/*
 .45box {
     width: 45%;
     display: inline-block;
 }
+*/
 
 div.groupbox p {
     margin: .25 ex;
@@ -79,7 +81,7 @@ div.groupbox p {
 }
 
 #sahlioutput {
-    font-family: 'TopazPlus a500a1000a2000','mOsOul',Monaco,monospace;
+    font-family: 'microknight','P0t-nOodle',Monaco,monospace;
     font-size: 16;
     background: aliceblue;
     overflow-wrap: break-word;
@@ -95,4 +97,135 @@ div.groupbox p {
     margin: 0px 0px 1ex;
     padding: 0px;
 
+}
+
+@font-face {
+    font-family: 'P0t-nOodle';
+    src: url('fonts/P0T-NOoDLE_v1.0.woff2') format('woff2');
+    src: url('fonts/P0T-NOoDLE_v1.0.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'MicroKnight';
+    src: url('fonts/MicroKnightPlus_v1.0.woff2') format('woff2');
+    src: url('fonts/MicroKnightPlus_v1.0.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'mOsOul';
+    src: url('fonts/mOsOul_v1.0.woff2') format('woff2');
+    src: url('fonts/mOsOul_v1.0.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Topaz1200';
+    src: url('fonts/TopazPlusA1200.woff') format('woff2');
+    src: url('fonts/TopazPlusA1200.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Topaz500';
+    src: url('fonts/TopazPlusA500.woff2') format('woff2');
+    src: url('fonts/TopazPlusA500.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'blockzone';
+    src: url('fonts/BlockZone.woff2') format('woff2');
+    src: url('fonts/BlockZone.woff') format('woff');
+}
+
+.mosoul {
+    font-family: mOsOul;
+    text-align: left;
+}
+
+.pot-noodle , .p0t-noodle {
+    font-family: 'P0t-nOodle';
+    text-align: left;
+}
+
+.topaz, .topaz500 {
+    font-family: 'Topaz500';
+    text-align: left;
+}
+
+.propaz, .topaz1200 {
+    font-family: 'Topaz1200';
+    text-align: left;
+}
+
+.microknight, .microknightplus {
+    font-family: 'MicroKnight';
+    text-align: left;
+}
+
+.blockzone, .pcansifont {
+    font-family: 'blockzone';
+    text-align: left;
+}
+@font-face {
+    font-family: 'P0t-nOodle';
+    src: url('../fonts/P0T-NOoDLE_v1.0.woff2') format('woff2');
+    src: url('../fonts/P0T-NOoDLE_v1.0.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'MicroKnight';
+    src: url('../fonts/MicroKnightPlus_v1.0.woff2') format('woff2');
+    src: url('../fonts/MicroKnightPlus_v1.0.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'mOsOul';
+    src: url('../fonts/mOsOul_v1.0.woff2') format('woff2');
+    src: url('../fonts/mOsOul_v1.0.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Topaz1200';
+    src: url('../fonts/TopazPlusA1200.woff') format('woff2');
+    src: url('../fonts/TopazPlusA1200.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Topaz500';
+    src: url('../fonts/TopazPlusA500.woff2') format('woff2');
+    src: url('../fonts/TopazPlusA500.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'blockzone';
+    src: url('../fonts/BlockZone.woff2') format('woff2');
+    src: url('../fonts/BlockZone.woff') format('woff');
+}
+
+.mosoul {
+    font-family: mOsOul;
+    text-align: left;
+}
+
+.pot-noodle , .p0t-noodle {
+    font-family: 'P0t-nOodle';
+    text-align: left;
+}
+
+.topaz, .topaz500 {
+    font-family: 'Topaz500';
+    text-align: left;
+}
+
+.propaz, .topaz1200 {
+    font-family: 'Topaz1200';
+    text-align: left;
+}
+
+.microknight, .microknightplus {
+    font-family: 'MicroKnight';
+    text-align: left;
+}
+
+.blockzone, .pcansifont {
+    font-family: 'blockzone';
+    text-align: left;
 }
