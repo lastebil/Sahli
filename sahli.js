@@ -132,7 +132,7 @@ l__________/__________|___|______l__________j_____j
           _this.filedata = json.filedata;
           _this.slides = json.slides;
           _this.location = json.location;
-          return alert("SAHLI READY TO GO\n" + _this.filedata.length + " Entries");
+          return alert("SAHLI READY TO GO\n" + _this.filedata.length + " Entries\nH for Help\nSpace to Start");
         };
       })(this));
     };
@@ -346,14 +346,27 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.loadkeys = function() {
-      $(document).on('dblclick', (function(_this) {
-        return function(ev) {
-          return _this.nextpic();
-        };
-      })(this));
       $(document).on('click', (function(_this) {
         return function(ev) {
-          return _this.setscroll();
+          var clickx, clicky, wh, ww;
+          clickx = ev.clientX;
+          clicky = ev.clientY;
+          wh = window.innerHeight;
+          ww = window.innerWidth;
+          if (clicky > wh - 100) {
+            _this.nextpic();
+          }
+          if (clicky < 100) {
+            _this.setscroll();
+          }
+          if (clicky > 100 && clicky < wh - 100) {
+            if (clickx < 100) {
+              _this.togglefullscreen();
+            }
+            if (clickx > ww - 100) {
+              return _this.panelmode();
+            }
+          }
         };
       })(this));
       return $(document).on('keydown', (function(_this) {
@@ -384,7 +397,7 @@ l__________/__________|___|______l__________j_____j
             case _this.keycode('x'):
               return _this.changescrolldirection(1);
             case _this.keycode('c'):
-              return _this.panelmode(1);
+              return _this.panelmode();
             case _this.keycode('i'):
               return $('div.infobox').toggle();
             case _this.keycode('v'):
