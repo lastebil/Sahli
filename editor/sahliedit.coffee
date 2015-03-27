@@ -65,10 +65,16 @@ $(->
       else
         stuff[1].textContent = 'Ascii'
         @.value = "1"
-  $(".45box").css {width:'45%',display:'inline-block'}
+  $(".45box").css {width:'40ex',display:'inline-block'}
   $(".groupbox p").css {margin:"0 0 .25em 0"}
   $(".colorbox").change ->
     sahlicolor()
+  $("#entryfont").change ->
+    font = $("#entryfont").val()
+    if font == "ansifont"
+      font = "BlockZone"
+    $('pre').css 'font-family',font
+
 
   $("#entryfilepick").change ->
     if @.files[0]? then $("#entryfile").val @.files[0].name
@@ -135,7 +141,6 @@ class Sahli
       .click =>
         $('#sahlioutput').text dumpjson @data
         $('#dumparea').show 100
-        console.log dumpjson @data
     $('#listlist').button {icons: {primary:"ui-icon-folder-open"}}
       .click ->
         getfilelist()
@@ -169,12 +174,6 @@ class Sahli
         e = ui.item.index()
         @data.filedata = @.rearrangearray s,e,@data.filedata
         @buildlist @data
-        console.log name.author,name.name,name.file for name in @data.filedata
-        console.log '---'
-
-  harry: (potter) ->
-    console.log "yer a lizzard, harry"
-
 
   rearrangearray: (startpos,endpos,a) ->
     moving = a[startpos]
@@ -215,6 +214,7 @@ class Sahli
     entry.line1 = $("#entryline1").val()
     entry.line2 = $("#entryline2").val()
     entry.text = $("#entrytext").val()
+    entry.font = $("#entryfont").val()
     entry.file = $("#entryfile").val()
     entry.filetype = $("#entryfiletype").val()
     @buildlist @data
@@ -397,6 +397,7 @@ sahlicolor = ->
 ###
 Function for loading the filelist from the specified directory on the
 server/filesystem.
+Needs to be made into an actual real thing.
 ###
 
 getfilelist = ->

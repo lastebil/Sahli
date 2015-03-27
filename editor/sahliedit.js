@@ -86,7 +86,7 @@ Silliness for checking that this works.
       }
     });
     $(".45box").css({
-      width: '45%',
+      width: '40ex',
       display: 'inline-block'
     });
     $(".groupbox p").css({
@@ -94,6 +94,14 @@ Silliness for checking that this works.
     });
     $(".colorbox").change(function() {
       return sahlicolor();
+    });
+    $("#entryfont").change(function() {
+      var font;
+      font = $("#entryfont").val();
+      if (font === "ansifont") {
+        font = "BlockZone";
+      }
+      return $('pre').css('font-family', font);
     });
     $("#entryfilepick").change(function() {
       if (this.files[0] != null) {
@@ -181,8 +189,7 @@ Silliness for checking that this works.
       }).click((function(_this) {
         return function() {
           $('#sahlioutput').text(dumpjson(_this.data));
-          $('#dumparea').show(100);
-          return console.log(dumpjson(_this.data));
+          return $('#dumparea').show(100);
         };
       })(this));
       $('#listlist').button({
@@ -244,25 +251,15 @@ Silliness for checking that this works.
         },
         stop: (function(_this) {
           return function(event, ui) {
-            var a, e, name, s, _k, _len2, _ref2;
+            var a, e, s;
             a = 2;
             s = ui.item.data().startpos;
             e = ui.item.index();
             _this.data.filedata = _this.rearrangearray(s, e, _this.data.filedata);
-            _this.buildlist(_this.data);
-            _ref2 = _this.data.filedata;
-            for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
-              name = _ref2[_k];
-              console.log(name.author, name.name, name.file);
-            }
-            return console.log('---');
+            return _this.buildlist(_this.data);
           };
         })(this)
       });
-    };
-
-    Sahli.prototype.harry = function(potter) {
-      return console.log("yer a lizzard, harry");
     };
 
     Sahli.prototype.rearrangearray = function(startpos, endpos, a) {
@@ -315,6 +312,7 @@ Silliness for checking that this works.
       entry.line1 = $("#entryline1").val();
       entry.line2 = $("#entryline2").val();
       entry.text = $("#entrytext").val();
+      entry.font = $("#entryfont").val();
       entry.file = $("#entryfile").val();
       entry.filetype = $("#entryfiletype").val();
       return this.buildlist(this.data);
@@ -569,6 +567,7 @@ Silliness for checking that this works.
   /*
   Function for loading the filelist from the specified directory on the
   server/filesystem.
+  Needs to be made into an actual real thing.
    */
 
   getfilelist = function() {
