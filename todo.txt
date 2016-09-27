@@ -7,3 +7,4 @@
 (C) SAHLI ansi & ascii for load page
 (C) redo load page (not popup, info)
 (B) Preload
+(C) Chrome app
