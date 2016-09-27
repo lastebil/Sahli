@@ -147,25 +147,11 @@ class @Sahli
     @loadinfopanel i
 
   @prevpic = =>
-    viewbox = $('div#sahliviewer')
-    viewbox.children().remove()
-    $('#panel').empty()
-    @scroll_direction = 1
-    @scroll_speed = 5
-    filedata = @filedata
     i = @currentpic-2
     if i < 0
-      i = i + filedata.length
-    filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
-    viewbox.append filedata[i].pic
-    @loadpic filedata[i], filedata[i].pic
-    @currentpic = i + 1
-    if @currentpic > filedata.length - 1
-      @currentpic = 0
-    $('#panel').hide()
-    $('#outbox').show()
-    $('body').stop()
-    @loadinfopanel i
+      i = i + @filedata.length
+    @currentpic = i
+    @nextpic()
 
   @togglefullscreen = ->
     docElm = document.documentElement
