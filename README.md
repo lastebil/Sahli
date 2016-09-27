@@ -48,6 +48,8 @@ idea...
 * Android tablets ARE considered modern; Ipad/Iphone too.
 * I haven't tested on MorphOS yet.
 
+For Chrome/Chromium:
+
 To use with _local_ files you need to run your browser
 in "developer" mode, that means:
 
@@ -68,19 +70,15 @@ explaining how to do this and alternatives here:
 
 https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
 
-As you can see from that, as of right now (September 2016)
-if you're using Firefox, you should be EXTREMELY CAREFUL and be
-100% SURE YOU CHANGE THE SETTING BACK!
+Firefox (and Icecat, possibly other Firefox codebased browsers)
+seem to work today (Sept 2016) _without_ making any changes, so
+you can use it 'out of the box.'  M0qui was able to, and I tested,
+and so the big 72-point "not supported on Windows+Firefox" warning
+goes away.
 
-** ESPECIALLY ON WINDOWS FOR CRYING OUT LOUD **
-
-Look if you're using Windows and Firefox to use this, and _YOU_
-don't set the setting back, YOU ARE GOING TO GET FUCKED.
-
-BECAUSE OF THIS:  I DO NOT RECCOMEND, OR SUPPORT, RUNNING THIS
-ON WINDOWS AND FIREFOX.  It works.  I do not RECCOMEND it or
-support it.  Someone is going to come back and fuck me over
-because of their stupidity and choice of OS.  Fuck that.
+Again, DON'T FREAKING TURN OFF JAVASCRIPT SECURITY AND FORGET TO
+TURN IT BACK ON.  DON'T.  NOT JUST ON WINDOWS.  BUT ESPECIALLY ON
+WINDOWS.
 
 I may be able to turn this into a chrome app at some point, which
 will eliminate that issue.  Possibly also a Firefox solution, but:
