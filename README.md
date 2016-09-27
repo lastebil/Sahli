@@ -6,7 +6,7 @@
     l__________/__________|___|______l__________j_____j
 
                Ansi/Ansi Viewer in Ecmascript
-        Coded by Sir Garbagetruck / Accession 2013
+        Coded by Sir Garbagetruck / Accession 2013+
           Uses fonts by DMG, http:trueschool.se
      Uses SixteenColors textmode js library for rendering
             (well, my optimized version...)
@@ -63,6 +63,34 @@ This works just fine if you use remote urls for the files.
       EVERY PERSON ALIVE, DEAD, OR IMAGINARY,
       INCLUDING THE NONEXISTENT.               ***
 
+Mr Doob (who I want to call Trace (: ) has a good page
+explaining how to do this and alternatives here:
+
+https://github.com/mrdoob/three.js/wiki/How-to-run-things-locally
+
+As you can see from that, as of right now (September 2016)
+if you're using Firefox, you should be EXTREMELY CAREFUL and be
+100% SURE YOU CHANGE THE SETTING BACK!
+
+** ESPECIALLY ON WINDOWS FOR CRYING OUT LOUD **
+
+Look if you're using Windows and Firefox to use this, and _YOU_
+don't set the setting back, YOU ARE GOING TO GET FUCKED.
+
+BECAUSE OF THIS:  I DO NOT RECCOMEND, OR SUPPORT, RUNNING THIS
+ON WINDOWS AND FIREFOX.  It works.  I do not RECCOMEND it or
+support it.  Someone is going to come back and fuck me over
+because of their stupidity and choice of OS.  Fuck that.
+
+I may be able to turn this into a chrome app at some point, which
+will eliminate that issue.  Possibly also a Firefox solution, but:
+As of today: I do not support this on Windows + Firefox.  That is
+100% at your own risk, because of the possibility you will forget
+to set the setting back.
+
+It's just plain safer to install this on your webserver at the
+party place in a directory and use _that._
+
 This product is licensed under the WTFPL.  See:
              http://www.wtfpl.net
 for details, or just get the license:
@@ -98,3 +126,8 @@ Azzarro/Madwizards.
 - More examples came from 16colors archive. When the final
 Sahli ver. B comes out, I'll select some test files and
 put those credits in here too.
+
+- Thanks to M0qui for submitting a patch for 'backwards'
+(in case you accidentally hit space.  Which we c64 sceners
+never do, because that would be the NEXT demopart, and
+you'd have to reload (:  )

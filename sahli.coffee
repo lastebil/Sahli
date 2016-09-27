@@ -146,6 +146,13 @@ class @Sahli
     $('body').stop()
     @loadinfopanel i
 
+  @prevpic = =>
+    i = @currentpic-2
+    if i < 0
+      i = i + @filedata.length
+    @currentpic = i
+    @nextpic()
+
   @togglefullscreen = ->
     docElm = document.documentElement
     if @fullscreen
@@ -315,6 +322,8 @@ class @Sahli
       switch ev.which
         when @keycode ' '
           @nextpic()
+        when @keycode 'p'
+          @prevpic()
         when @keycode 'f'
           @togglefullscreen()
         when @keycode 's'
