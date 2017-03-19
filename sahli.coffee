@@ -39,8 +39,6 @@ class @Sahli
         @loadhugeansi picdata, inserthere
       when 'tundra'
         @loadhugeansi picdata, inserthere
-      when 'image'
-        @loadpicture picdata, inserthere
       else
         @loadplain picdata, inserthere
 
@@ -80,18 +78,6 @@ class @Sahli
     req.open 'GET', fname, true
     req.send null
 
-  @loadpicture = (picdata, inserthere) ->
-    fname = @location + '/' + picdata.file
-    pdiv = $('<div>')
-    pdiv.addClass 'scrolly'
-    pdiv.width picdata.width
-    pdiv.css 'display', 'inline-block'
-    pimg = $('<img src="' + fname + '" width="100%"/>')
-    pdiv.append pimg
-    inserthere.after pdiv
-    $('body').scrollTop 0
-    @origwidth = picdata.width
-
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
     pdiv = $('<div>')
@@ -111,7 +97,7 @@ class @Sahli
       @origwidth = canvwidth
       @origheight = calcheight
       pdiv.width canvwidth
-    ), 30, {'bits': '8', "font": picdata.font}
+    ), 30, 'bits': '8'
 
   @loadavatar = (picdata, inserthere) ->
     console.log 'avatar', picdata, inserthere
@@ -251,7 +237,7 @@ class @Sahli
       zoomee.width newwidth
       $('canvas').width newwidth
     else
-      if ''+zoomee.width() != ''+@origwidth
+      if zoomee.width() != @origwidth
         zoomee.width @origwidth
         $('canvas').width '100%'
       else
