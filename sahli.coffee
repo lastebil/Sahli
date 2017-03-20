@@ -39,6 +39,8 @@ class @Sahli
         @loadhugeansi picdata, inserthere
       when 'tundra'
         @loadhugeansi picdata, inserthere
+      when 'image'
+        @loadpicture picdata, inserthere
       else
         @loadplain picdata, inserthere
 
@@ -78,6 +80,29 @@ class @Sahli
     req.open 'GET', fname, true
     req.send null
 
+  @loadpicture = (picdata, inserthere) ->
+    fname = @location + '/' + picdata.file
+    pdiv = $('<div>')
+    pdiv.addClass 'scrolly'
+    pdiv.width picdata.width
+    pdiv.css 'display', 'inline-block'
+    pimg = $('<img src="' + fname + '" />')
+    pimg.addClass 'fullwidth'
+    pdiv.append pimg
+    inserthere.after pdiv
+    $('h6').hide()
+    $('body').scrollTop 0
+    @origwidth = picdata.width
+
+  @bestfit = =>
+    if $('div.scrolly').hasClass('bestfit')
+      $('div.scrolly').removeClass 'bestfit'
+      $('div.scrolly').width @origwidth
+    else
+      $('h6').hide()
+      $('div.scrolly').addClass 'bestfit'
+      $('div.scrolly').width("");
+
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
     pdiv = $('<div>')
@@ -97,7 +122,7 @@ class @Sahli
       @origwidth = canvwidth
       @origheight = calcheight
       pdiv.width canvwidth
-    ), 30, 'bits': '8'
+    ), 30, {'bits': '8', "font": picdata.font}
 
   @loadavatar = (picdata, inserthere) ->
     console.log 'avatar', picdata, inserthere
@@ -137,6 +162,7 @@ class @Sahli
     filedata = @filedata
     filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
     viewbox.append filedata[i].pic
+    $('h6').show()
     @loadpic filedata[i], filedata[i].pic
     @currentpic += 1
     if @currentpic > filedata.length - 1
@@ -237,7 +263,7 @@ class @Sahli
       zoomee.width newwidth
       $('canvas').width newwidth
     else
-      if zoomee.width() != @origwidth
+      if parseInt( zoomee.width(), 10 ) != parseInt( @origwidth, 10)
         zoomee.width @origwidth
         $('canvas').width '100%'
       else
@@ -342,6 +368,8 @@ class @Sahli
           @zoom 100
         when @keycode 'r'
           @zoom -100
+        when @keycode 'q'
+          @bestfit()
         when @keycode 'w'
           @changescrolldirection -1
         when @keycode 'x'
@@ -351,6 +379,7 @@ class @Sahli
         when @keycode 'i'
           $('div.infobox').toggle()
         when @keycode 'v'
+          $('h6').show()
           $('h6').height( (window.innerHeight - $('.scrolly').height()) / 2 )
         when @keycode '1'
           @changespeed 1

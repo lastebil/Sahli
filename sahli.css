@@ -52,6 +52,18 @@ h6 {
     width: 33%;
 }
 
+.fullwidth {
+  width: 100%;
+}
+
+.bestfit {
+  padding: 0;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
 .keylist {
     border: inset lightgrey;
     background-color: white;
