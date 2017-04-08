@@ -84,6 +84,7 @@ class @Sahli
     fname = @location + '/' + picdata.file
     pdiv = $('<div>')
     pdiv.addClass 'scrolly'
+    pdiv.addClass 'image'
     pdiv.width picdata.width
     pdiv.css 'display', 'inline-block'
     pimg = $('<img src="' + fname + '" />')
@@ -95,13 +96,14 @@ class @Sahli
     @origwidth = picdata.width
 
   @bestfit = =>
-    if $('div.scrolly').hasClass('bestfit')
-      $('div.scrolly').removeClass 'bestfit'
-      $('div.scrolly').width @origwidth
-    else
-      $('h6').hide()
-      $('div.scrolly').addClass 'bestfit'
-      $('div.scrolly').width("");
+    if $('div.scrolly').hasClass('image')
+      if $('div.scrolly').hasClass('bestfit')
+        $('div.scrolly').removeClass 'bestfit'
+        $('div.scrolly').width @origwidth
+      else
+        $('h6').hide()
+        $('div.scrolly').addClass 'bestfit'
+        $('div.scrolly').width("");
 
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file

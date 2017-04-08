@@ -94,6 +94,7 @@ l__________/__________|___|______l__________j_____j
       fname = this.location + '/' + picdata.file;
       pdiv = $('<div>');
       pdiv.addClass('scrolly');
+      pdiv.addClass('image');
       pdiv.width(picdata.width);
       pdiv.css('display', 'inline-block');
       pimg = $('<img src="' + fname + '" />');
@@ -106,13 +107,15 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.bestfit = function() {
-      if ($('div.scrolly').hasClass('bestfit')) {
-        $('div.scrolly').removeClass('bestfit');
-        return $('div.scrolly').width(Sahli.origwidth);
-      } else {
-        $('h6').hide();
-        $('div.scrolly').addClass('bestfit');
-        return $('div.scrolly').width("");
+      if ($('div.scrolly').hasClass('image')) {
+        if ($('div.scrolly').hasClass('bestfit')) {
+          $('div.scrolly').removeClass('bestfit');
+          return $('div.scrolly').width(Sahli.origwidth);
+        } else {
+          $('h6').hide();
+          $('div.scrolly').addClass('bestfit');
+          return $('div.scrolly').width("");
+        }
       }
     };
 
