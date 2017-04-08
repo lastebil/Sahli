@@ -103,18 +103,29 @@ l__________/__________|___|______l__________j_____j
       inserthere.after(pdiv);
       $('h6').hide();
       $('body').scrollTop(0);
-      return this.origwidth = picdata.width;
+      this.origwidth = picdata.width;
+      return this.origheight = picdata.height;
     };
 
     Sahli.bestfit = function() {
+      var viewbox;
+      viewbox = $('div#sahliviewer');
       if ($('div.scrolly').hasClass('image')) {
-        if ($('div.scrolly').hasClass('bestfit')) {
-          $('div.scrolly').removeClass('bestfit');
-          return $('div.scrolly').width(Sahli.origwidth);
+        if ($('div.scrolly').hasClass('bestfitMode')) {
+          $('div.scrolly').removeClass('bestfitMode');
+          $('div.scrolly').addClass('fullwidthMode');
+          $('div.scrolly').width(Sahli.origwidth);
+          $('div.scrolly').height("");
+          $('img.bestfit').addClass('fullwidth');
+          return $('img.bestfit').removeClass('bestfit');
         } else {
           $('h6').hide();
-          $('div.scrolly').addClass('bestfit');
-          return $('div.scrolly').width("");
+          $('div.scrolly').addClass('bestfitMode');
+          $('div.scrolly').removeClass('fullwidthMode');
+          $('div.scrolly').width(window.innerWidth);
+          $('div.scrolly').height(window.innerHeight);
+          $('img.fullwidth').addClass('bestfit');
+          return $('img.fullwidth').removeClass('fullwidth');
         }
       }
     };

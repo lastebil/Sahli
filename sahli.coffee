@@ -94,16 +94,27 @@ class @Sahli
     $('h6').hide()
     $('body').scrollTop 0
     @origwidth = picdata.width
+    @origheight = picdata.height
 
   @bestfit = =>
+    viewbox = $('div#sahliviewer')
     if $('div.scrolly').hasClass('image')
-      if $('div.scrolly').hasClass('bestfit')
-        $('div.scrolly').removeClass 'bestfit'
+      if $('div.scrolly').hasClass('bestfitMode')
+        $('div.scrolly').removeClass 'bestfitMode'
+        $('div.scrolly').addClass 'fullwidthMode'
         $('div.scrolly').width @origwidth
+        $('div.scrolly').height("")
+        $('img.bestfit').addClass 'fullwidth'
+        $('img.bestfit').removeClass 'bestfit'
       else
         $('h6').hide()
-        $('div.scrolly').addClass 'bestfit'
-        $('div.scrolly').width("");
+        $('div.scrolly').addClass 'bestfitMode'
+        $('div.scrolly').removeClass 'fullwidthMode'
+        $('div.scrolly').width window.innerWidth
+        $('div.scrolly').height window.innerHeight
+        $('img.fullwidth').addClass 'bestfit'
+        $('img.fullwidth').removeClass 'fullwidth'
+        ##$('div.scrolly').width("");
 
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
