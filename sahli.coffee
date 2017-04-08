@@ -85,7 +85,7 @@ class @Sahli
     pdiv = $('<div>')
     pdiv.addClass 'scrolly'
     pdiv.addClass 'image'
-    pdiv.width picdata.width
+    pdiv.width window.innerWidth
     pdiv.css 'display', 'inline-block'
     pimg = $('<img src="' + fname + '" />')
     pimg.addClass 'fullwidth'
@@ -95,6 +95,7 @@ class @Sahli
     $('body').scrollTop 0
     @origwidth = picdata.width
     @origheight = picdata.height
+    @bestfit()
 
   @bestfit = =>
     viewbox = $('div#sahliviewer')
@@ -102,7 +103,7 @@ class @Sahli
       if $('div.scrolly').hasClass('bestfitMode')
         $('div.scrolly').removeClass 'bestfitMode'
         $('div.scrolly').addClass 'fullwidthMode'
-        $('div.scrolly').width @origwidth
+        $('div.scrolly').width window.innerWidth
         $('div.scrolly').height("")
         $('img.bestfit').addClass 'fullwidth'
         $('img.bestfit').removeClass 'bestfit'

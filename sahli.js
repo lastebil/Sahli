@@ -95,7 +95,7 @@ l__________/__________|___|______l__________j_____j
       pdiv = $('<div>');
       pdiv.addClass('scrolly');
       pdiv.addClass('image');
-      pdiv.width(picdata.width);
+      pdiv.width(window.innerWidth);
       pdiv.css('display', 'inline-block');
       pimg = $('<img src="' + fname + '" />');
       pimg.addClass('fullwidth');
@@ -104,7 +104,8 @@ l__________/__________|___|______l__________j_____j
       $('h6').hide();
       $('body').scrollTop(0);
       this.origwidth = picdata.width;
-      return this.origheight = picdata.height;
+      this.origheight = picdata.height;
+      return this.bestfit();
     };
 
     Sahli.bestfit = function() {
@@ -114,7 +115,7 @@ l__________/__________|___|______l__________j_____j
         if ($('div.scrolly').hasClass('bestfitMode')) {
           $('div.scrolly').removeClass('bestfitMode');
           $('div.scrolly').addClass('fullwidthMode');
-          $('div.scrolly').width(Sahli.origwidth);
+          $('div.scrolly').width(window.innerWidth);
           $('div.scrolly').height("");
           $('img.bestfit').addClass('fullwidth');
           return $('img.bestfit').removeClass('bestfit');
