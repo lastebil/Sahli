@@ -16,7 +16,9 @@ l__________/__________|___|______l__________j_____j
 
 (function() {
   this.Sahli = (function() {
-    function Sahli() {}
+    function Sahli() {
+      $('body').css('cursor', 'none');
+    }
 
     Sahli.loadpic = function(picdata, inserthere) {
       switch (picdata.filetype) {
@@ -109,8 +111,6 @@ l__________/__________|___|______l__________j_____j
     };
 
     Sahli.bestfit = function() {
-      var viewbox;
-      viewbox = $('div#sahliviewer');
       if ($('div.scrolly').hasClass('image')) {
         if ($('div.scrolly').hasClass('bestfitMode')) {
           $('div.scrolly').removeClass('bestfitMode');

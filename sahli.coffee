@@ -14,6 +14,7 @@ l__________/__________|___|______l__________j_____j
 
 class @Sahli
   constructor: () ->
+    $('body').css('cursor', 'none');
     # I don't think we actually are going to have one, as we don't
     # need instance variables (things used outside the function)
 
@@ -98,7 +99,6 @@ class @Sahli
     @bestfit()
 
   @bestfit = =>
-    viewbox = $('div#sahliviewer')
     if $('div.scrolly').hasClass('image')
       if $('div.scrolly').hasClass('bestfitMode')
         $('div.scrolly').removeClass 'bestfitMode'
@@ -115,7 +115,6 @@ class @Sahli
         $('div.scrolly').height window.innerHeight
         $('img.fullwidth').addClass 'bestfit'
         $('img.fullwidth').removeClass 'fullwidth'
-        ##$('div.scrolly').width("");
 
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
