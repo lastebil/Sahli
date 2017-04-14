@@ -14,6 +14,7 @@ l__________/__________|___|______l__________j_____j
 
 class @Sahli
   constructor: () ->
+    $('body').css('cursor', 'none');
     # I don't think we actually are going to have one, as we don't
     # need instance variables (things used outside the function)
 
@@ -39,6 +40,8 @@ class @Sahli
         @loadhugeansi picdata, inserthere
       when 'tundra'
         @loadhugeansi picdata, inserthere
+      when 'image'
+        @loadpicture picdata, inserthere
       else
         @loadplain picdata, inserthere
 
@@ -78,6 +81,41 @@ class @Sahli
     req.open 'GET', fname, true
     req.send null
 
+  @loadpicture = (picdata, inserthere) ->
+    fname = @location + '/' + picdata.file
+    pdiv = $('<div>')
+    pdiv.addClass 'scrolly'
+    pdiv.addClass 'image'
+    pdiv.width window.innerWidth
+    pdiv.css 'display', 'inline-block'
+    pimg = $('<img src="' + fname + '" />')
+    pimg.addClass 'fullwidth'
+    pdiv.append pimg
+    inserthere.after pdiv
+    $('h6').hide()
+    $('body').scrollTop 0
+    @origwidth = picdata.width
+    @origheight = picdata.height
+    @bestfit()
+
+  @bestfit = =>
+    if $('div.scrolly').hasClass('image')
+      if $('div.scrolly').hasClass('bestfitMode')
+        $('div.scrolly').removeClass 'bestfitMode'
+        $('div.scrolly').addClass 'fullwidthMode'
+        $('div.scrolly').width window.innerWidth
+        $('div.scrolly').height("")
+        $('img.bestfit').addClass 'fullwidth'
+        $('img.bestfit').removeClass 'bestfit'
+      else
+        $('h6').hide()
+        $('div.scrolly').addClass 'bestfitMode'
+        $('div.scrolly').removeClass 'fullwidthMode'
+        $('div.scrolly').width window.innerWidth
+        $('div.scrolly').height window.innerHeight
+        $('img.fullwidth').addClass 'bestfit'
+        $('img.fullwidth').removeClass 'fullwidth'
+
   @loadhugeansi = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
     pdiv = $('<div>')
@@ -97,7 +135,7 @@ class @Sahli
       @origwidth = canvwidth
       @origheight = calcheight
       pdiv.width canvwidth
-    ), 30, 'bits': '8'
+    ), 30, {'bits': '8', "font": picdata.font}
 
   @loadavatar = (picdata, inserthere) ->
     console.log 'avatar', picdata, inserthere
@@ -137,6 +175,7 @@ class @Sahli
     filedata = @filedata
     filedata[i].pic = $('<h6>' + filedata[i].file + '</h6>')
     viewbox.append filedata[i].pic
+    $('h6').show()
     @loadpic filedata[i], filedata[i].pic
     @currentpic += 1
     if @currentpic > filedata.length - 1
@@ -237,7 +276,7 @@ class @Sahli
       zoomee.width newwidth
       $('canvas').width newwidth
     else
-      if zoomee.width() != @origwidth
+      if parseInt( zoomee.width(), 10 ) != parseInt( @origwidth, 10)
         zoomee.width @origwidth
         $('canvas').width '100%'
       else
@@ -342,6 +381,8 @@ class @Sahli
           @zoom 100
         when @keycode 'r'
           @zoom -100
+        when @keycode 'q'
+          @bestfit()
         when @keycode 'w'
           @changescrolldirection -1
         when @keycode 'x'
@@ -351,6 +392,7 @@ class @Sahli
         when @keycode 'i'
           $('div.infobox').toggle()
         when @keycode 'v'
+          $('h6').show()
           $('h6').height( (window.innerHeight - $('.scrolly').height()) / 2 )
         when @keycode '1'
           @changespeed 1

@@ -14,6 +14,56 @@
 
 	"filedata": [
 
+    {
+      "file": "AD - Green Beam.scaled.png",
+      "name": "Green Beam",
+      "amiga": false,
+      "filetype": "image",
+      "width": "1600",
+      "author": "AD",
+      "font": "Propaz",
+      "color": [
+       0,
+       0,
+       0,
+       255
+      ],
+      "bg": [
+       255,
+       255,
+       255,
+       255
+      ],
+      "line1": "",
+      "line2": "",
+      "text": ""
+    },
+
+    {
+      "file": "om-boss.png",
+      "name": "Green Beam",
+      "amiga": false,
+      "filetype": "image",
+      "width": "640",
+      "author": "AD",
+      "font": "Propaz",
+      "color": [
+       0,
+       0,
+       0,
+       255
+      ],
+      "bg": [
+       255,
+       255,
+       255,
+       255
+      ],
+      "line1": "",
+      "line2": "",
+      "text": ""
+    },
+
 		{
 
 			"file": "spaceflight.asc",
