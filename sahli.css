@@ -10,6 +10,10 @@ body {
     border: none;
 }
 
+pre {
+    line-height: 100%;
+}
+
 #top {
     border: 1px solid green;
     color: green;
