@@ -103,6 +103,33 @@ class @Sahli
     @origheight = picdata.height
     @bestfit()
 
+  @fullwidthplain = =>
+    if ($('pre').css("font-size") == "16px")
+      $('pre').css("font-size", "2.5vw");
+    else
+      $('pre').css("font-size", "16px");
+
+  @togglefullwidthmode = =>
+    if ($('pre').hasClass('plaintext'))
+      @fullwidthplain()
+    else
+      if $('div.scrolly').hasClass('image')
+        @bestfit()
+      else
+        @zoom()
+
+  @zoomin = =>
+    if ($('pre').hasClass('plaintext'))
+      @increaseFont($('pre'), 2)
+    else
+      @zoom(100);
+
+  @zoomout = =>
+    if ($('pre').hasClass('plaintext'))
+      @increaseFont($('pre'), -2)
+    else
+      @zoom(-100);
+
   @bestfit = =>
     if $('div.scrolly').hasClass('image')
       if $('div.scrolly').hasClass('bestfitMode')
@@ -374,20 +401,18 @@ class @Sahli
           @setscroll()
         when @keycode 't'
           $('body').scrollTop 0
-          @zoom 0
+          @togglefullwidthmode()
         when @keycode 'b'
           $('body').scrollTop $('body').height()
         when @keycode 'a'
           $('body').stop()
           @scroll_direction = - @scroll_direction
         when @keycode 'z'
-          @zoom()
+          @togglefullwidthmode()
         when @keycode 'e'
-          @zoom 100
+          @zoomin()
         when @keycode 'r'
-          @zoom -100
-        when @keycode 'q'
-          @bestfit()
+          @zoomout()
         when @keycode 'w'
           @changescrolldirection -1
         when @keycode 'x'
@@ -416,8 +441,6 @@ class @Sahli
           @increaseFont($('pre'), -2)
         when @keycode '9'
           @increaseFont($('pre'), 2)
-        when @keycode '0'
-          $('pre').css("font-size", "2.5vw");
         when 40 # down
           @moveline 1
         when 38 # up
