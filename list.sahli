@@ -67,97 +67,51 @@
 		{
 
 			"file": "spaceflight.asc",
-
 			"name": "Spaceflight",
-
 			"amiga": true,
-
 			"filetype": "plain",
-
 			"width": "80",
-
 			"author": "Urs",
-
 			"font": "pot-noodle",
-
 			"color": [
-
 				255,
-
 				128,
-
 				0,
-
 				255
-
 			],
-
 			"bg": [
-
 				0,
-
 				0,
-
 				0,
-
 				255
-
 			],
-
 			"line1": "Orange on Dark Grey",
-
 			"line2": "Test for plain files",
-
 			"text": ""
-
 		},
-
 		{
-
 			"file": "az0!-revi510n.txt",
-
 			"name": "Revision",
-
 			"amiga": true,
-
 			"filetype": "plain",
-
 			"width": "80",
-
 			"author": "Azzarro/Madwizards",
-
-			"font": "Propaz",
-
-			"color": [
-
+			"font": "mosoul",
+		  "color": [
 				0,
-
 				240,
-
 				0,
-
 				255
-
 			],
-
 			"bg": [
-
 				255,
-
 				0,
-
 				0,
-
 				255
-
 			],
-
 			"line1": "Azzaro Returns",
-
 			"line2": "Revision ansi/ascii compo 2013",
-
-			"text": "Color test as well as Microknight test."
-
+			"text": "Color test as well as mOsOul test."
 		},
 {
 			"file": "dS!-JUFV.txt",

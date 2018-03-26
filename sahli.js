@@ -59,6 +59,7 @@ l__________/__________|___|______l__________j_____j
         'margin': '0 auto'
       });
       ptxt = $('<pre>');
+      ptxt.addClass('plaintext');
       color = this.calccolor(picdata.color);
       bgcolor = this.calccolor(picdata.bg);
       pdiv.addClass('scrolly');
@@ -69,9 +70,6 @@ l__________/__________|___|______l__________j_____j
         'margin': 'auto',
         'display': 'inline-block'
       });
-      ptxt.width(picdata.width * 8);
-      this.origwidth = ptxt.width;
-      pdiv.width(ptxt.width);
       pdiv.prepend(buf.clone());
       pdiv.append(ptxt);
       pdiv.append(buf);
@@ -89,6 +87,15 @@ l__________/__________|___|______l__________j_____j
       };
       req.open('GET', fname, true);
       return req.send(null);
+    };
+
+    Sahli.increaseFont = function(node, increaseBy) {
+      var current_size;
+      if (increaseBy == null) {
+        increaseBy = 5;
+      }
+      current_size = parseInt($(node).css("font-size"));
+      return $(node).css("font-size", current_size + increaseBy);
     };
 
     Sahli.loadpicture = function(picdata, inserthere) {
@@ -476,6 +483,10 @@ l__________/__________|___|______l__________j_____j
               return _this.scroll_speed = 4;
             case _this.keycode('5'):
               return _this.changespeed(5);
+            case _this.keycode('8'):
+              return _this.increaseFont($('pre'), -2);
+            case _this.keycode('9'):
+              return _this.increaseFont($('pre'), 2);
             case 40:
               return _this.moveline(1);
             case 38:
