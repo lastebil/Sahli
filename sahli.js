@@ -487,6 +487,8 @@ l__________/__________|___|______l__________j_____j
               return _this.increaseFont($('pre'), -2);
             case _this.keycode('9'):
               return _this.increaseFont($('pre'), 2);
+            case _this.keycode('0'):
+              return $('pre').css("font-size", "2.5vw");
             case 40:
               return _this.moveline(1);
             case 38:
