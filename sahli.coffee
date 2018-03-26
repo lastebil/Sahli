@@ -52,6 +52,7 @@ class @Sahli
     buf = $('<span>')
     buf.css {'margin':'0 auto'}
     ptxt = $('<pre>')
+    ptxt.addClass 'plaintext'
     color = @calccolor(picdata.color)
     bgcolor = @calccolor(picdata.bg)
     pdiv.addClass 'scrolly'
@@ -61,9 +62,9 @@ class @Sahli
       'background-color': bgcolor
       'margin': 'auto'
       'display': 'inline-block'
-    ptxt.width picdata.width * 8
-    @origwidth = ptxt.width
-    pdiv.width ptxt.width
+    #ptxt.width picdata.width * 8
+    #@origwidth = ptxt.width
+    #pdiv.width ptxt.width
     pdiv.prepend buf.clone()
     pdiv.append ptxt
     pdiv.append buf
@@ -80,6 +81,10 @@ class @Sahli
           @loaderror inserthere, fname, req.statusText, req.status
     req.open 'GET', fname, true
     req.send null
+
+  @increaseFont = (node, increaseBy=5) ->
+    current_size = parseInt($(node).css("font-size"));
+    $(node).css("font-size", current_size + increaseBy);
 
   @loadpicture = (picdata, inserthere) ->
     fname = @location + '/' + picdata.file
@@ -407,6 +412,10 @@ class @Sahli
           @scroll_speed = 4
         when @keycode '5'
           @changespeed 5
+        when @keycode '8'
+          @increaseFont($('pre'), -2)
+        when @keycode '9'
+          @increaseFont($('pre'), 2)
         when 40 # down
           @moveline 1
         when 38 # up
