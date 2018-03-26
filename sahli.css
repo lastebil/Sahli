@@ -44,7 +44,7 @@ h6 {
 .help {
     position: fixed;
     top: 1em;
-    left: 33%;
+    left: 25%;
     text-align: left;
     background-color: lightgrey;
     border: outset darkgray;
@@ -53,7 +53,7 @@ h6 {
     border-radius: 8px;
     font-family: topaz1200,mOsOul, Consolas, monospace;
     opacity: .85;
-    width: 33%;
+    width: 50%;
 }
 
 .fullwidth {

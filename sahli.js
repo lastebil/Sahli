@@ -117,6 +117,42 @@ l__________/__________|___|______l__________j_____j
       return this.bestfit();
     };
 
+    Sahli.fullwidthplain = function() {
+      if ($('pre').css("font-size") === "16px") {
+        return $('pre').css("font-size", "2.5vw");
+      } else {
+        return $('pre').css("font-size", "16px");
+      }
+    };
+
+    Sahli.togglefullwidthmode = function() {
+      if ($('pre').hasClass('plaintext')) {
+        return Sahli.fullwidthplain();
+      } else {
+        if ($('div.scrolly').hasClass('image')) {
+          return Sahli.bestfit();
+        } else {
+          return Sahli.zoom();
+        }
+      }
+    };
+
+    Sahli.zoomin = function() {
+      if ($('pre').hasClass('plaintext')) {
+        return Sahli.increaseFont($('pre'), 2);
+      } else {
+        return Sahli.zoom(100);
+      }
+    };
+
+    Sahli.zoomout = function() {
+      if ($('pre').hasClass('plaintext')) {
+        return Sahli.increaseFont($('pre'), -2);
+      } else {
+        return Sahli.zoom(-100);
+      }
+    };
+
     Sahli.bestfit = function() {
       if ($('div.scrolly').hasClass('image')) {
         if ($('div.scrolly').hasClass('bestfitMode')) {
@@ -445,20 +481,18 @@ l__________/__________|___|______l__________j_____j
               return _this.setscroll();
             case _this.keycode('t'):
               $('body').scrollTop(0);
-              return _this.zoom(0);
+              return _this.togglefullwidthmode();
             case _this.keycode('b'):
               return $('body').scrollTop($('body').height());
             case _this.keycode('a'):
               $('body').stop();
               return _this.scroll_direction = -_this.scroll_direction;
             case _this.keycode('z'):
-              return _this.zoom();
+              return _this.togglefullwidthmode();
             case _this.keycode('e'):
-              return _this.zoom(100);
+              return _this.zoomin();
             case _this.keycode('r'):
-              return _this.zoom(-100);
-            case _this.keycode('q'):
-              return _this.bestfit();
+              return _this.zoomout();
             case _this.keycode('w'):
               return _this.changescrolldirection(-1);
             case _this.keycode('x'):
@@ -487,8 +521,6 @@ l__________/__________|___|______l__________j_____j
               return _this.increaseFont($('pre'), -2);
             case _this.keycode('9'):
               return _this.increaseFont($('pre'), 2);
-            case _this.keycode('0'):
-              return $('pre').css("font-size", "2.5vw");
             case 40:
               return _this.moveline(1);
             case 38:
