@@ -416,6 +416,8 @@ class @Sahli
           @increaseFont($('pre'), -2)
         when @keycode '9'
           @increaseFont($('pre'), 2)
+        when @keycode '0'
+          $('pre').css("font-size", "2.5vw");
         when 40 # down
           @moveline 1
         when 38 # up
